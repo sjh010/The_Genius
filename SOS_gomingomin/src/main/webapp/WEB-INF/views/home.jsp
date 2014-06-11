@@ -18,6 +18,5 @@
 <div class="container">
 
 </div>
-<script src="/resources/js/default.js"></script>
 </body>
 </html>
