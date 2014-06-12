@@ -7,7 +7,7 @@ import org.sos.vo.UserVO;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Inject
 	UserMapper userMapper ;
@@ -29,14 +29,14 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void updateUser(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
 		userMapper.updateUser(vo);
-		
 	}
 
 	@Override
 	public void deleteUser(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		userMapper.deleteUser(user_id);
-		
 	}
+	
 }
