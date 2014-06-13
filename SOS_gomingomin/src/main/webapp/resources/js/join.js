@@ -35,8 +35,7 @@ $(function () {
                 url: "/user/checkUserId",
                 dataType : "json",
                 success : function(data){
-                	console.log(data);
-                    if(data.checkUserId == 'n'){
+                    if(data.returnUserId == 'n'){
                           has_success(user_id);
                             $(".user-id-msg")
                                 .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
@@ -290,19 +289,18 @@ $(function () {
                 'user_email='+ email_id.val() + '@' + email_host.val()+"&"+
                 'user_phone='+ phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"&"+
                 'user_mobile='+ mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val();
-
-            console.log(param);
             
             $.ajax({
                 data : param,
                 type:'post',
                 url: "/join",
                 success : function(data){
-                	console.log(data);
+                	//$.cookie('user_id', data.returnUserId, { expires: 1, path: '/', secure: false });
                     /*
                         아이디 정보 받아서 cookie 저장 후
                         캐릭터 선택 페이지로 redirect
                      */
+                	location.replace('user/character?user_id='+data.returnUserId);
                 },
                 failure : function(data){
                     console.log("에러입니다. 다음에 다시 시도해주세요..");

@@ -1,3 +1,7 @@
+/**
+ * Created by Saemi Lim on 2014-06-13.
+ */
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,6 +21,7 @@
 <body>
 	<jsp:include page="../default.jsp" flush="false" />
 
+
 <div class="container">
     <div class="container-header">
         <div class="page-header">
@@ -34,61 +39,61 @@
             </div>
         </div>
         <div class="row select">
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-select">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element selected">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
                 <div class="nametag">정우성</div>
             </div>
-            <div class="select-element">
+            <div class="select-element no-selected">
                 <div class="image-frame">
                     <img class="" name="정우성" src="정우성.png"/>
                 </div>
@@ -103,10 +108,6 @@
         </form>
     </div>
 </div>
-<script>
-    $(".select-element img").click(function (e) {
-        console.log(e.target.name);
-    });
-</script>
+<script src="js/select.js"></script>
 </body>
 </html>
