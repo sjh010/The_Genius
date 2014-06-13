@@ -38,6 +38,7 @@ public class UserController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
+		logger.info(user.toString());
 		userService.registUser(user);
 		
 		modelAndView.addObject("user_id", user.getUser_id());
@@ -53,7 +54,7 @@ public class UserController {
 		logger.info("checkUserId..........");
 		logger.info("user_id : " + request.getParameter("user_id"));
 		
-		UserVO user = userService.readUser(request.getParameter("userid"));
+		UserVO user = userService.readUser(request.getParameter("user_id"));
 		
 		String checkFlag = "n";
 		
@@ -64,7 +65,7 @@ public class UserController {
 		
 		request.setAttribute("checkUserId", checkFlag);
 		
-		return "checkUserId";
+		return "/user/ajax/checkUserId";
 	}
 
 }
