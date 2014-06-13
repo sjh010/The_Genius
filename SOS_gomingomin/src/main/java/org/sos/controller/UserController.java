@@ -48,13 +48,13 @@ public class UserController {
 	@RequestMapping(value = "user/character", method = RequestMethod.GET)
 	public ModelAndView getCharacterSelectPage(HttpServletRequest request) throws Exception{
 		
-		logger.info("joinAction..........");
+		logger.info("character..........");
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		UserVO user = userService.readUser(request.getParameter("user_id"));
-		modelAndView.addObject("vo", user);
-		modelAndView.setViewName("selectCharacter");
+		modelAndView.addObject("UserVO", user);
+		modelAndView.setViewName("/user/selectCharacter");
 		
 		return modelAndView;	
 	}
@@ -75,22 +75,24 @@ public class UserController {
 			checkFlag = "y";
 		}
 		
-		request.setAttribute("checkUserId", checkFlag);
+		request.setAttribute("returnUserId", checkFlag);
 		
 		return "/user/ajax/returnUserId";
 	}
 	
 	@RequestMapping(value = "user/modify", method = RequestMethod.GET)
-	public String Modify(UserVO user){
+	public ModelAndView Modify(HttpServletRequest request) throws Exception{
 		
 		logger.info("modify..........");
+		logger.info("user_id : " + request.getParameter("user_id"));
 		
-		UserVO user = userService.readUser(user_id)
+		ModelAndView modelAndView = new ModelAndView();
 		
-		request.setAttribute(arg0, arg1);
+		UserVO user = userService.readUser(request.getParameter("user_id"));
+		modelAndView.addObject("UserVO", user);
+		modelAndView.setViewName("/user/modify");
 		
-		
-		return "user/modify";
+		return modelAndView;	
 	}
 	
 }
