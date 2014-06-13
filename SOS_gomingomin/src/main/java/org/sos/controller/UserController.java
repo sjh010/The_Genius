@@ -30,18 +30,30 @@ public class UserController {
 		return "user/join"; 
 	}
 	
-	// 회원 기본정보 입력 받아 DB저장 후, 캐릭터 선택페이지로 이동
+	// 회원 기본정보 입력 받아 DB저장 후 가입 아이디 반환
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public ModelAndView joinAction(UserVO user) throws Exception{
+	public String joinAction(HttpServletRequest request, UserVO user) throws Exception{
+		
+		logger.info("joinAction..........");
+		
+		logger.info(user.toString());
+		userService.registUser(user);
+		
+		request.setAttribute("user_id", user.getUser_id());
+		
+		return "/user/ajax/returnUserId";	
+	}
+	
+	// 캐릭터 선택 페이지로 이동
+	@RequestMapping(value = "user/character", method = RequestMethod.GET)
+	public ModelAndView getCharacterSelectPage(HttpServletRequest request) throws Exception{
 		
 		logger.info("joinAction..........");
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		logger.info(user.toString());
-		userService.registUser(user);
-		
-		modelAndView.addObject("user_id", user.getUser_id());
+		UserVO user = userService.readUser(request.getParameter("user_id"));
+		modelAndView.addObject("vo", user);
 		modelAndView.setViewName("selectCharacter");
 		
 		return modelAndView;	
@@ -65,7 +77,20 @@ public class UserController {
 		
 		request.setAttribute("checkUserId", checkFlag);
 		
-		return "/user/ajax/checkUserId";
+		return "/user/ajax/returnUserId";
 	}
-
+	
+	@RequestMapping(value = "user/modify", method = RequestMethod.GET)
+	public String Modify(UserVO user){
+		
+		logger.info("modify..........");
+		
+		UserVO user = userService.readUser(user_id)
+		
+		request.setAttribute(arg0, arg1);
+		
+		
+		return "user/modify";
+	}
+	
 }
