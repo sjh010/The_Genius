@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 /* /user/select.jsp image control */
-@media ( min-width: 871px) { .dummy { display: none; } .select {max-width :1000px}}
+@media ( min-width: 871px) { .dummy { display: none; } .selectBox {max-width :1000px}}
 @media ( max-width: 871px) { .dummy { display: inline-block; width : 156px; }}
 @media ( max-width: 706px) { .dummy { display:none; }}
 
@@ -20,6 +20,18 @@
 
     .form-button button {
         width : 80px;
+    }
+
+    .selectList {
+        border : 1px solid;
+        margin: 0 auto;
+        min-height: 53px;
+        max-width : 800px ;
+        text-align: center;
+    }
+
+    .selectList span {
+        padding : 15px;
     }
 }
 
@@ -41,14 +53,15 @@
 }
 .email{
     display: inline-block;
-    width : 120px;
+    width : 130px;
 }
 
 .address {
     margin-bottom :5px;
 }
 
-.select {
+.selectBox {
+    margin :0 auto;
     padding :20px;
     text-align: center;
 }
@@ -63,8 +76,11 @@
     text-align: center;
 }
 
-.select-element :hover{
+.select-element:hover{
     opacity: 0.8;
+}
+.selected {
+    opacity: 0.5;
 }
 
 .select-element .image-frame {

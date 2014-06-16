@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/**/*-context.xml"})
 
-public class MapperTest {
+public class UserMapperTest {
 	@Inject
 	UserMapper userMapper;
 	
@@ -23,15 +23,13 @@ public class MapperTest {
 	
 	@Test
 	public void testRegist() throws Exception{
-		
-		//´õ¹Ì µ¥ÀÌÅÍ
 		UserVO vo = new UserVO();
 		vo.setUser_id("thgns");
 		vo.setUser_password("1234");
-		vo.setUser_name("¼ÒÈÆ");
+		vo.setUser_name("ï¿½ï¿½ï¿½ï¿½");
 		vo.setUser_birth("1985-11-19");
 		vo.setUser_sex("F");
-		vo.setUser_addr("¼­¿ï½Ã °­ºÏ±¸ ¼ÛÃµµ¿ 412-1");
+		vo.setUser_addr("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Ãµï¿½ï¿½ 412-1");
 		vo.setUser_email("thgns@hanmail.net");
 		vo.setUser_mobile("010-9135-8519");
 		vo.setUser_phone("010-9135-8519");
@@ -56,11 +54,12 @@ public class MapperTest {
 	@Test
 	public void testUpdate() throws Exception{
 		UserVO vo = new UserVO();
+		vo.setUser_id("thgns");
 		vo.setUser_password("5678");
-		vo.setUser_name("¼ÒÈÆ");
+		vo.setUser_name("ï¿½ï¿½ï¿½ï¿½");
 		vo.setUser_birth("1985-11-19");
 		vo.setUser_sex("F");
-		vo.setUser_addr("¼­¿ï½Ã °­ºÏ±¸ ¼ÛÃµµ¿ 412-1");
+		vo.setUser_addr("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Ãµï¿½ï¿½ 412-1");
 		vo.setUser_email("thgns@hanmail.net");
 		vo.setUser_mobile("010-9135-8519");
 		vo.setUser_phone("010-9135-8519");

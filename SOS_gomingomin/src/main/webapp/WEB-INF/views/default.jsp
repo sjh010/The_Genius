@@ -17,7 +17,7 @@
 		<div class="collapse navbar-collapse" id="defalutbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="javascript:loginModal();">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
+				<li><a href="/join">회원가입</a></li>
 				<li><a href="#">장바구니</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">나의쇼핑정보<b class="caret"></b></a>

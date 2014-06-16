@@ -1,5 +1,13 @@
+/**
+ * Created by Saemi Lim on 2014-06-13.
+ */
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="org.sos.vo.*, java.util.*"%>
+<%
+	List<CharacterVO> voList = (List<CharacterVO>)request.getAttribute("CharacterVO");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +25,7 @@
 <body>
 	<jsp:include page="../default.jsp" flush="false" />
 
+
 <div class="container">
     <div class="container-header">
         <div class="page-header">
@@ -33,80 +42,27 @@
                 <h4 class="media-heading">자신의 성향을 선택하는 페이지입니다. 해당정보는 좀 더 효과적인 추천, 검색 기능이 제공하기 위해 사용됩니다.</h4>
             </div>
         </div>
-        <div class="row select">
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
-            <div class="select-element">
-                <div class="image-frame">
-                    <img class="" name="정우성" src="정우성.png"/>
-                </div>
-                <div class="nametag">정우성</div>
-            </div>
+        <div class="row selectBox">
+            <%	for(CharacterVO vo : voList){ %>
+            		<div class="select-element">
+		                <div class="image-frame">
+		                    <img class="no-selected" name="<%=vo.getCharacter_name() %>" 
+		                    id="<%=vo.getCharacter_id() %>" 
+		                    src="<%=vo.getCharacter_img() %>>"/>
+		                </div>
+		                <div class="nametag">정우성</div>
+		            </div>
+            <% }%>
             <div class="dummy"></div>
         </div>
-        <form class="form-button">
-            <button type="button" class="btn btn-default">초기화</button>
-            <button type="button" class="btn btn-default">확인</button>
+        <div class="rows selectList"></div>
+        <form class="form-button" id="user-selectCharacter-form">
+            <button type="button" class="btn btn-default init">초기화</button>
+            <button type="button" class="btn btn-default select">확인</button>
             <button type="button" class="btn btn-default">취소</button>
         </form>
     </div>
 </div>
-<script>
-    $(".select-element img").click(function (e) {
-        console.log(e.target.name);
-    });
-</script>
+<script src="js/select.js"></script>
 </body>
 </html>
