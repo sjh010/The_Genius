@@ -4,6 +4,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="org.sos.vo.*"%>
+<%
+	UserVO vo = (UserVO)request.getAttribute("UserVO");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,6 +25,7 @@
 <body>
 	<jsp:include page="../default.jsp" flush="false" />
 
+
 <div class="container">
     <div class="container-header">
         <div class="page-header">
@@ -32,46 +37,51 @@
             <div class="form-group">
                 <label for="user_id" class="col-sm-2 control-label">아이디</label>
                 <div class="col-sm-10">
-                    <label class="control-label">sm9071</label>
+                    <label class="control-label"><%=vo.getUser_id() %></label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="user_pw" class="col-sm-2 control-label">비밀번호</label>
+                <label for="user_pw" class="col-sm-2 control-label">현재 비밀번호</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" name="user_pw">
+                    <input type="password" class="form-control input-short" name="user_password">
+                    <label class="control-label user-pw-msg"></label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="user_pw" class="col-sm-2 control-label">비밀번호 확인</label>
+                <label for="user_new_pw" class="col-sm-2 control-label">새 비밀번호</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" name="user_pwck">
+                    <input type="password" class="form-control input-short" name="user_new_password" placeholder="수정할 경우에만 입력">
+                    <label class="control-label user-new-pw-msg"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user_pw" class="col-sm-2 control-label">새 비밀번호 확인</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control input-short" name="user_new_passwordck">
+                    <label class="control-label user-new-pwck-msg"></label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="user_name" class="col-sm-2 control-label">이름</label>
                 <div class="col-sm-10">
-                    <label class="control-label">임새미(여)</label>
+                    <label class="control-label"><%=vo.getUser_name() %>(<%=(vo.getUser_sex().equals("M"))?"남":"여" %>)</label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="user_birth" class="col-sm-2 control-label">생년월일</label>
                 <div class="col-sm-10">
-                    <label class="control-label">1989년 12월 22일</label>
+                    <label class="control-label"><%=vo.getUser_birth()%></label>
                 </div>
             </div>
             <div class="form-group">
+            <% String[] email = (vo.getUser_email()).split("@");%>
                 <label for="email" class="col-sm-2 control-label">이메일</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control email" name="email_id"/>@
+                    <input type="text" class="form-control email" name="email_id" value="<%=email[0]%>"/>@
                     <div class="email" id="email-select-box">
-                        <select class="form-control " name="email_host">
-                            <option value="">선택</option>
-                            <option value="gmail.com">gmail.com</option>
-                            <option value="nate.com">nate.com</option>
-                            <option value="naver.com">naver.com</option>
-                            <option value="edit">직접입력</option>
-                        </select>
+                        <input type='text' class='form-control email' name='email_host' value="<%=email[1]%>"/>
                     </div>
+                    <label class="control-label user-email-msg"></label>
                 </div>
             </div>
             <div class="form-group">
@@ -81,13 +91,14 @@
                     <span>-</span>
                     <span><input type="text" class="form-control" name="zipcode2"></span>
                     <span><button class="btn btn-default" id="searchZipcode">우편번호 검색</button></span>
+                    <label class="control-label user-address-msg"></label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="address" class="col-sm-2 control-label">주소</label>
                 <div class="col-sm-10 ">
-                    <input type="text" class="form-control address" name="address1">
-                    <input type="text" class="form-control" name="address2">
+                    <input type="text" class="form-control address  input-long" name="address1">
+                    <input type="text" class="form-control input-long" name="address2">
                 </div>
             </div>
             <div class="form-group">
@@ -117,6 +128,7 @@
                     <input type="text" class="form-control mobile" name="phone2"/>
                     <span>-</span>
                     <input type="text" class="form-control mobile" name="phone3"/>
+                    <label class="control-label user-phone-msg"></label>
                 </div>
             </div>
             <div class="form-group">
@@ -134,6 +146,7 @@
                     <input type="text" class="form-control mobile" name="mobile2"/>
                     <span>-</span>
                     <input type="text" class="form-control mobile" name="mobile3"/>
+                    <label class="control-label user-mobile-msg"></label>
                 </div>
             </div>
             <div class="form-group">
@@ -175,7 +188,7 @@
         </div>
     </div>
 </div>
-<script src="js/main.js"></script>
+<script src="js/modify.js"></script>
 <script>
     $(function(){
         $("#user-modify-withdrawBtn").click(function(e){
