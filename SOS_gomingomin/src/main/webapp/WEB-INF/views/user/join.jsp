@@ -163,13 +163,13 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10 form-button">
-                    <button type="button" class="btn btn-default join">가입</button>
+                    <button type="button" class="btn btn-default ok">가입</button>
                     <button type="button" class="btn btn-default cancel">취소</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<script src="/resources/js/join.js"></script>
+<script src="/resources/js/user/join.js"></script>
 </body>
 </html>

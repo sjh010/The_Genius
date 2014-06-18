@@ -13,3 +13,7 @@ $("#user-modify-form .ok").click(function(){
 	    .append("<input type='hidden' value='"+$.cookie("user_id")+"' name='user_id'>");
 	$form.submit();
 });
+
+$("#user-modify-form .cancel").click(function(){
+	history.back();
+});

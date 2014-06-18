@@ -1,4 +1,5 @@
 /**
+ * Updated by Saemi Lim on 2014-06-18.
  * Created by Saemi Lim on 2014-06-10.
  */
 jQuery.browser = {};
@@ -127,6 +128,27 @@ $(function () {
     };
     user_birth.change(function () {userBirthChk();});
 
+    /* datepicker */
+    user_birth.datepicker({
+        dateFormat: 'yy-mm-dd',
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        dayNames: ['일','월','화','수','목','금','토'],
+        dayNamesShort: ['일','월','화','수','목','금','토'],
+        dayNamesMin: ['일','월','화','수','목','금','토'],
+        showMonthAfterYear: true,
+        changeMonth: true,
+        changeYear: true,
+        beforeShow: function(input) {
+            var i_offset= $(input).offset();
+            setTimeout(function(){
+                $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'right':'10px'});
+            });
+        }
+    });
+    
     /* user_sex 선택 확인 */
     var user_sex = form.find("[name=user_sex]");
     var user_sex_ok = false;
@@ -254,7 +276,7 @@ $(function () {
     mobile3.focusout(function () {userMobileChk(); });
 
     /* form 항목 유효성 검사 */
-    $("#user-join-form .join").click(function () {
+    $("#user-join-form .ok").click(function () {
         if (!user_id_ok) {
             user_id.focus();
             userIdCheck();
@@ -290,7 +312,7 @@ $(function () {
                 'user_name='+ user_name.val()+"&"+
                 'user_birth='+ user_birth.val()+"&"+
                 'user_sex='+ user_sex.val()+"&"+
-                'user_addr='+ zipcode1.val()+'-'+zipcode2.val()+'_'+address1.val()+'-'+address2.val()+"&"+
+                'user_addr='+ zipcode1.val()+'---'+zipcode2.val()+'___'+address1.val()+'---'+address2.val()+"&"+
                 'user_email='+ email_id.val() + '@' + email_host.val()+"&"+
                 'user_phone='+ phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"&"+
                 'user_mobile='+ mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val();
@@ -312,24 +334,7 @@ $(function () {
         }
     });
     
-    /* datepicker */
-    user_birth.datepicker({
-        dateFormat: 'yy-mm-dd',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNames: ['일','월','화','수','목','금','토'],
-        dayNamesShort: ['일','월','화','수','목','금','토'],
-        dayNamesMin: ['일','월','화','수','목','금','토'],
-        showMonthAfterYear: true,
-        changeMonth: true,
-        changeYear: true,
-        beforeShow: function(input) {
-            var i_offset= $(input).offset();
-            setTimeout(function(){
-                $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'right':'10px'});
-            });
-        }
+    $("#user-join-form .cancel").click(function () {
+    	history.back();
     });
 });

@@ -77,11 +77,13 @@
                 </div>
             </div>
             <div class="form-group">
+            <% 	String[] zipcode = (vo.getUser_addr()).split("___")[0].split("---");
+            	String[] address = (vo.getUser_addr()).split("___")[1].split("---");%>
                 <label for="zipcode" class="col-sm-2 control-label">우편번호</label>
                 <div class="col-sm-10 zipcode">
-                    <span><input type="text" class="form-control" name="zipcode1"></span>
+                    <span><input type="text" class="form-control" name="zipcode1" value="<%=zipcode[0] %>"></span>
                     <span>-</span>
-                    <span><input type="text" class="form-control" name="zipcode2"></span>
+                    <span><input type="text" class="form-control" name="zipcode2" value="<%=zipcode[1] %>"></span>
                     <span><button class="btn btn-default" id="searchZipcode">우편번호 검색</button></span>
                     <label class="control-label user-address-msg"></label>
                 </div>
@@ -89,55 +91,57 @@
             <div class="form-group">
                 <label for="address" class="col-sm-2 control-label">주소</label>
                 <div class="col-sm-10 ">
-                    <input type="text" class="form-control address  input-long" name="address1">
-                    <input type="text" class="form-control input-long" name="address2">
+                    <input type="text" class="form-control address  input-long" name="address1" value="<%=address[0] %>">
+                    <input type="text" class="form-control input-long" name="address2" value="<%=address[1] %>">
                 </div>
             </div>
             <div class="form-group">
+            <% 	String[] phone = (vo.getUser_phone()).split("-");%>
                 <label for="phone" class="col-sm-2 control-label">집전화</label>
                 <div class="col-sm-10">
                     <select class="form-control mobile" name="phone1">
                         <option value="">선택</option>
-                        <option value="02">02</option>
-                        <option value="051">051</option>
-                        <option value="053">053</option>
-                        <option value="032">032</option>
-                        <option value="062">062</option>
-                        <option value="042">042</option>
-                        <option value="052">052</option>
-                        <option value="044">044</option>
-                        <option value="031">031</option>
-                        <option value="033">033</option>
-                        <option value="043">043</option>
-                        <option value="041">041</option>
-                        <option value="063">063</option>
-                        <option value="061">061</option>
-                        <option value="054">054</option>
-                        <option value="055">055</option>
-                        <option value="064">064</option>
+                        <option value="02" <%="02".equals(phone[0])?"selected":""%> >02</option>
+                        <option value="051" <%="051".equals(phone[0])?"selected":""%>>051</option>
+                        <option value="053" <%="053".equals(phone[0])?"selected":""%>>053</option>
+                        <option value="032" <%="032".equals(phone[0])?"selected":""%>>032</option>
+                        <option value="062" <%="062".equals(phone[0])?"selected":""%>>062</option>
+                        <option value="042" <%="042".equals(phone[0])?"selected":""%>>042</option>
+                        <option value="052" <%="052".equals(phone[0])?"selected":""%>>052</option>
+                        <option value="044" <%="044".equals(phone[0])?"selected":""%>>044</option>
+                        <option value="031" <%="031".equals(phone[0])?"selected":""%>>031</option>
+                        <option value="033" <%="033".equals(phone[0])?"selected":""%>>033</option>
+                        <option value="043" <%="043".equals(phone[0])?"selected":""%>>043</option>
+                        <option value="041" <%="041".equals(phone[0])?"selected":""%>>041</option>
+                        <option value="063" <%="063".equals(phone[0])?"selected":""%>>063</option>
+                        <option value="061" <%="061".equals(phone[0])?"selected":""%>>061</option>
+                        <option value="054" <%="054".equals(phone[0])?"selected":""%>>054</option>
+                        <option value="055" <%="055".equals(phone[0])?"selected":""%>>055</option>
+                        <option value="064" <%="064".equals(phone[0])?"selected":""%>>064</option>
                     </select>
                     <span>-</span>
-                    <input type="text" class="form-control mobile" name="phone2"/>
+                    <input type="text" class="form-control mobile" name="phone2" value="<%=phone[1] %>"/>
                     <span>-</span>
-                    <input type="text" class="form-control mobile" name="phone3"/>
+                    <input type="text" class="form-control mobile" name="phone3" value="<%=phone[2] %>"/>
                     <label class="control-label user-phone-msg"></label>
                 </div>
             </div>
             <div class="form-group">
+              <% 	String[] mobile = (vo.getUser_mobile()).split("-");%>
                 <label for="mobile" class="col-sm-2 control-label">휴대전화</label>
                 <div class="col-sm-10">
                     <select class="form-control mobile" name="mobile1">
                         <option value="">선택</option>
-                        <option value="011">011</option>
-                        <option value="016">016</option>
-                        <option value="017">017</option>
-                        <option value="019">019</option>
-                        <option value="010">010</option>
+                        <option value="011" <%="011".equals(mobile[0])?"selected":""%> >011</option>
+                        <option value="016" <%="016".equals(mobile[0])?"selected":""%>>016</option>
+                        <option value="017" <%="017".equals(mobile[0])?"selected":""%>>017</option>
+                        <option value="019" <%="018".equals(mobile[0])?"selected":""%>>019</option>
+                        <option value="010" <%="010".equals(mobile[0])?"selected":""%>>010</option>
                     </select>
                     <span>-</span>
-                    <input type="text" class="form-control mobile" name="mobile2"/>
+                    <input type="text" class="form-control mobile" name="mobile2" value="<%=mobile[1] %>"/>
                     <span>-</span>
-                    <input type="text" class="form-control mobile" name="mobile3"/>
+                    <input type="text" class="form-control mobile" name="mobile3" value="<%=mobile[1] %>"/>
                     <label class="control-label user-mobile-msg"></label>
                 </div>
             </div>
@@ -148,8 +152,8 @@
                 </div>
             </div>
             <div class="form-group form-button">
-                    <button type="submit" class="btn btn-default">수정</button>
-                    <button type="submit" class="btn btn-default">취소</button>
+                    <button type="submit" class="btn btn-default ok">수정</button>
+                    <button type="submit" class="btn btn-default cancel">취소</button>
             </div>
         </form>
     </div>
@@ -174,12 +178,12 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary withdraw">탈퇴</button>
+                <button type="button" class="btn btn-primary ok">탈퇴</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
             </div>
         </div>
     </div>
 </div>
-<script src="js/update.js"></script>
+<script src="/resources/js/user/update.js"></script>
 </body>
 </html>

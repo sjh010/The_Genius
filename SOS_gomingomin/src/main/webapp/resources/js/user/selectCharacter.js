@@ -71,6 +71,10 @@ $("#user-selectCharacter-form .init").click(function(){
 
 });
 
+$("#user-selectCharacter-form .cancel").click(function(){
+    history.back();
+});
+
 
 function setUserCharacter(id, name){
     if(user_character1.id == '') {

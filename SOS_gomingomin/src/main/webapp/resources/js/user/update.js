@@ -164,7 +164,7 @@ $(function () {
     mobile2.focusout(function () {userMobileChk(); });
     mobile3.focusout(function () {userMobileChk(); });
 
-    $("#user-modify-form .join").click(function () {
+    $("#user-modify-form .ok").click(function () {
         if (!user_pw_ok) {
             user_pw.focus();
             userPwChk();
@@ -193,7 +193,7 @@ $(function () {
         	            if(user_pw != '') $form.append("<input type='hidden' value='"+user_pw.val()+"' name='user_password'>");
         	            $form
         	            	.append("<input type='hidden' value='"+$.cookie("user_id")+"' name='user_password'>")
-        	            	.append("<input type='hidden' value='"+zipcode1+'-'+zipcode2+'||'+address1+'-'+address2+"' name='user_addr'>")
+        	            	.append("<input type='hidden' value='"+zipcode1+'---'+zipcode2+'___'+address1+'---'+address2+"' name='user_addr'>")
         	                .append("<input type='hidden' value='"+email_id.val() + '@' + email_host.val()+"' name='user_email'>")
         	                .append("<input type='hidden' value='"+phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"' name='user_phone'>")
         	                .append("<input type='hidden' value='"+mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()+"' name='user_mobile'>");
@@ -206,12 +206,16 @@ $(function () {
         }
     });
     
+    $("#user-modify-form .cancel").click(function () {
+    	history.back();
+    });
+    
     $("#user-modify-withdrawBtn").click(function(e){
         e.preventDefault();
         $("#withdrawModal").modal('show');
     });
     
-    $("#withdrawModal withdraw").click(function(){
+    $("#withdrawModal ok").click(function(){
     	var $form = $("#user-modify-withdrawForm");
     	var msg = $form.find("[name=withdraw_message]");
     	if(msg == $.cookie('user_id')){

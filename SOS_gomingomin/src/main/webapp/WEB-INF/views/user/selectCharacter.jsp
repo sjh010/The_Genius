@@ -58,10 +58,10 @@
         <form class="form-button" id="user-selectCharacter-form">
             <button type="button" class="btn btn-default init">초기화</button>
             <button type="button" class="btn btn-default select">확인</button>
-            <button type="button" class="btn btn-default">취소</button>
+            <button type="button" class="btn btn-default cancel">취소</button>
         </form>
     </div>
 </div>
-<script src="js/select.js"></script>
+<script src="/resources/js/user/selectCharacter.js"></script>
 </body>
 </html>

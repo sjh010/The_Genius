@@ -3,8 +3,19 @@
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<% Cookie[] cookies = request.getCookies(); 
+	String user_id = null;
+	String include = "./navbarNoLogin.jsp";
+	if(cookies != null) {
+		for(Cookie cookie : cookies){
+			if(cookie.getName().equals("user_id")) {
+				user_id = cookie.getValue();
+				include = "./navbarLogin.jsp";
+			}
+		}
+	}
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,7 +28,10 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
-<jsp:include page="../default.jsp" flush="false" />
+
+<jsp:include page="<%=include %>" flush="false">
+	<jsp:param value="<%=user_id %>" name="user_id"/>
+</jsp:include>
 
 <div class="container">
     <div class="container-header">
@@ -36,7 +50,7 @@
             <div class="form-group">
                 <label for="user_id" class="col-sm-2 control-label">아이디</label>
                 <div class="col-sm-10">
-                    <label class=" control-label">abc1234</label>
+                    <label class=" control-label"><%=user_id %></label>
                 </div>
             </div>
             <div class="form-group">
@@ -47,10 +61,11 @@
             </div>
             <div class="form-button">
                 <button type="button" class="btn btn-primary ok">확인</button>
-                <button type="button" class="btn btn-default">취소</button>
+                <button type="button" class="btn btn-default cancel">취소</button>
             </div>
         </form>
     </div>
 </div>
+<script src="/resources/js/user/myPage.js"></script>
 </body>
 </html>
