@@ -2,54 +2,54 @@ package org.sos.vo;
 
 public class ResultVO {
 
-	private int type_adventure;
-	private int type_practice;
-	private int type_rule;
-	private int type_tradition;
-	private int type_enjoyment;
-	private int type_pleasure;
-	private int type_harmony;
+	private double type_adventure;
+	private double type_practice;
+	private double type_rule;
+	private double type_tradition;
+	private double type_enjoyment;
+	private double type_pleasure;
+	private double type_harmony;
 	
-	public int getType_adventure() {
+	public double getType_adventure() {
 		return type_adventure;
 	}
-	public void setType_adventure(int type_adventure) {
+	public void setType_adventure(double type_adventure) {
 		this.type_adventure = type_adventure;
 	}
-	public int getType_practice() {
+	public double getType_practice() {
 		return type_practice;
 	}
-	public void setType_practice(int type_practice) {
+	public void setType_practice(double type_practice) {
 		this.type_practice = type_practice;
 	}
-	public int getType_rule() {
+	public double getType_rule() {
 		return type_rule;
 	}
-	public void setType_rule(int type_rule) {
+	public void setType_rule(double type_rule) {
 		this.type_rule = type_rule;
 	}
-	public int getType_tradition() {
+	public double getType_tradition() {
 		return type_tradition;
 	}
-	public void setType_tradition(int type_tradition) {
+	public void setType_tradition(double type_tradition) {
 		this.type_tradition = type_tradition;
 	}
-	public int getType_enjoyment() {
+	public double getType_enjoyment() {
 		return type_enjoyment;
 	}
-	public void setType_enjoyment(int type_enjoyment) {
+	public void setType_enjoyment(double type_enjoyment) {
 		this.type_enjoyment = type_enjoyment;
 	}
-	public int getType_pleasure() {
+	public double getType_pleasure() {
 		return type_pleasure;
 	}
-	public void setType_pleasure(int type_pleasure) {
+	public void setType_pleasure(double type_pleasure) {
 		this.type_pleasure = type_pleasure;
 	}
-	public int getType_harmony() {
+	public double getType_harmony() {
 		return type_harmony;
 	}
-	public void setType_harmony(int type_harmony) {
+	public void setType_harmony(double type_harmony) {
 		this.type_harmony = type_harmony;
 	}
 	
