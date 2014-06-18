@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2014-06-13.
+ * Created by Saemi Lim on 2014-06-13.
  */
 
 var selectCount = 0;
@@ -13,19 +13,16 @@ $(".image-frame img").click(function (e) {
 
     if(hasClassSelected){
 
-        console.log(e.target.name+" 선택해제");
         $(this).addClass("no-selected");
         $(this).removeClass("selected");
 
         selectCount--;
-        delUserCharacter($(this)[0].id, $(this)[0].name)
+        delUserCharacter($(this)[0].id, $(this)[0].name);
 
     } else if(hasClassNoSelected) {
         if(selectCount >= 3){
-            console.log("모두 선택한 상태");
         }  else {
 
-            console.log(e.target.name+" 선택");
             $(this).addClass("selected");
             $(this).removeClass("no-selected");
 
@@ -38,7 +35,6 @@ $(".image-frame img").click(function (e) {
 });
 
 $("#user-selectCharacter-form .select").click(function(){
-
     if(selectCount < 3){
         alert((selectCount)+"개만 선택하셨습니다." + (3-selectCount) +"개를 더 선택해주세요.");
     } else {
@@ -68,9 +64,15 @@ $("#user-selectCharacter-form .init").click(function(){
 
     selectCount = 0;
 
+    setSelectList();
+
     $(".select-element img").addClass("no-selected");
     $(".select-element img").removeClass("selected");
 
+});
+
+$("#user-selectCharacter-form .cancel").click(function(){
+    history.back();
 });
 
 

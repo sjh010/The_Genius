@@ -1,7 +1,8 @@
+<!-- 
+  Created by Saemi Lim on 2014-06-17.
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +17,15 @@
 <body>
 <jsp:include page="default.jsp" flush="false" />
 <div class="container">
-
+ <div class="container-body searchbar">
+        키워드를 입력하세요
+        <form class="input-group" id="search-form">
+            <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default ok">Go!</button>
+                </span>
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -1,23 +1,25 @@
 /**
- * Created by Administrator on 2014-06-10.
+ * Updated by Saemi Lim on 2014-06-18.
+ * Created by Saemi Lim on 2014-06-10.
  */
 jQuery.browser = {};
 var form = $("#user-join-form");
 
-/* 유효성 검사 */
-$(function () {
 
-    /* change text color */
+$(function () {
+	/* 유효성 검사 */
+    /* Error 색상 표시 */
     function has_error(el) {
         el.parent().parent().addClass("has-error");
     }
 
+    /* Success 색상 표시 */
     function has_success(el) {
         el.parent().parent().removeClass("has-error");
         el.parent().parent().addClass("has-success");
     }
 
-    /* check user_id */
+    /* user_id 유효성 & 중복 검사 */
     var user_id = form.find("[name=user_id]");
     var user_id_ok = false;
     var userIdCheck = function(){
@@ -50,7 +52,7 @@ $(function () {
     };
     user_id.focusout(function(){userIdCheck();});
 
-    /* check user_pw */
+    /* user_password 유효성 & user_passwordck와 일치성 확인 검사 */
     var user_pw = form.find("[name=user_password]");
     var user_pw_ok = false;
     var userPwChk = function(){
@@ -93,7 +95,7 @@ $(function () {
     };
     user_pwck.focusout(function () { userPwCkChk(); });
 
-    /* check user_name */
+    /* user_name 유효성 검사 */
     var user_name = form.find("[name=user_name]");
     var user_name_ok = false;
 
@@ -110,7 +112,7 @@ $(function () {
     };
     user_name.focusout(function () {userNameChk();});
 
-    /* check user_name */
+    /* user_birth 유효성 검사 */
     var user_birth = form.find("[name=user_birth]");
     var user_birth_ok = false;
     var userBirthChk = function(){
@@ -126,7 +128,28 @@ $(function () {
     };
     user_birth.change(function () {userBirthChk();});
 
-    /* check user_sex */
+    /* datepicker */
+    user_birth.datepicker({
+        dateFormat: 'yy-mm-dd',
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        dayNames: ['일','월','화','수','목','금','토'],
+        dayNamesShort: ['일','월','화','수','목','금','토'],
+        dayNamesMin: ['일','월','화','수','목','금','토'],
+        showMonthAfterYear: true,
+        changeMonth: true,
+        changeYear: true,
+        beforeShow: function(input) {
+            var i_offset= $(input).offset();
+            setTimeout(function(){
+                $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'right':'10px'});
+            });
+        }
+    });
+    
+    /* user_sex 선택 확인 */
     var user_sex = form.find("[name=user_sex]");
     var user_sex_ok = false;
     var userSexChk = function(){
@@ -144,7 +167,7 @@ $(function () {
     };
     user_sex.change(function () {userSexChk();});
 
-    /* check user_email */
+    /* user_email 유효성 검사 */
     var email_host = form.find("[name=email_host]");
     var email_id = form.find("[name=email_id]");
     var user_email_ok = false;
@@ -173,6 +196,7 @@ $(function () {
         userEmailChk();
     });
 
+    /* user_addr 유효성 검사 */
     var user_addr_ok = false;
     var zipcode1 = form.find("[name=zipcode1]");
     var zipcode2 = form.find("[name=zipcode2]");
@@ -201,6 +225,7 @@ $(function () {
     address1.focusout(function () {userAddressChk(); });
     address2.focusout(function () {userAddressChk(); });
 
+    /* user_phone 유효성 검사 */
     var user_phone_ok = false;
     var phone1 = form.find("[name=phone1]");
     var phone2 = form.find("[name=phone2]");
@@ -225,7 +250,7 @@ $(function () {
     phone2.focusout(function () {userPhoneChk(); });
     phone3.focusout(function () {userPhoneChk(); });
 
-
+    /* user_mobile 유효성 검사 */
     var user_mobile_ok = false;
     var mobile1 = form.find("[name=mobile1]");
     var mobile2 = form.find("[name=mobile2]");
@@ -250,7 +275,8 @@ $(function () {
     mobile2.focusout(function () {userMobileChk(); });
     mobile3.focusout(function () {userMobileChk(); });
 
-    $("#user-join-form .join").click(function () {
+    /* form 항목 유효성 검사 */
+    $("#user-join-form .ok").click(function () {
         if (!user_id_ok) {
             user_id.focus();
             userIdCheck();
@@ -279,13 +305,14 @@ $(function () {
             mobile1.focus();
             userMobileChk();
         } else {
+        	/* 데이터 가공 및 ajax호출 */
             var param = 
                 'user_id='+ user_id.val()+"&"+
                 'user_password='+ user_pw.val()+"&"+
                 'user_name='+ user_name.val()+"&"+
                 'user_birth='+ user_birth.val()+"&"+
                 'user_sex='+ user_sex.val()+"&"+
-                'user_addr='+ zipcode1.val()+'-'+zipcode2.val()+'_'+address1.val()+'-'+address2.val()+"&"+
+                'user_addr='+ zipcode1.val()+'---'+zipcode2.val()+'___'+address1.val()+'---'+address2.val()+"&"+
                 'user_email='+ email_id.val() + '@' + email_host.val()+"&"+
                 'user_phone='+ phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"&"+
                 'user_mobile='+ mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val();
@@ -294,39 +321,20 @@ $(function () {
                 data : param,
                 type:'post',
                 url: "/join",
+                dataType : "json",
                 success : function(data){
-                	//$.cookie('user_id', data.returnUserId, { expires: 1, path: '/', secure: false });
-                    /*
-                        아이디 정보 받아서 cookie 저장 후
-                        캐릭터 선택 페이지로 redirect
-                     */
-                	location.replace('user/character?user_id='+data.returnUserId);
+                	/* 가입처리가 완료되었으면 selectCharacter페이지로 이동한다. */
+                	if(data.result == 'y') location.replace('user/selectCharacter');
+                    	else if(data.result == 'n') alert("에러입니다. 다음에 다시 시도해주세요..");
                 },
-                failure : function(data){
-                    console.log("에러입니다. 다음에 다시 시도해주세요..");
+                failure : function(){
+                	alert("에러입니다. 다음에 다시 시도해주세요..");
                 }
             });
         }
     });
     
-    /* datepicker */
-    user_birth.datepicker({
-        dateFormat: 'yy-mm-dd',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNames: ['일','월','화','수','목','금','토'],
-        dayNamesShort: ['일','월','화','수','목','금','토'],
-        dayNamesMin: ['일','월','화','수','목','금','토'],
-        showMonthAfterYear: true,
-        changeMonth: true,
-        changeYear: true,
-        beforeShow: function(input) {
-            var i_offset= $(input).offset();
-            setTimeout(function(){
-                $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'right':'10px'});
-            });
-        }
+    $("#user-join-form .cancel").click(function () {
+    	history.back();
     });
 });

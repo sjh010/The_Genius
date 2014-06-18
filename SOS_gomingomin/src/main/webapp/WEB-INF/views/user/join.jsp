@@ -1,3 +1,6 @@
+<!-- 
+  Created by Saemi Lim on 2014-06-13.
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -160,13 +163,13 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10 form-button">
-                    <button type="button" class="btn btn-default join">가입</button>
+                    <button type="button" class="btn btn-default ok">가입</button>
                     <button type="button" class="btn btn-default cancel">취소</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<script src="/resources/js/join.js"></script>
+<script src="/resources/js/user/join.js"></script>
 </body>
 </html>

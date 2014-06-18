@@ -1,7 +1,6 @@
-/**
- * Created by Saemi Lim on 2014-06-13.
- */
-
+<!-- 
+  Created by Saemi Lim on 2014-06-13.
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="org.sos.vo.*, java.util.*"%>
@@ -59,10 +58,10 @@
         <form class="form-button" id="user-selectCharacter-form">
             <button type="button" class="btn btn-default init">초기화</button>
             <button type="button" class="btn btn-default select">확인</button>
-            <button type="button" class="btn btn-default">취소</button>
+            <button type="button" class="btn btn-default cancel">취소</button>
         </form>
     </div>
 </div>
-<script src="js/select.js"></script>
+<script src="/resources/js/user/selectCharacter.js"></script>
 </body>
 </html>
