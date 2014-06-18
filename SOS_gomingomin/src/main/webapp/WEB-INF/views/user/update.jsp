@@ -1,13 +1,12 @@
-/**
- * Created by Saemi Lim on 2014-06-13.
- */
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@page import="org.sos.vo.*"%>
 <%
 	UserVO vo = (UserVO)request.getAttribute("UserVO");
 %>
+<!-- 
+  Created by Saemi Lim on 2014-06-13.
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,23 +40,16 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="user_pw" class="col-sm-2 control-label">현재 비밀번호</label>
+                <label for="user_pw" class="col-sm-2 control-label">새 비밀번호</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control input-short" name="user_password">
-                    <label class="control-label user-pw-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_new_pw" class="col-sm-2 control-label">새 비밀번호</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control input-short" name="user_new_password" placeholder="수정할 경우에만 입력">
+                    <input type="password" class="form-control input-short" name="user_password" placeholder="수정할 경우에만 입력">
                     <label class="control-label user-new-pw-msg"></label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="user_pw" class="col-sm-2 control-label">새 비밀번호 확인</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control input-short" name="user_new_passwordck">
+                    <input type="password" class="form-control input-short" name="user_passwordck">
                     <label class="control-label user-new-pwck-msg"></label>
                 </div>
             </div>
@@ -182,20 +174,12 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">탈퇴</button>
+                <button type="button" class="btn btn-primary withdraw">탈퇴</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
             </div>
         </div>
     </div>
 </div>
-<script src="js/modify.js"></script>
-<script>
-    $(function(){
-        $("#user-modify-withdrawBtn").click(function(e){
-            e.preventDefault();
-            $("#withdrawModal").modal('show');
-        });
-    });
-</script>
+<script src="js/update.js"></script>
 </body>
 </html>

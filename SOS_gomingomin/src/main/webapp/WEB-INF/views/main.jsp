@@ -1,3 +1,6 @@
+<!-- 
+  Created by Saemi Lim on 2014-06-17.
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -16,7 +19,15 @@
 <body>
 <jsp:include page="default.jsp" flush="false" />
 <div class="container">
-
+ <div class="container-body searchbar">
+        키워드를 입력하세요
+        <div class="input-group">
+            <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -1,13 +1,9 @@
 /**
- * Created by Administrator on 2014-06-15.
+ * Created by Saemi Lim on 2014-06-15.
  */
 
 jQuery.browser = {};
-var form = $("#user-modify-form");
-
-/* 유효성 검사 */
 $(function () {
-
     /* change text color */
     function has_error(el) {
         el.parent().parent().addClass("has-error");
@@ -18,68 +14,49 @@ $(function () {
         el.parent().parent().addClass("has-success");
     }
 
-
-
     /* check user_pw */
     var user_pw = form.find("[name=user_password]");
     var user_pw_ok = false;
-    var userPwChk = function(){
+    var userNewPwChk = function(){
         if (user_pw.val().length < 8) {
             has_error(user_pw);
-            $(".user-pw-msg").html("<span class='glyphicon glyphicon-remove'></span>8자 이상이어야 합니다");
-        } else {
-            has_success(user_pw);
-            $(".user-pw-msg")
-                .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
-        }
-    };
-    user_pw.focusout(function () { userPwChk(); });
-
-
-
-    /* check user_pw */
-    var user_new_pw = form.find("[name=user_new_password]");
-    var user_new_pw_ok = false;
-    var userNewPwChk = function(){
-        if (user_new_pw.val().length < 8) {
-            has_error(user_new_pw);
             $(".user-new-pw-msg").html("<span class='glyphicon glyphicon-remove'></span>8자 이상이어야 합니다");
         } else {
-            has_success(user_new_pw);
+            has_success(user_pw);
             $(".user-new-pw-msg")
                 .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
         }
 
-            if (!(this.value === user_new_pwck.val())) {
-                has_error(user_new_pwck);
+            if (!(this.value === user_pwck.val())) {
+                has_error(user_pwck);
                 $(".user-new-pwck-msg").html("<span class='glyphicon glyphicon-remove'></span>비밀번호가 일치하지 않습니다");
-                user_new_pw_ok = false;
+                user_pw_ok = false;
             } else {
                 has_success(user_pwck);
                 $(".user-new-pwck-msg")
                     .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
-                user_new_pw_ok = true;
+                user_pw_ok = true;
             }
     };
-    user_new_pw.focusout(function () { userNewPwChk(); console.log(user_new_pw_ok); });
+    user_pw.focusout(function () { userNewPwChk(); console.log(user_pw_ok); });
 
-    var user_new_pwck = form.find("[name=user_new_passwordck]");
+    var user_pwck = form.find("[name=user_passwordck]");
     var userNewPwCkChk = function(){
-        if ((user_new_pwck.val() == "") || (user_new_pw.val().length < 8) ) {
-            has_error(user_new_pwck);
+        if ((user_pwck.val() == "") || (user_pw.val().length < 8) ) {
+            has_error(user_pwck);
             $(".user-new-pwck-msg").html("<span class='glyphicon glyphicon-remove'></span>8자리 이상이어야 합니다");
-            user_new_pw_ok = false;
-        } else if(!(user_new_pwck.val() === user_new_pw.val())){
+            user_pw_ok = false;
+        } else if(!(user_pwck.val() === user_pw.val())){
             $(".user-new-pwck-msg").html("<span class='glyphicon glyphicon-remove'></span>비밀번호가 일치하지 않습니다");
         }
         else {
-            has_success(user_new_pwck);
+            has_success(user_pwck);
             $(".user-new-pwck-msg")
                 .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
-            user_new_pw_ok = true;
+            user_pw_ok = true;
         }
     };
-    user_new_pwck.focusout(function () { userNewPwCkChk(); console.log(user_new_pw_ok);  });
+    user_pwck.focusout(function () { userNewPwCkChk(); console.log(user_pw_ok);  });
 
     /* check user_email */
     var email_host = form.find("[name=email_host]");
@@ -100,7 +77,7 @@ $(function () {
         }
     };
     email_id.focusout(function () {
-        userEmailChk()
+        userEmailChk();
     });
     email_host.focusout(function () {
         if ($(this).val() == 'edit') {
@@ -133,10 +110,10 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    zipcode1.focusout(function () {userAddressChk() });
-    zipcode2.focusout(function () {userAddressChk() });
-    address1.focusout(function () {userAddressChk() });
-    address2.focusout(function () {userAddressChk() });
+    zipcode1.focusout(function () {userAddressChk(); });
+    zipcode2.focusout(function () {userAddressChk(); });
+    address1.focusout(function () {userAddressChk(); });
+    address2.focusout(function () {userAddressChk(); });
 
     var user_phone_ok = false;
     var phone1 = form.find("[name=phone1]");
@@ -158,9 +135,9 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    phone1.focusout(function () {userPhoneChk() });
-    phone2.focusout(function () {userPhoneChk() });
-    phone3.focusout(function () {userPhoneChk() });
+    phone1.focusout(function () {userPhoneChk(); });
+    phone2.focusout(function () {userPhoneChk(); });
+    phone3.focusout(function () {userPhoneChk(); });
 
 
     var user_mobile_ok = false;
@@ -183,18 +160,20 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    mobile1.focusout(function () {userMobileChk() });
-    mobile2.focusout(function () {userMobileChk() });
-    mobile3.focusout(function () {userMobileChk() });
+    mobile1.focusout(function () {userMobileChk(); });
+    mobile2.focusout(function () {userMobileChk(); });
+    mobile3.focusout(function () {userMobileChk(); });
 
     $("#user-modify-form .join").click(function () {
-        var form = $("#user-join-form");
         if (!user_pw_ok) {
             user_pw.focus();
             userPwChk();
         } else if (!user_email_ok) {
             email_id.focus();
             userEmailChk();
+        } else if (!user_addr_ok) {
+            zipcode1.focus();
+            userAddressChk();
         } else if (!user_phone_ok) {
             zipcode1.focus();
             userAddressChk();
@@ -202,48 +181,51 @@ $(function () {
             mobile1.focus();
             userMobileChk();
         } else {
-
-            var param = {
-                user_id : user_id,
-                user_pw : user_pw.val()
-            };
-
-            $.ajax({
-                data : param,
-                url: "/user/chkPassword",
-                type: "post",
-                success : function(data){
-                    /*
-                        비밀번호 데이터 먼저 확인 후에 진행한다.
-                     */
-                    var password = '';
-                    if(user_new_pw_ok){
-                        password = user_pw.val();
-                    }
-
-                    var update = {
-                        user_pw : password,
-                        user_addr : zipcode1+'-'+zipcode2+'||'+address1+'-'+address2,
-                        user_email : email_id.val() + '@' + email_host.val(),
-                        user_phone : phone1.val()+'-'+phone2.val()+'-'+phone3.val(),
-                        user_mobile : mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()
-                    };
-
-                    $.ajax({
-                        data : update,
-                        url: "/user/modify",
-                        type : "post",
-                        success : function(data){
-                            /*
-                                성공하고 페이지 전환
-                             */
-                        }
-                    });
-                },
-                failure : function(data){
-                    console.log("에러입니다. 다음에 다시 시도해주세요..");
-                }
-            });
+        	$.ajax({
+        		data : user_pw.val(),
+        		dataType:"json",
+        		url : "/user/checkUserPassword",
+        		success : function(data){
+        			if(data.result == 'y') {
+        				var $form = $("<form></form>");
+        	            $form.attr('action', '/user/updateAction');
+        	            $form.attr('method', 'post');
+        	            if(user_pw != '') $form.append("<input type='hidden' value='"+user_pw.val()+"' name='user_password'>");
+        	            $form
+        	            	.append("<input type='hidden' value='"+$.cookie("user_id")+"' name='user_password'>")
+        	            	.append("<input type='hidden' value='"+zipcode1+'-'+zipcode2+'||'+address1+'-'+address2+"' name='user_addr'>")
+        	                .append("<input type='hidden' value='"+email_id.val() + '@' + email_host.val()+"' name='user_email'>")
+        	                .append("<input type='hidden' value='"+phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"' name='user_phone'>")
+        	                .append("<input type='hidden' value='"+mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()+"' name='user_mobile'>");
+        	            $form.serialize();
+        	            $form.submit();
+        			}
+                	else if(data.result == 'n') alert("에러입니다. 다음에 다시 시도해주세요..");
+        		}
+        	});
         }
     });
+    
+    $("#user-modify-withdrawBtn").click(function(e){
+        e.preventDefault();
+        $("#withdrawModal").modal('show');
+    });
+    
+    $("#withdrawModal withdraw").click(function(){
+    	var $form = $("#user-modify-withdrawForm");
+    	var msg = $form.find("[name=withdraw_message]");
+    	if(msg == $.cookie('user_id')){
+    		$.ajax({
+        		dataType:"json",
+        		url : "/user/deleteAction",
+        		success : function(data){
+        			if(data.result == 'y') {
+        				alert("탈퇴가 완료되었습니다.");
+        				location.href('/');
+        			}
+                	else if(data.result == 'n') alert("에러입니다. 다음에 다시 시도해주세요..");
+        		}
+        	});
+    	}
+    });  	
 });
