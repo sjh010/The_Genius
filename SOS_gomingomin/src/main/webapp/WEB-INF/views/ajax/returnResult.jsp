@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!-- 
+  Created by Saemi Lim on 2014-06-13.
+-->
+<%@page import="net.sf.json.JSONObject"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	JSONObject json = new JSONObject();
+	json.put("result",request.getAttribute("result"));
+	out.print(json);
+%>
