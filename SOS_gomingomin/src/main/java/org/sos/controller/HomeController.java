@@ -24,7 +24,7 @@ public class HomeController {
 
 		logger.info("home..........");
 		
-		return "home";
+		return "main";
 	}
 	
 }

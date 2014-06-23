@@ -40,7 +40,7 @@ public class CharacterController{
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getCharacterManagementPage(String pageNo){
 		
 		if(pageNo == null){
