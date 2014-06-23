@@ -10,19 +10,22 @@ $("#loginModal .join").click(function(){
 });
 
 $("#loginModal .login").click(function(){
-	console.log("asdf");
-	var $form = $("#login-form");
-    $.ajax({
+	var $form = $("#user-login-form");
+	var str = $form.serialize();
+	console.log(str);
+	$.ajax({
     	data : $form.serialize(),
     	type : "post",
     	dataType : "json",
-    	url : "/login",
+    	url : "/loginAction",
     	success : function(data){
-        	if(data.result == 'y') location.reload();
-            	else if(data.result == 'n') alert("아이디와 비밀번호를 확인해주세요");
-        },
-        failure : function(){
-        	alert("에러입니다. 다음에 다시 시도해주세요..");
+    		console.log(data);
+    		if((data != null) || (data != undefined)){
+    			console.log($.cookie('user_id'));
+    			location.reload();
+    		} else {
+    			alert("ㅇㅁㅁㅁ");
+    		}
         }
     });
 });

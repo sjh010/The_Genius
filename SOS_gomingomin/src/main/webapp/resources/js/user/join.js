@@ -132,6 +132,7 @@ $(function () {
         showMonthAfterYear: true,
         changeMonth: true,
         changeYear: true,
+        yearRange : "1914:2014" ,
         beforeShow: function(input) {
             var i_offset= $(input).offset();
             setTimeout(function(){

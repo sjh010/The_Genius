@@ -42,17 +42,17 @@
 				<h4 class="modal-title" id="loginModalLabel">NoGomin 로그인</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" role="form" id="login-form">
+				<form class="form-horizontal" role="form" id="user-login-form">
 					<div class="form-group">
 						<label for="loginId" class="col-sm-2 control-label">아이디</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="loginId">
+							<input type="text" class="form-control" name="user_id">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="loginPw" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="loginPw">
+							<input type="password" class="form-control" name="user_password">
 						</div>
 					</div>
 					<div class="form-group">
@@ -72,4 +72,5 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="/resources/js/navbar.js"></script>
