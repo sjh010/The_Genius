@@ -56,7 +56,7 @@ $(function () {
             });
         }
     };
-    user_id.focusout(function(){userIdCheck()});
+    user_id.focusout(function(){userIdCheck();});
 
     /* check user_pw */
     var user_pw = form.find("[name=user_password]");
@@ -137,7 +137,7 @@ $(function () {
             var i_offset= $(input).offset();
             setTimeout(function(){
                 $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'right':'10px'});
-            })
+            });
 
         }
     });
@@ -192,7 +192,7 @@ $(function () {
         }
     };
     email_id.focusout(function () {
-        userEmailChk()
+        userEmailChk();
     });
     email_host.focusout(function () {
         if ($(this).val() == 'edit') {
@@ -225,10 +225,10 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    zipcode1.focusout(function () {userAddressChk() });
-    zipcode2.focusout(function () {userAddressChk() });
-    address1.focusout(function () {userAddressChk() });
-    address2.focusout(function () {userAddressChk() });
+    zipcode1.focusout(function () {userAddressChk(); });
+    zipcode2.focusout(function () {userAddressChk(); });
+    address1.focusout(function () {userAddressChk(); });
+    address2.focusout(function () {userAddressChk(); });
 
     var user_phone_ok = false;
     var phone1 = form.find("[name=phone1]");
@@ -238,9 +238,6 @@ $(function () {
     var userPhoneChk = function () {
         var regPhone = /^[0-9]{2,4}$/;
 
-        console.log((!regPhone.test(phone1.val())));
-        console.log((!regPhone.test(phone2.val())));
-        console.log((!regPhone.test(phone3.val())));
 
         if ((!regPhone.test(phone1.val())) || (!regPhone.test(phone2.val())) ||(!regPhone.test(phone3.val()))) {
             has_error(phone1);
@@ -254,9 +251,9 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    phone1.focusout(function () {userPhoneChk() });
-    phone2.focusout(function () {userPhoneChk() });
-    phone3.focusout(function () {userPhoneChk() });
+    phone1.focusout(function () {userPhoneChk(); });
+    phone2.focusout(function () {userPhoneChk(); });
+    phone3.focusout(function () {userPhoneChk(); });
 
 
     var user_mobile_ok = false;
@@ -279,12 +276,11 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    mobile1.focusout(function () {userMobileChk() });
-    mobile2.focusout(function () {userMobileChk() });
-    mobile3.focusout(function () {userMobileChk() });
+    mobile1.focusout(function () {userMobileChk(); });
+    mobile2.focusout(function () {userMobileChk(); });
+    mobile3.focusout(function () {userMobileChk(); });
 
     $("#user-join-form .ok").click(function () {
-        var form = $("#user-join-form");
         if (!user_id_ok) {
             user_id.focus();
             userIdCheck();
@@ -303,9 +299,12 @@ $(function () {
         } else if (!user_email_ok) {
             email_id.focus();
             userEmailChk();
-        } else if (!user_phone_ok) {
+        } else if (!user_addr_ok) {
             zipcode1.focus();
             userAddressChk();
+        } else if (!user_phone_ok) {
+            phone1.focus();
+            userMobileChk();
         } else if (!user_mobile_ok) {
             mobile1.focus();
             userMobileChk();
@@ -322,7 +321,6 @@ $(function () {
                 user_mobile : mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()
             };
 
-            	console.log(param);
             $.ajax({
                 data : param,
                 type:'post',

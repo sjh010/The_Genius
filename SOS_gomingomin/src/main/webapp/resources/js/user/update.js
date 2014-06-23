@@ -3,6 +3,10 @@
  */
 
 jQuery.browser = {};
+$(document).ready(function(){
+	${}
+});
+
 $(function () {
     /* change text color */
     function has_error(el) {
@@ -165,7 +169,7 @@ $(function () {
     mobile3.focusout(function () {userMobileChk(); });
 
     $("#user-modify-form .ok").click(function () {
-        if (!user_pw_ok) {
+        if (user_pw.val() != "" && !user_pw_ok) {
             user_pw.focus();
             userPwChk();
         } else if (!user_email_ok) {
@@ -181,28 +185,18 @@ $(function () {
             mobile1.focus();
             userMobileChk();
         } else {
-        	$.ajax({
-        		data : user_pw.val(),
-        		dataType:"json",
-        		url : "/user/checkUserPassword",
-        		success : function(data){
-        			if(data.result == 'y') {
-        				var $form = $("<form></form>");
-        	            $form.attr('action', '/user/updateAction');
-        	            $form.attr('method', 'post');
-        	            if(user_pw != '') $form.append("<input type='hidden' value='"+user_pw.val()+"' name='user_password'>");
-        	            $form
-        	            	.append("<input type='hidden' value='"+$.cookie("user_id")+"' name='user_password'>")
-        	            	.append("<input type='hidden' value='"+zipcode1+'---'+zipcode2+'___'+address1+'---'+address2+"' name='user_addr'>")
-        	                .append("<input type='hidden' value='"+email_id.val() + '@' + email_host.val()+"' name='user_email'>")
-        	                .append("<input type='hidden' value='"+phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"' name='user_phone'>")
-        	                .append("<input type='hidden' value='"+mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()+"' name='user_mobile'>");
-        	            $form.serialize();
-        	            $form.submit();
-        			}
-                	else if(data.result == 'n') alert("에러입니다. 다음에 다시 시도해주세요..");
-        		}
-        	});
+        	var $form = $("<form></form>");
+            $form.attr('action', '/user/updateAction');
+            $form.attr('method', 'post');
+            if(user_pw != '') $form.append("<input type='hidden' value='"+user_pw.val()+"' name='user_password'>");
+            $form
+            	.append("<input type='hidden' value='"+$.cookie("user_id")+"' name='user_id'>")
+            	.append("<input type='hidden' value='"+zipcode1.val()+'___'+zipcode2.val()+'---'+address1.val()+'___'+address2.val()+"' name='user_addr'>")
+                .append("<input type='hidden' value='"+email_id.val() + '@' + email_host.val()+"' name='user_email'>")
+                .append("<input type='hidden' value='"+phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"' name='user_phone'>")
+                .append("<input type='hidden' value='"+mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()+"' name='user_mobile'>");
+            $form.serialize();
+            $form.submit();
         }
     });
     

@@ -21,10 +21,9 @@ $("#loginModal .login").click(function(){
     	success : function(data){
     		console.log(data);
     		if((data != null) || (data != undefined)){
-    			console.log($.cookie('user_id'));
     			location.reload();
     		} else {
-    			alert("ㅇㅁㅁㅁ");
+    			alert("아이디와 비밀번호를 확인해주세요");
     		}
         }
     });
@@ -32,5 +31,6 @@ $("#loginModal .login").click(function(){
 
 
 var logout = function(){
-	// logout
+	$.cookie('loginInfo', null);
+	location.href("/");
 };

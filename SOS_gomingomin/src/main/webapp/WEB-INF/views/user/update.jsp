@@ -4,18 +4,6 @@
 <%
 	UserVO vo = (UserVO)request.getAttribute("UserVO");
 %>
-<% Cookie[] cookies = request.getCookies(); 
-	String user_id = null;
-	String include = "../navbarNoLogin.jsp";
-	if(cookies != null) {
-		for(Cookie cookie : cookies){
-			if(cookie.getName().equals("user_id")) {
-				user_id = cookie.getValue();
-				include = "../navbarLogin.jsp";
-			}
-		}
-	}
-%>
 <!-- 
   Created by Saemi Lim on 2014-06-13.
 -->
@@ -33,9 +21,7 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
-<jsp:include page="<%=include %>" flush="false">
-	<jsp:param value="<%=user_id %>" name="user_id"/>
-</jsp:include>
+<jsp:include page="../navbar/navbar.jsp" flush="false"/>
 <div class="container">
     <div class="container-header">
         <div class="page-header">
