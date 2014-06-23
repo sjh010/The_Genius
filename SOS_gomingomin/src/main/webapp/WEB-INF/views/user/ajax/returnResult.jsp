@@ -6,6 +6,6 @@
     pageEncoding="UTF-8"%>
 <%
 	JSONObject json = new JSONObject();
-	json.put("returnUserId",request.getAttribute("returnUserId"));
+	json.put("result",request.getAttribute("result"));
 	out.print(json);
 %>

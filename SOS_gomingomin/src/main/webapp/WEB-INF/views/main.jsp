@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <% Cookie[] cookies = request.getCookies(); 
 	String user_id = null;
-	String include = "navbarNoLogin.jsp";
+	String include = "./navbarNoLogin.jsp";
 	if(cookies != null) {
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("user_id")) {

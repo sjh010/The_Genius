@@ -6,12 +6,12 @@
 <%@page import="org.sos.vo.*, java.util.*"%>
 <% Cookie[] cookies = request.getCookies(); 
 	String user_id = null;
-	String include = "navbarNoLogin.jsp";
+	String include = "../navbarNoLogin.jsp";
 	if(cookies != null) {
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("user_id")) {
 				user_id = cookie.getValue();
-				include = "navbarLogin.jsp";
+				include = "../navbarLogin.jsp";
 			}
 		}
 	}
@@ -34,7 +34,7 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
-<jsp:include page="../<%=include %>" flush="false">
+<jsp:include page="<%=include %>" flush="false">
 	<jsp:param value="<%=user_id %>" name="user_id"/>
 </jsp:include>
 <div class="container">
