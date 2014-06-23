@@ -13,6 +13,7 @@ import org.sos.service.UserService;
 import org.sos.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -133,7 +134,38 @@ public class UserController {
 		return "/user/ajax/returnResult";
 	}
 	
-	@RequestMapping(value = "user/modify", method = RequestMethod.GET)
+	@RequestMapping(value="/myPage", method = RequestMethod.GET)
+	public String getPasswordCheckPage(){
+		
+		return "user/myPage";
+	}
+	
+	public String passwordCheckAction(@CookieValue(value="user_id") String user_id, String user_password,
+										Model result){
+		
+		UserVO user = new UserVO();
+		
+		try {
+			user = userService.readUser(user_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(user.getUser_password().equals(user_password)){
+			
+			return "redirect:/myPage/update";
+		}
+		else{
+		
+			result.addAttribute("result", "비밀번호가 일치하지 않습니다!");
+		
+			return "user/myPage";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/myPage/update", method = RequestMethod.GET)
 	public ModelAndView getModifyPage(HttpServletRequest request, Model model) throws Exception{
 		
 		logger.info("modify..........");
@@ -151,8 +183,10 @@ public class UserController {
 	
 	public String modifyAction(UserVO user){
 		
-		
+		return null;
 	}
+	
+	
 	
 	
 	
