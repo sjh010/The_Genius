@@ -10,6 +10,7 @@ import org.sos.service.UserCharacterService;
 import org.sos.vo.CharacterVO;
 import org.sos.vo.UserCharacterVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,8 +27,30 @@ public class CharacterController{
 	@Inject
 	UserCharacterService userCharacterService;
 	
+	@RequestMapping(value = "/selectCharacter", method = RequestMethod.GET)
+	public ModelAndView getSelectCharacterPage(){
+		
+		logger.info("selectCharacter............");
+		
+		ModelAndView mv = new ModelAndView();
+		
+		try {
+			mv.addObject("chracterList", characterService.readAllCharacterList());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("user/selectCharacter");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value = "/selectCharacter", method = RequestMethod.POST)
-	public String getCharacterSelectPage(UserCharacterVO userCharacter){
+	public String getCharacterSelectPage(UserCharacterVO userCharacter,
+						@CookieValue(value="user_id", required=true, defaultValue="null") String user_id){
+		
+		userCharacter.setUser_id(user_id);
 		
 		try {
 			userCharacterService.registUserCharacter(userCharacter);

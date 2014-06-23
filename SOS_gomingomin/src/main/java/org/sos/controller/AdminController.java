@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sos.service.AdminService;
 import org.sos.service.CharacterService;
 import org.sos.service.ProductService;
+import org.sos.service.UserService;
 import org.sos.vo.AdminVO;
 import org.sos.vo.CharacterVO;
+import org.sos.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Inject
-	AdminService adminService;
+	UserService userService;
 	
 	@Inject
 	CharacterService characterService;
@@ -52,39 +53,41 @@ public class AdminController {
 	// 관리자 로그인 후, 관리자 메인페이지 요청
 	@RequestMapping(method = RequestMethod.POST)
 	public String loginAction(HttpServletRequest request, HttpServletResponse response, 
-								String admin_id, String admin_password) {
+								String user_id, String user_password) {
 		
 		logger.info("Login Action!!");
 		
-		AdminVO admin = new AdminVO();
+		UserVO admin = new UserVO();
 		
 		CookieGenerator cookieGenerator = new CookieGenerator();
 		
 		try {
-			admin = adminService.readAdmin(admin_id);
+			admin = userService.readUser(user_id);
 		} catch (Exception e) {
 			logger.info("Exception 발생");
 		}
 		
 		// 아이디 존재 여부  확인
-		if((admin != null) && (admin.getAdmin_id().equals(admin_id))){
+		if((admin != null) && (admin.getUser_id().equals(user_id))){
 			
-			// 비밀번호 일치 여부 확인
-			if(admin.getAdmin_password().equals(admin_password)){
+			if(admin.getUser_grade().equals("admin")){
+				// 비밀번호 일치 여부 확인
+				if(admin.getUser_password().equals(user_password)){
 				
-				// 로그인 성공 시, 쿠키 생성
-				cookieGenerator.setCookieName("loginInfo");
-				cookieGenerator.addCookie(response, "y");
-				cookieGenerator.setCookieName("user_id");
-				cookieGenerator.addCookie(response, admin.getAdmin_id());
-				cookieGenerator.setCookieName("user_name");
-				cookieGenerator.addCookie(response, admin.getAdmin_name());
+					// 로그인 성공 시, 쿠키 생성
+					cookieGenerator.setCookieName("loginInfo");
+					cookieGenerator.addCookie(response, "y");
+					cookieGenerator.setCookieName("user_id");
+					cookieGenerator.addCookie(response, admin.getUser_id());
+					cookieGenerator.setCookieName("user_name");
+					cookieGenerator.addCookie(response, admin.getUser_name());
 				
-			}
-			else{
+				}
+				else{
 				
-				request.setAttribute("result", "비밀번호가 일치하지 않습니다!");
-				return "admin/admin";
+					request.setAttribute("result", "비밀번호가 일치하지 않습니다!");
+					return "admin/admin";
+				}
 			}
 		}
 		else{
