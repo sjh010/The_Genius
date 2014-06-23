@@ -25,13 +25,13 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 	        	<li class="dropdown">
-	                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=user_id %>님<b class="caret"></b></a>
+	                <a href="" class="dropdown-toggle" data-toggle="dropdown"><%=user_id %>님<b class="caret"></b></a>
 	                <ul class="dropdown-menu">
-	                    <li><a href="#">마이페이지</a></li>
+	                    <li><a href="/myPage">마이페이지</a></li>
 	                    <li><a href="#">로그아웃</a></li>
 	                </ul>
 	            </li>
-	            <li><a href="#">나의쇼핑정보</a></li>
+	            <li><a href="/shoppingInfo">나의쇼핑정보</a></li>
 	        </ul>
 		</div>
     </div>

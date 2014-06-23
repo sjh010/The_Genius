@@ -29,7 +29,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
 
-<jsp:include page="<%=include %>" flush="false">
+<jsp:include page="../<%=include %>" flush="false">
 	<jsp:param value="<%=user_id %>" name="user_id"/>
 </jsp:include>
 

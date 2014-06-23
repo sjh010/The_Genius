@@ -21,8 +21,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="javascript:loginModal();">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-				<li><a href="#">나의쇼핑정보</a></li>
+				<li><a href="/join">회원가입</a></li>
+				<li><a href="/shoppingInfo">나의쇼핑정보</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -42,7 +42,7 @@
 				<h4 class="modal-title" id="loginModalLabel">NoGomin 로그인</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" id="login-form">
 					<div class="form-group">
 						<label for="loginId" class="col-sm-2 control-label">아이디</label>
 						<div class="col-sm-10">
