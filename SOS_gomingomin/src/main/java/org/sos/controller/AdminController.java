@@ -1,5 +1,8 @@
 package org.sos.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,12 +41,26 @@ public class AdminController {
 
 	// 관리자 페이지 요청
 	@RequestMapping(method = RequestMethod.GET)
-	public String getAdminLoginPage(@CookieValue(value="loginInfo", defaultValue="n") String loginInfo){
+	public String getAdminLoginPage(@CookieValue(value="loginInfo", defaultValue="n") String loginInfo,
+									@CookieValue(value="user_id") String user_id){
 		
 		// 로그인 되어 있으면 관리자 메인 페이지
 		if(loginInfo.equals("y")){
 			
-			return "admin/main";
+			UserVO admin = new UserVO();
+			
+			try {
+				admin = userService.readUser(user_id);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(admin.getUser_grade().equals("admin")){
+				
+				return "admin/main";
+			}
+			
 		}
 		
 		// 로그인 되어 있지 않으면 관리자 로그인 페이지
@@ -80,7 +97,12 @@ public class AdminController {
 					cookieGenerator.setCookieName("user_id");
 					cookieGenerator.addCookie(response, admin.getUser_id());
 					cookieGenerator.setCookieName("user_name");
-					cookieGenerator.addCookie(response, admin.getUser_name());
+					try {
+						cookieGenerator.addCookie(response, URLEncoder.encode(admin.getUser_name(), "utf-8"));
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				
 				}
 				else{
@@ -98,165 +120,5 @@ public class AdminController {
 		
 		return "redirect:admin";
 	}
-	
-	
-	/*
-	 * 		1. 캐릭터 관리
-	 */
-	
-	// 캐릭터 관리 페이지 요청
-	@RequestMapping(value = "/character", method = RequestMethod.GET)
-	public ModelAndView getCharacterManagementPage(String pageNo){
-		
-		if(pageNo == null){
-			pageNo = "1";
-		}
-		
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			mv.addObject("characterList", characterService.readCharacterList(Integer.parseInt(pageNo)));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		mv.setViewName("admin/character");
-		
-		return mv;
-	}
-	
-	// 캐릭터 등록 페이지 요청
-	@RequestMapping(value = "/character/regist", method = RequestMethod.GET)
-	public String getCharacterRegistPage(){
-		
-		return "admin/character/regist";
-	}
-	
-	// 캐릭터 등록 요청
-	@RequestMapping(value = "/character/registAction", method = RequestMethod.POST)
-	public String characterRegistAction(HttpServletRequest request, CharacterVO character){
-		
-		try {
-			characterService.registCharacter(character);
-			
-		} catch (Exception e) {
-			
-			request.setAttribute("result", "n");
-			e.printStackTrace();
-			return "ajax/returnResult";
-		}
-		
-		request.setAttribute("result", "y");
-		
-		return "ajax/returnResult";
-	}
-	
-	// 캐릭터 수정 페이지 요청
-	@RequestMapping(value = "/character/update", method = RequestMethod.GET)
-	public ModelAndView getCharacterUpdatePage(int character_id){
-		
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			mv.addObject("character", characterService.readCharacter(character_id));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		mv.setViewName("admin/character/update");
-		
-		return mv;
-	}
-	
-	// 캐릭터 수정 요청
-	@RequestMapping(value = "/character/updateAction", method = RequestMethod.POST)
-	public String chracterUpdateAction(CharacterVO character){
-		
-		try {
-			characterService.updateCharacter(character);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "redirect:character";
-	}
-	
-	// 캐릭터 삭제 요청
-	@RequestMapping(value = "/character/deleteAction", method = RequestMethod.POST)
-	public String characterDeleteAction(HttpServletRequest request, int character_id){
-		
-		try {
-			characterService.deleteCharacter(character_id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.setAttribute("result", "y");
-		
-		return "ajax/returnResult";
-	}
-	
-	/*
-	 * 		2. 상품 관리
-	 */
-	
-	@RequestMapping(value = "/product", method = RequestMethod.GET)
-	public ModelAndView getProductManagementPage(int pageNo){
-		
-		if(pageNo == 0){
-			pageNo = 1;
-		}
-		
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			mv.addObject("productList", productService.readProductList(pageNo));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		mv.setViewName("amdin/product/product");
-		
-		return mv;
-	}
-	
-	
-	
-	
-	
-	/*
-	 * 		3. 카테고리 관리 
-	 */
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

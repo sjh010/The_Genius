@@ -25,7 +25,7 @@ public interface UserMapper {
 	
 	@Select("SELECT "
 				+ "user_id, user_password, user_name, user_birth, user_sex, "
-				+ "user_addr, user_email, user_mobile, user_phone "
+				+ "user_addr, user_email, user_mobile, user_phone, user_grade "
 		  + "FROM "
 		  		+ "tbl_user "
 		  + "WHERE "

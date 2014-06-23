@@ -108,7 +108,12 @@ public class UserController {
 		cookieGenerator.setCookieName("user_id");
 		cookieGenerator.addCookie(response, user.getUser_id());
 		cookieGenerator.setCookieName("user_name");
-		cookieGenerator.addCookie(response, user.getUser_name());
+		try {
+			cookieGenerator.addCookie(response, URLEncoder.encode(user.getUser_name(), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "redirect:/join/selectCharacter";	
 	}
