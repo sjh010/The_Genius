@@ -12,20 +12,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">NoGomin Admin</a>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav><!-- /.navbar -->
+<jsp:include page="./navbar/navbar.jsp" flush="false"/>
 <div class="container">
     <div class="container-body searchbar">
         <form class="form-horizontal" role="form" id="admin-login-form">
@@ -38,25 +25,26 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">비밀번호</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="user_password">
+                    <input type="password" class="form-control" name="user_password">
                 </div>
             </div>
             <div class="form-group form-button">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default login">로그인</button>
+                    <button type="button" class="btn btn-default login">로그인</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 <script>
-$("admin-login-form .login").click(function(){
-	console.log($form.serialize());
+$("#admin-login-form .login").click(function(){
+	console.log("Sadasdas");
 	var $form = $("#admin-login-form");
+	console.log($form.serialize());
 	$.ajax({
 		data : $form.serialize(),
 		dataType : "json",
-		url : "/admin/login",
+		url : "/admin",
 		type : "post",
 		success : function(data){
 			if(data.result == 'y'){
