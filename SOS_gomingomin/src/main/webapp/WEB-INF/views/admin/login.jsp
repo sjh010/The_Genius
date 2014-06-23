@@ -37,6 +37,13 @@
     </div>
 </div>
 <script>
+	$(document).ready(function() {
+		if($.cookie("loginInfo") == 'y'){
+			location.replace("/admin/main");
+		}
+	});
+</script>
+<script>
 $("#admin-login-form .login").click(function(){
 	var $form = $("#admin-login-form");
 	$.ajax({
@@ -45,13 +52,12 @@ $("#admin-login-form .login").click(function(){
 		url : "/admin/loginAction",
 		type : "post",
 		success : function(data){
-			console.log(data);
-    		if((data != null) || (data != undefined)){
+    		if((data.result == null) || (data.result == undefined)){
     			location.reload();
     		} else {
-    			alert(data);
+    			alert(data.result);
     		}
-		}
+        }
 	});
 });
 </script>

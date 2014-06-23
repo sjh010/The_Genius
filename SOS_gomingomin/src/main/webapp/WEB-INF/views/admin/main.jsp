@@ -18,12 +18,6 @@
         <p class="text-center">메뉴를 선택하세요</p>
     </div>
 </div>
-<script>
-	$(document).ready(function() {
-		if($.cookie("loginInfo") == 'y'){
-			location.href("/admin/main");
-		}
-	});
-</script>
+
 </body>
 </html>
