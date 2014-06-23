@@ -37,16 +37,21 @@ $(function () {
             $.ajax({
                 data : {user_id : user_id.val()},
                 url: "/user/checkUserId",
+                dataType : "json",
                 success : function(data){
-                    if(data == 'y'){
+                	console.log(data.result);
+                    if(data.result == 'n'){
                           has_success(user_id);
                             $(".user-id-msg")
                                 .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
                                 user_id_ok = true;
-                    } else {
+                    } else if(data.result == 'y'){
                           has_error(user_id);
                             $(".user-id-msg").html("중복된 아이디입니다.");
                     }
+                },
+                failure : function(data){
+                	console.log(data);
                 }
             });
         }
@@ -230,7 +235,7 @@ $(function () {
     var phone3 = form.find("[name=phone3]");
 
     var userPhoneChk = function () {
-        var regPhone = /^[0-9]{3,4}$/;
+        var regPhone = /^[0-9]{2,4}$/;
 
         console.log((!regPhone.test(phone1.val())));
         console.log((!regPhone.test(phone2.val())));
@@ -277,7 +282,7 @@ $(function () {
     mobile2.focusout(function () {userMobileChk() });
     mobile3.focusout(function () {userMobileChk() });
 
-    $("#user-join-form .join").click(function () {
+    $("#user-join-form .ok").click(function () {
         var form = $("#user-join-form");
         if (!user_id_ok) {
             user_id.focus();
@@ -306,17 +311,17 @@ $(function () {
         } else {
             var param = {
                 user_id : user_id.val(),
-                user_pw : user_pw.val(),
+                user_password : user_pw.val(),
                 user_name : user_name.val(),
                 user_birth : user_birth.val(),
                 user_sex : user_sex.val(),
-                user_addr : zipcode1+'-'+zipcode2+'||'+address1+'-'+address2,
+                user_addr : zipcode1.val()+'___'+zipcode2.val()+'---'+address1.val()+'___'+address2.val(),
                 user_email : email_id.val() + '@' + email_host.val(),
                 user_phone : phone1.val()+'-'+phone2.val()+'-'+phone3.val(),
                 user_mobile : mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()
             };
 
-
+            	console.log(param);
             $.ajax({
                 data : param,
                 type:'post',
