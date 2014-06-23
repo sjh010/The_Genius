@@ -19,7 +19,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">NoGomin</a>
+            <a class="navbar-brand" href="/">NoGomin</a>
         </div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -28,7 +28,7 @@
 	                <a href="" class="dropdown-toggle" data-toggle="dropdown"><%=user_id %>님<b class="caret"></b></a>
 	                <ul class="dropdown-menu">
 	                    <li><a href="/myPage">마이페이지</a></li>
-	                    <li><a href="#">로그아웃</a></li>
+	                    <li><a href="javascript:logout();">로그아웃</a></li>
 	                </ul>
 	            </li>
 	            <li><a href="/shoppingInfo">나의쇼핑정보</a></li>
@@ -38,3 +38,5 @@
     <!-- /.container-fluid -->
 </nav>
 <!-- /.navbar -->
+
+<script src="/resources/js/navbar.js"></script>
