@@ -76,7 +76,7 @@ public class UserController {
 	}
 	
 	// 회원 기본정보 입력 받아 DB저장 후 가입 아이디 반환
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
 	public String joinAction(HttpServletResponse response, UserVO user) throws Exception{
 		
 		logger.info("joinAction..........");
@@ -130,7 +130,7 @@ public class UserController {
 		
 		request.setAttribute("returnUserId", checkFlag);
 		
-		return "/user/ajax/returnUserId";
+		return "/user/ajax/returnResult";
 	}
 	
 	@RequestMapping(value = "user/modify", method = RequestMethod.GET)
