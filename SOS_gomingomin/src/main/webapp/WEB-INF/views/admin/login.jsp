@@ -38,20 +38,19 @@
 </div>
 <script>
 $("#admin-login-form .login").click(function(){
-	console.log("Sadasdas");
 	var $form = $("#admin-login-form");
-	console.log($form.serialize());
 	$.ajax({
 		data : $form.serialize(),
 		dataType : "json",
-		url : "/admin",
+		url : "/admin/loginAction",
 		type : "post",
 		success : function(data){
-			if(data.result == 'y'){
-				console.log("로긴");
-			} else if(data.result == 'n') {
-				console.log("오류");
-			}
+			console.log(data);
+    		if((data != null) || (data != undefined)){
+    			location.reload();
+    		} else {
+    			alert(data);
+    		}
 		}
 	});
 });

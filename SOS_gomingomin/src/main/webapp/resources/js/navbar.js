@@ -19,11 +19,10 @@ $("#loginModal .login").click(function(){
     	dataType : "json",
     	url : "/loginAction",
     	success : function(data){
-    		console.log(data);
-    		if((data != null) || (data != undefined)){
+    		if((data.result == null) || (data.result == undefined)){
     			location.reload();
     		} else {
-    			alert("아이디와 비밀번호를 확인해주세요");
+    			alert(data.result);
     		}
         }
     });
@@ -32,5 +31,5 @@ $("#loginModal .login").click(function(){
 
 var logout = function(){
 	$.cookie('loginInfo', null);
-	location.href("/");
+	location.replace("/");
 };
