@@ -128,7 +128,7 @@ public class UserController {
 			checkFlag = "y";
 		}
 		
-		request.setAttribute("returnUserId", checkFlag);
+		request.setAttribute("result", checkFlag);
 		
 		return "/user/ajax/returnResult";
 	}
