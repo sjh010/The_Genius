@@ -35,7 +35,7 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
             user_id_ok = true;
             $.ajax({
-                data : user_id.val(),
+                data : {user_id : user_id.val()},
                 url: "/user/checkUserId",
                 success : function(data){
                     if(data == 'y'){
