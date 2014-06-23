@@ -1,10 +1,13 @@
 package org.sos.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.sos.vo.CharacterVO;
+import org.sos.vo.ProductVO;
 
 public interface CharacterMapper {
 	
@@ -36,6 +39,33 @@ public interface CharacterMapper {
 	      + "WHERE "
 	  		    + "character_id = #{character_id}")
 	public CharacterVO readCharacter(int character_id);
+	
+	@Select("SELECT "
+			+ "character_id, character_name, character_img, "
+			+ "type_adventure, type_practice, type_rule, type_tradition, "
+			+ "type_enjoyment, type_pleasure, type_harmony"
+		  + "FROM "
+	  		+ "(SELECT "
+	  				+ "A.*, ROWNUM AS RNUM, FLOOR((ROWNUM-1)/5+1) AS PAGE, COUNT(*) OVER() AS TOTCNT "
+	  			+ "FROM "
+	  		 		+ "("
+	  		 			+ "SELECT "
+	  		 				+ "character_id, character_name, character_img, "
+	  		 				+ "type_adventure, type_practice, type_rule, type_tradition, "
+	  		 				+ "type_enjoyment, type_pleasure, type_harmony"
+	  		 			+ "FROM "
+	  		 				+ "tbl_character"
+	  		 		+ ") A) "
+	  	  + "WHERE PAGE = #{pageNum}")
+	public List<CharacterVO> readCharacterList(int pageNum);
+	
+	@Select("SELECT "
+		    + "character_id, character_name, character_img, "
+		    + "type_adventure, type_practice, type_rule, type_tradition, "
+		    + "type_enjoyment, type_pleasure, type_harmony "
+      + "FROM "
+  		    + "tbl_character ")
+	public List<CharacterVO> readAllCahracterList();
 
 	@Update("UPDATE "
 			    + "tbl_character "

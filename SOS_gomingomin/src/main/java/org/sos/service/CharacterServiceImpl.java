@@ -1,5 +1,7 @@
 package org.sos.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.sos.mapper.CharacterMapper;
@@ -26,6 +28,18 @@ public class CharacterServiceImpl implements CharacterService {
 		
 		return vo;
 	}
+	
+	@Override
+	public List<CharacterVO> readCharacterList(int pageNum) throws Exception {
+		// TODO Auto-generated method stub
+		return characterMapper.readCharacterList(pageNum);
+	}
+
+	@Override
+	public List<CharacterVO> readAllCharacterList() throws Exception {
+		// TODO Auto-generated method stub
+		return characterMapper.readAllCahracterList();
+	}
 
 	@Override
 	public void updateCharacter(CharacterVO vo) throws Exception {
@@ -38,5 +52,8 @@ public class CharacterServiceImpl implements CharacterService {
 		// TODO Auto-generated method stub
 		characterMapper.deleteCharacter(character_id);
 	}
+
+
+
 
 }

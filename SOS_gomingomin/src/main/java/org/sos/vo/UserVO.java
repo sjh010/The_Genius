@@ -12,6 +12,7 @@ public class UserVO {
 	private String user_mobile;
 	private String user_phone;
 	private String user_joindate;
+	private String user_grade;
 	
 	public String getUser_id() {
 		return user_id;
@@ -73,6 +74,12 @@ public class UserVO {
 	public void setUser_joindate(String user_joindate) {
 		this.user_joindate = user_joindate;
 	}
+	public String getUser_grade() {
+		return user_grade;
+	}
+	public void setUser_grade(String user_grade) {
+		this.user_grade = user_grade;
+	}
 	
 	@Override
 	public String toString() {
@@ -81,7 +88,8 @@ public class UserVO {
 				+ user_birth + ", user_sex=" + user_sex + ", user_addr="
 				+ user_addr + ", user_email=" + user_email + ", user_mobile="
 				+ user_mobile + ", user_phone=" + user_phone
-				+ ", user_joindate=" + user_joindate + "]";
+				+ ", user_joindate=" + user_joindate + ", user_grade="
+				+ user_grade + "]";
 	}
 	
 }

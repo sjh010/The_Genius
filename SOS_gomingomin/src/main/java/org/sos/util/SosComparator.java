@@ -9,6 +9,8 @@ public class SosComparator implements Comparator<OrderVO> {
 	@Override
 	public int compare(OrderVO o1, OrderVO o2) {
 		
-		return (int) o1.getValue() > o2.getValue() ? -1 : (o1.getValue() == o2.getValue() ? 0 : 1);
+		if(o1.getValue() > o2.getValue()) return -1;
+		else if(o1.getValue() < o2.getValue()) return 1;
+		else return 0;
 	}
 }

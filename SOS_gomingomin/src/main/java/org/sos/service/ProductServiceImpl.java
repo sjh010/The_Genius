@@ -1,5 +1,7 @@
 package org.sos.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.sos.mapper.ProductMapper;
@@ -27,6 +29,13 @@ public class ProductServiceImpl implements ProductService {
 		
 		return vo;
 	}
+	
+	@Override
+	public List<ProductVO> readProductList(int pageNum) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return productMapper.readProductList(pageNum);
+	}
 
 	@Override
 	public void updateProduct(ProductVO vo) throws Exception {
@@ -41,5 +50,6 @@ public class ProductServiceImpl implements ProductService {
 		productMapper.deleteProduct(product_id);
 		
 	}
+
 
 }

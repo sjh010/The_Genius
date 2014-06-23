@@ -1,5 +1,7 @@
 package org.sos.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -37,6 +39,23 @@ public interface ProductMapper {
 	      + "WHERE "
 				+ "product_id = #{product_id}")
 	public ProductVO readProduct(int product_id);
+	
+	@Select("SELECT "
+				+ "product_id, type_adventure, type_practice, type_rule, "
+				+ "type_tradition, type_enjoyment, type_pleasure, type_harmony"
+		  + "FROM "
+		  		+ "(SELECT "
+		  				+ "A.*, ROWNUM AS RNUM, FLOOR((ROWNUM-1)/5+1) AS PAGE, COUNT(*) OVER() AS TOTCNT "
+		  		 + "FROM "
+		  		 		+ "("
+		  		 			+ "SELECT "
+		  		 				+ "product_id, type_adventure, type_practice, type_rule, "
+		  		 				+ "type_tradition, type_enjoyment, type_pleasure, type_harmony"
+		  		 			+ "FROM "
+		  		 				+ "tbl_product"
+		  		 		+ ") A) "
+		  + "WHERE PAGE = #{pageNum}")
+	public List<ProductVO> readProductList(int pageNum);
 
 	@Update("UPDATE "
 				+ "tbl_product "

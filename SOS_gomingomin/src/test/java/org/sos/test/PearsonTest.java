@@ -1,6 +1,8 @@
 package org.sos.test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.Test;
@@ -13,7 +15,6 @@ import org.sos.vo.ResultVO;
 
 
 public class PearsonTest {
-
 
 	@Test
 	public void orderTest1(){
@@ -110,9 +111,25 @@ public class PearsonTest {
 		System.out.println("cosineList : " + cosineList.toString());
 		System.out.println("multiList : " + multiList.toString());
 		
+//		Collections.sort(cosineList, new Comparator<OrderVO>(){
+//
+//			@Override
+//			public int compare(OrderVO o1, OrderVO o2) {
+//				
+//				if(o1.getValue() > o2.getValue()) return -1;
+//				else if(o1.getValue() < o2.getValue()) return 1;
+//				else return 0;
+//			}
+//			
+//		});
+//		
+//		System.out.println("좀 바껴라!!! : " + cosineList);
+		
 		
 		
 	}
+	
+	
 	
 	
 }

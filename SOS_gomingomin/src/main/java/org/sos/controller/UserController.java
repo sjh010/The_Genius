@@ -2,15 +2,18 @@ package org.sos.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sos.service.UserService;
 import org.sos.vo.UserVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.CookieGenerator;
 
 
 @Controller("UserController")
@@ -20,10 +23,52 @@ public class UserController {
 	
 	@Inject
 	UserService userService;
+	
+	//로그인 요청 -> ajax 논의 해봐야함
+	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
+	public String loginAction(HttpServletResponse response, HttpServletRequest request,
+								String user_id, String user_password){
+
+		UserVO user = new UserVO();
+		CookieGenerator cookieGenerator = new CookieGenerator();
+		
+		try {
+			userService.readUser(user_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// 아이디 존재 여부  확인
+		if((user != null) && (user.getUser_id().equals(user_id))){
+			
+			// 비밀번호 일치 여부 확인
+			if(user.getUser_password().equals(user_password)){
+				
+				// 로그인 성공 시, 쿠키 생성
+				cookieGenerator.setCookieName("loginInfo");
+				cookieGenerator.addCookie(response, "y");
+				cookieGenerator.setCookieName("user_id");
+				cookieGenerator.addCookie(response, user.getUser_id());
+				cookieGenerator.setCookieName("user_name");
+				cookieGenerator.addCookie(response, user.getUser_name());
+				
+			}
+			else{
+				
+				request.setAttribute("result", "비밀번호가 일치하지 않습니다!");
+			}
+		}
+		else{
+			
+			request.setAttribute("result", "존재하지 않는 아이디입니다!");
+		}
+		
+		return null;
+		
+	}
 
 	// 회원 가입 페이지 요청
-	
-	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String getJoinPage(){
 		
@@ -32,19 +77,27 @@ public class UserController {
 	
 	// 회원 기본정보 입력 받아 DB저장 후 가입 아이디 반환
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinAction(HttpServletRequest request, UserVO user) throws Exception{
+	public String joinAction(HttpServletResponse response, UserVO user) throws Exception{
 		
 		logger.info("joinAction..........");
 		
 		logger.info(user.toString());
+		
 		userService.registUser(user);
 		
-		request.setAttribute("user_id", user.getUser_id());
+		CookieGenerator cookieGenerator = new CookieGenerator();
 		
-		return "/user/ajax/returnUserId";	
+		cookieGenerator.setCookieName("loginInfo");
+		cookieGenerator.addCookie(response, "y");
+		cookieGenerator.setCookieName("user_id");
+		cookieGenerator.addCookie(response, user.getUser_id());
+		cookieGenerator.setCookieName("user_name");
+		cookieGenerator.addCookie(response, user.getUser_name());
+		
+		return "redirect:/join/selectCharacter";	
 	}
 	
-	// 캐릭터 선택 페이지로 이동
+	// 캐릭터 선택 페이지 생성
 	@RequestMapping(value = "user/character", method = RequestMethod.GET)
 	public ModelAndView getCharacterSelectPage(HttpServletRequest request) throws Exception{
 		
@@ -81,7 +134,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "user/modify", method = RequestMethod.GET)
-	public ModelAndView Modify(HttpServletRequest request) throws Exception{
+	public ModelAndView Modify(HttpServletRequest request, Model model) throws Exception{
 		
 		logger.info("modify..........");
 		logger.info("user_id : " + request.getParameter("user_id"));
@@ -92,7 +145,10 @@ public class UserController {
 		modelAndView.addObject("UserVO", user);
 		modelAndView.setViewName("/user/modify");
 		
+		
 		return modelAndView;	
 	}
+	
+	
 	
 }

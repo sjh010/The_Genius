@@ -21,6 +21,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+	<interceptors>
+    	<interceptor>
+           <mapping path="/admin*/*" />
+           <beans:bean class="org.sos.service.LoginCheckInterceptor" />
+         </interceptor>
+    </interceptors>
+	
+	
 	<context:component-scan base-package="org.sos.controller" />
 	
 	

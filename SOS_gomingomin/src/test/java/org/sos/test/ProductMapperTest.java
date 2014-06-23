@@ -23,9 +23,6 @@ public class ProductMapperTest {
 	@Test
 	public void testRegist() throws Exception{
 		ProductVO vo = new ProductVO();
-		vo.setProduct_name("맥북프로 중급형");
-		vo.setProduct_img("http://11st.com/h2/b3");
-		vo.setProduct_price(1890000);
 		vo.setType_adventure(4);
 		vo.setType_practice(3);
 		vo.setType_rule(2);
@@ -41,9 +38,7 @@ public class ProductMapperTest {
 		ProductVO vo;
 		vo = productService.readProduct(2);
 		System.out.println(vo.getProduct_id());
-		System.out.println(vo.getProduct_img());
-		System.out.println(vo.getProduct_name());
-		System.out.println(vo.getProduct_price());
+
 		System.out.println(vo.getType_adventure());
 		System.out.println(vo.getType_practice());
 		System.out.println(vo.getType_rule());
@@ -57,9 +52,7 @@ public class ProductMapperTest {
 	public void testUpdate() throws Exception{
 		ProductVO vo = new ProductVO();
 		vo.setProduct_id(2);;
-		vo.setProduct_name("맥북프로 중급형");
-		vo.setProduct_img("http://bit49.com/picuture/");
-		vo.setProduct_price(1890000);
+
 		vo.setType_adventure(4);
 		vo.setType_practice(3);
 		vo.setType_rule(2);
