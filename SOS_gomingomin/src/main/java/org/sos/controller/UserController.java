@@ -33,7 +33,7 @@ public class UserController {
 		CookieGenerator cookieGenerator = new CookieGenerator();
 		
 		try {
-			userService.readUser(user_id);
+			user = userService.readUser(user_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,21 +97,6 @@ public class UserController {
 		return "redirect:/join/selectCharacter";	
 	}
 	
-	// 캐릭터 선택 페이지 생성
-	@RequestMapping(value = "user/character", method = RequestMethod.GET)
-	public ModelAndView getCharacterSelectPage(HttpServletRequest request) throws Exception{
-		
-		logger.info("character..........");
-		
-		ModelAndView modelAndView = new ModelAndView();
-		
-		UserVO user = userService.readUser(request.getParameter("user_id"));
-		modelAndView.addObject("UserVO", user);
-		modelAndView.setViewName("/user/selectCharacter");
-		
-		return modelAndView;	
-	}
-	
 	// 회원 가입 시 아이디 중복체크
 	@RequestMapping(value = "user/checkUserId", method = RequestMethod.GET)
 	public String checkUserId(HttpServletRequest request) throws Exception{
@@ -134,7 +119,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "user/modify", method = RequestMethod.GET)
-	public ModelAndView Modify(HttpServletRequest request, Model model) throws Exception{
+	public ModelAndView getModifyPage(HttpServletRequest request, Model model) throws Exception{
 		
 		logger.info("modify..........");
 		logger.info("user_id : " + request.getParameter("user_id"));
@@ -147,6 +132,11 @@ public class UserController {
 		
 		
 		return modelAndView;	
+	}
+	
+	public String modifyAction(UserVO user){
+		
+		
 	}
 	
 	
