@@ -6,12 +6,12 @@
 <%@page import="org.sos.vo.*, java.util.*"%>
 <% Cookie[] cookies = request.getCookies(); 
 	String user_id = null;
-	String include = "./navbarNoLogin.jsp";
+	String include = "navbarNoLogin.jsp";
 	if(cookies != null) {
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("user_id")) {
 				user_id = cookie.getValue();
-				include = "./navbarLogin.jsp";
+				include = "navbarLogin.jsp";
 			}
 		}
 	}

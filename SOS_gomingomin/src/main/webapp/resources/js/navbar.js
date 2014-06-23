@@ -10,6 +10,7 @@ $("#loginModal .join").click(function(){
 });
 
 $("#loginModal .login").click(function(){
+	console.log("asdf");
 	var $form = $("#login-form");
     $.ajax({
     	data : $form.serialize(),
