@@ -1,5 +1,8 @@
 package org.sos.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +35,8 @@ public class UserController {
 		UserVO user = new UserVO();
 		CookieGenerator cookieGenerator = new CookieGenerator();
 		
+		
+		
 		try {
 			user = userService.readUser(user_id);
 		} catch (Exception e) {
@@ -46,12 +51,22 @@ public class UserController {
 			if(user.getUser_password().equals(user_password)){
 				
 				// 로그인 성공 시, 쿠키 생성
+				
+			
 				cookieGenerator.setCookieName("loginInfo");
 				cookieGenerator.addCookie(response, "y");
+			
 				cookieGenerator.setCookieName("user_id");
 				cookieGenerator.addCookie(response, user.getUser_id());
+				
 				cookieGenerator.setCookieName("user_name");
-				cookieGenerator.addCookie(response, user.getUser_name());
+				
+				try {
+					cookieGenerator.addCookie(response, URLEncoder.encode(user.getUser_name(), "utf-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 			else{

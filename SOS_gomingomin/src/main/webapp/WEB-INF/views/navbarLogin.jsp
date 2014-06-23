@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String user_id = request.getParameter("user_id");
+	String user_name = request.getParameter("user_name");
 %>
 
 <!-- navbar -->
@@ -25,7 +25,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 	        	<li class="dropdown">
-	                <a href="" class="dropdown-toggle" data-toggle="dropdown"><%=user_id %>님<b class="caret"></b></a>
+	                <a href="" class="dropdown-toggle" data-toggle="dropdown"><%=user_name%>님<b class="caret"></b></a>
 	                <ul class="dropdown-menu">
 	                    <li><a href="/myPage">마이페이지</a></li>
 	                    <li><a href="javascript:logout();">로그아웃</a></li>
