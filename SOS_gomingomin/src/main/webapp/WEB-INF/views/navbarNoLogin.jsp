@@ -3,7 +3,7 @@
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+ }
 <!-- navbar -->
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
@@ -15,7 +15,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">NoGomin</a>
+			<a class="navbar-brand" href="/">NoGomin</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

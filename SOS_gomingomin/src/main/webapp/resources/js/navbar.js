@@ -25,3 +25,8 @@ $("#loginModal .login").click(function(){
         }
     });
 });
+
+
+var logout = function(){
+	// logout
+};
