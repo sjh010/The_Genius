@@ -1,25 +1,23 @@
 /**
- * Updated by Saemi Lim on 2014-06-18.
- * Created by Saemi Lim on 2014-06-10.
+ * Created by Administrator on 2014-06-10.
  */
 jQuery.browser = {};
 var form = $("#user-join-form");
 
-
+/* 유효성 검사 */
 $(function () {
-	/* 유효성 검사 */
-    /* Error 색상 표시 */
+
+    /* change text color */
     function has_error(el) {
         el.parent().parent().addClass("has-error");
     }
 
-    /* Success 색상 표시 */
     function has_success(el) {
         el.parent().parent().removeClass("has-error");
         el.parent().parent().addClass("has-success");
     }
 
-    /* user_id 유효성 & 중복 검사 */
+    /* check user_id */
     var user_id = form.find("[name=user_id]");
     var user_id_ok = false;
     var userIdCheck = function(){
@@ -32,27 +30,30 @@ $(function () {
             has_error(user_id);
             $(".user-id-msg").html("영어/숫자만 가능합니다");
         } else {
+            has_success(user_id);
+            $(".user-id-msg")
+                .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
+            user_id_ok = true;
             $.ajax({
-                data : 'user_id='+user_id.val(),
+                data : user_id.val(),
                 url: "/user/checkUserId",
-                dataType : "json",
                 success : function(data){
-                    if(data.returnUserId == 'n'){
+                    if(data == 'y'){
                           has_success(user_id);
                             $(".user-id-msg")
                                 .html("<span class='glyphicon glyphicon-ok'></span>사용가능합니다");
                                 user_id_ok = true;
                     } else {
                           has_error(user_id);
-                            $(".user-id-msg").html("<span class='glyphicon glyphicon-remove'></span>중복된 아이디입니다.");
+                            $(".user-id-msg").html("중복된 아이디입니다.");
                     }
                 }
             });
         }
     };
-    user_id.focusout(function(){userIdCheck();});
+    user_id.focusout(function(){userIdCheck()});
 
-    /* user_password 유효성 & user_passwordck와 일치성 확인 검사 */
+    /* check user_pw */
     var user_pw = form.find("[name=user_password]");
     var user_pw_ok = false;
     var userPwChk = function(){
@@ -95,7 +96,7 @@ $(function () {
     };
     user_pwck.focusout(function () { userPwCkChk(); });
 
-    /* user_name 유효성 검사 */
+    /* check user_name */
     var user_name = form.find("[name=user_name]");
     var user_name_ok = false;
 
@@ -112,23 +113,8 @@ $(function () {
     };
     user_name.focusout(function () {userNameChk();});
 
-    /* user_birth 유효성 검사 */
+    /* check user_name */
     var user_birth = form.find("[name=user_birth]");
-    var user_birth_ok = false;
-    var userBirthChk = function(){
-        if (user_birth.val() == "") {
-            has_error(user_birth);
-            $(".user-birth-msg").html("<span class='glyphicon glyphicon-remove'></span>생년월일을 입력하세요");
-        } else {
-            has_success(user_birth);
-            $(".user-birth-msg")
-                .html("<span class='glyphicon glyphicon-ok'></span>");
-            user_birth_ok = true;
-        }
-    };
-    user_birth.change(function () {userBirthChk();});
-
-    /* datepicker */
     user_birth.datepicker({
         dateFormat: 'yy-mm-dd',
         prevText: '이전 달',
@@ -145,11 +131,25 @@ $(function () {
             var i_offset= $(input).offset();
             setTimeout(function(){
                 $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'right':'10px'});
-            });
+            })
+
         }
     });
-    
-    /* user_sex 선택 확인 */
+    var user_birth_ok = false;
+    var userBirthChk = function(){
+        if (user_birth.val() == "") {
+            has_error(user_birth);
+            $(".user-birth-msg").html("<span class='glyphicon glyphicon-remove'></span>생년월일을 입력하세요");
+        } else {
+            has_success(user_birth);
+            $(".user-birth-msg")
+                .html("<span class='glyphicon glyphicon-ok'></span>");
+            user_birth_ok = true;
+        }
+    };
+    user_birth.change(function () {userBirthChk();});
+
+    /* check user_sex */
     var user_sex = form.find("[name=user_sex]");
     var user_sex_ok = false;
     var userSexChk = function(){
@@ -165,9 +165,9 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-remove'></span>성별을 선택하세요");
         }
     };
-    user_sex.change(function () {userSexChk();});
+    user_sex.change(function () {userSexChk(); console.log("asdf");});
 
-    /* user_email 유효성 검사 */
+    /* check user_email */
     var email_host = form.find("[name=email_host]");
     var email_id = form.find("[name=email_id]");
     var user_email_ok = false;
@@ -186,7 +186,7 @@ $(function () {
         }
     };
     email_id.focusout(function () {
-        userEmailChk();
+        userEmailChk()
     });
     email_host.focusout(function () {
         if ($(this).val() == 'edit') {
@@ -196,7 +196,6 @@ $(function () {
         userEmailChk();
     });
 
-    /* user_addr 유효성 검사 */
     var user_addr_ok = false;
     var zipcode1 = form.find("[name=zipcode1]");
     var zipcode2 = form.find("[name=zipcode2]");
@@ -220,19 +219,22 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    zipcode1.focusout(function () {userAddressChk(); });
-    zipcode2.focusout(function () {userAddressChk(); });
-    address1.focusout(function () {userAddressChk(); });
-    address2.focusout(function () {userAddressChk(); });
+    zipcode1.focusout(function () {userAddressChk() });
+    zipcode2.focusout(function () {userAddressChk() });
+    address1.focusout(function () {userAddressChk() });
+    address2.focusout(function () {userAddressChk() });
 
-    /* user_phone 유효성 검사 */
     var user_phone_ok = false;
     var phone1 = form.find("[name=phone1]");
     var phone2 = form.find("[name=phone2]");
     var phone3 = form.find("[name=phone3]");
 
     var userPhoneChk = function () {
-        var regPhone = /^[0-9]{2,4}$/;
+        var regPhone = /^[0-9]{3,4}$/;
+
+        console.log((!regPhone.test(phone1.val())));
+        console.log((!regPhone.test(phone2.val())));
+        console.log((!regPhone.test(phone3.val())));
 
         if ((!regPhone.test(phone1.val())) || (!regPhone.test(phone2.val())) ||(!regPhone.test(phone3.val()))) {
             has_error(phone1);
@@ -246,11 +248,11 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    phone1.focusout(function () {userPhoneChk(); });
-    phone2.focusout(function () {userPhoneChk(); });
-    phone3.focusout(function () {userPhoneChk(); });
+    phone1.focusout(function () {userPhoneChk() });
+    phone2.focusout(function () {userPhoneChk() });
+    phone3.focusout(function () {userPhoneChk() });
 
-    /* user_mobile 유효성 검사 */
+
     var user_mobile_ok = false;
     var mobile1 = form.find("[name=mobile1]");
     var mobile2 = form.find("[name=mobile2]");
@@ -271,12 +273,12 @@ $(function () {
                 .html("<span class='glyphicon glyphicon-ok'></span>");
         }
     };
-    mobile1.focusout(function () {userMobileChk(); });
-    mobile2.focusout(function () {userMobileChk(); });
-    mobile3.focusout(function () {userMobileChk(); });
+    mobile1.focusout(function () {userMobileChk() });
+    mobile2.focusout(function () {userMobileChk() });
+    mobile3.focusout(function () {userMobileChk() });
 
-    /* form 항목 유효성 검사 */
-    $("#user-join-form .ok").click(function () {
+    $("#user-join-form .join").click(function () {
+        var form = $("#user-join-form");
         if (!user_id_ok) {
             user_id.focus();
             userIdCheck();
@@ -295,32 +297,30 @@ $(function () {
         } else if (!user_email_ok) {
             email_id.focus();
             userEmailChk();
-        } else if (!user_addr_ok) {
+        } else if (!user_phone_ok) {
             zipcode1.focus();
             userAddressChk();
-        } else if (!user_phone_ok) {
-        	phone1.focus();
-            userPhoneChk();
         } else if (!user_mobile_ok) {
             mobile1.focus();
             userMobileChk();
         } else {
-        	/* 데이터 가공 및 ajax호출 */
-            var param = 
-                'user_id='+ user_id.val()+"&"+
-                'user_password='+ user_pw.val()+"&"+
-                'user_name='+ user_name.val()+"&"+
-                'user_birth='+ user_birth.val()+"&"+
-                'user_sex='+ user_sex.val()+"&"+
-                'user_addr='+ zipcode1.val()+'---'+zipcode2.val()+'___'+address1.val()+'---'+address2.val()+"&"+
-                'user_email='+ email_id.val() + '@' + email_host.val()+"&"+
-                'user_phone='+ phone1.val()+'-'+phone2.val()+'-'+phone3.val()+"&"+
-                'user_mobile='+ mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val();
-            
+            var param = {
+                user_id : user_id.val(),
+                user_pw : user_pw.val(),
+                user_name : user_name.val(),
+                user_birth : user_birth.val(),
+                user_sex : user_sex.val(),
+                user_addr : zipcode1+'-'+zipcode2+'||'+address1+'-'+address2,
+                user_email : email_id.val() + '@' + email_host.val(),
+                user_phone : phone1.val()+'-'+phone2.val()+'-'+phone3.val(),
+                user_mobile : mobile1.val()+'-'+mobile2.val()+'-'+mobile3.val()
+            };
+
+
             $.ajax({
                 data : param,
                 type:'post',
-                url: "/join",
+                url: "/joinAction",
                 dataType : "json",
                 success : function(data){
                 	/* 가입처리가 완료되었으면 selectCharacter페이지로 이동한다. */
@@ -332,9 +332,5 @@ $(function () {
                 }
             });
         }
-    });
-    
-    $("#user-join-form .cancel").click(function () {
-    	history.back();
     });
 });
