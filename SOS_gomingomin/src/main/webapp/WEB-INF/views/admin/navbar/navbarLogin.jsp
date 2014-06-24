@@ -18,10 +18,10 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/product">상품관리</a></li>
-                <li><a href="/character">캐릭터관리</a></li>
-                <li><a href="/category">카테고리관리</a></li>
-                <li><a href="/userManage">회원관리</a></li>
+                <li><a href="/admin/product">상품관리</a></li>
+                <li><a href="/admin/character">캐릭터관리</a></li>
+                <li><a href="/admin/category">카테고리관리</a></li>
+                <li><a href="/admin/userManage">회원관리</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

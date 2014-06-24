@@ -64,9 +64,10 @@ public class CharacterController{
 		
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getCharacterManagementPage(String pageNo){
 		
+		logger.info("getCharacterManagementPage..........");
 		if(pageNo == null){
 			pageNo = "1";
 		}
@@ -80,7 +81,7 @@ public class CharacterController{
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("admin/character");
+		mv.setViewName("admin/character/character");
 		
 		return mv;
 	}
