@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.sos.service.CharacterService;
 import org.sos.service.UserCharacterService;
 import org.sos.vo.CharacterVO;
+import org.sos.vo.FileVO;
 import org.sos.vo.UserCharacterVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -93,7 +94,23 @@ public class CharacterController{
 	
 	// 캐릭터 등록 요청
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)
-	public String characterRegistAction(HttpServletRequest request, CharacterVO character){
+	public String characterRegistAction(HttpServletRequest request, CharacterVO character, FileVO file){
+		
+		if(file.getFile().getSize() > 0){
+			
+			String uid = System.currentTimeMillis() + "_" + file.getFile().getOriginalFilename();
+		
+			file.setUid(uid);
+			
+			character.setCharacter_img(uid);
+			
+			try {
+				characterService.registFile(file);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
 		
 		try {
 			characterService.registCharacter(character);

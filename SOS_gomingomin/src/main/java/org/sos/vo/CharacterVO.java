@@ -12,6 +12,7 @@ public class CharacterVO {
 	private double type_enjoyment;
 	private double type_pleasure;
 	private double type_harmony;
+	
 	public int getCharacter_id() {
 		return character_id;
 	}

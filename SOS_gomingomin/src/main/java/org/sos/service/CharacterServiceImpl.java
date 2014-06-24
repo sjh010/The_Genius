@@ -1,11 +1,13 @@
 package org.sos.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.sos.mapper.CharacterMapper;
 import org.sos.vo.CharacterVO;
+import org.sos.vo.FileVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,6 +53,15 @@ public class CharacterServiceImpl implements CharacterService {
 	public void deleteCharacter(int character_id) throws Exception {
 		// TODO Auto-generated method stub
 		characterMapper.deleteCharacter(character_id);
+	}
+
+	@Override
+	public void registFile(FileVO file) throws Exception {
+		// TODO Auto-generated method stub
+		File saveFile = new File("C://characterImage/" + file.getUid());
+		
+		file.getFile().transferTo(saveFile);
+		
 	}
 
 
