@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = {"/admin/chracter", "/join"})
+@RequestMapping(value = {"/admin/character", "/join"})
 public class CharacterController{
 	
 	private static final Logger logger = LoggerFactory.getLogger(CharacterController.class);
@@ -96,6 +96,8 @@ public class CharacterController{
 	// 캐릭터 등록 요청
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)
 	public String characterRegistAction(HttpServletRequest request, CharacterVO character, FileVO file){
+		
+		logger.info("Character : " + character.toString());
 		
 		if(file.getFile().getSize() > 0){
 			

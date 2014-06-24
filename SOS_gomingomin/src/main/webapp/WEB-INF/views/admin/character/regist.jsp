@@ -22,11 +22,11 @@
         </div>
     </div>
     <div class="container-body">
-        <form class="form-horizontal" role="form" id="admin-character-form">
+        <form class="form-horizontal" role="form" id="admin-character-form" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-2 img-upload">
                     <img src="../../정우성.png"/>
-                    <input type="file" accept="image/*">
+                    <input type="file" accept="image/*" name="file">
                 </div>
                 <div class="col-md-10 info-input">
                     <div class="form-group">
@@ -132,5 +132,13 @@
 </div>
 <script src="/resources/js/admin/lib/Chart.js"></script>
 <script src="/resources/js/admin/chart.js"></script>
+<script>
+	$("#admin-character-form .ok").click(function(){
+		var $form = $("#admin-character-form");
+		$form.attr("method", "post");
+		$form.attr("action", "/admin/character/registAction");
+		$form.submit();
+	});
+</script>
 </body>
 </html>

@@ -28,7 +28,7 @@
     </div>
     <div class="container-body">
         <div class="row selectBox">
-    	<% if(voList == null) { for(CharacterVO vo : voList) { %>
+    	<% if(voList != null) { for(CharacterVO vo : voList) { %>
             <div class="select-element" id="<%=vo.getCharacter_id() %>">
                 <div class="image-frame" style="background-image: url('<%=vo.getCharacter_img() %>');">
                     <a href="/admin/character/update"><span class="glyphicon glyphicon-wrench"></span></a>
@@ -42,7 +42,7 @@
 </div>
 <script>
 
-$('.character-add').click(function(){
+$('#character-add').click(function(){
 	location.replace("/admin/character/regist");
 });
 
