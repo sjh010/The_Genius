@@ -39,7 +39,7 @@
 <script>
 	$(document).ready(function() {
 		if($.cookie("loginInfo") == 'y'){
-			location.replace("/admin/main");
+			location.replace("/admin");
 		}
 	});
 </script>
@@ -53,7 +53,7 @@ $("#admin-login-form .login").click(function(){
 		type : "post",
 		success : function(data){
     		if((data.result == null) || (data.result == undefined)){
-    			location.reload();
+    			location.replace("/admin");
     		} else {
     			alert(data.result);
     		}

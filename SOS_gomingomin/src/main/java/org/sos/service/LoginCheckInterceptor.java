@@ -39,6 +39,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		if(result == false){
+
 			response.sendRedirect(loginPath);
 		}
 		

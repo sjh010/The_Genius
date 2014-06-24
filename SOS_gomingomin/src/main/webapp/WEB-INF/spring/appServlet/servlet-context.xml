@@ -24,7 +24,10 @@
 	
 	<interceptors>
     	<interceptor>
-           <mapping path="/admin*/*" />
+           <mapping path="/admin/character" />
+           <mapping path="/admin/product" />
+           <mapping path="/admin/category" />
+           <mapping path="/admin/userManage" />
            <beans:bean class="org.sos.service.LoginCheckInterceptor" />
          </interceptor>
     </interceptors>

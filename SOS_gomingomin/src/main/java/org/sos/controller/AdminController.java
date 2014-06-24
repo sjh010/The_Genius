@@ -38,37 +38,43 @@ public class AdminController {
 	@Inject
 	ProductService productService;
 	
-
-	// 관리자 페이지 요청
 	@RequestMapping(method = RequestMethod.GET)
-	public String getAdminLoginPage(@CookieValue(value="loginInfo", defaultValue="n") String loginInfo,
-									@CookieValue(value="user_id") String user_id){
-		
+	public String getAdminMainPage(@CookieValue(value="loginInfo", defaultValue="n") String loginInfo,
+								   @CookieValue(value="user_id", defaultValue="none") String user_id){
+
+		logger.info("getAdminPage..........");
 		// 로그인 되어 있으면 관리자 메인 페이지
 		if(loginInfo.equals("y")){
-			
+
 			UserVO admin = new UserVO();
-			
+
 			try {
 				admin = userService.readUser(user_id);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			if(admin.getUser_grade().equals("admin")){
-				
+
 				return "admin/main";
 			}
-			
+
 		}
-		
+
 		// 로그인 되어 있지 않으면 관리자 로그인 페이지
-		return "admin/admin";
+		return "redirect:/admin/login";
+	}
+	
+	// 관리자 로그인 페이지 요청
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String getAdminLoginPage(){
+		
+		return "admin/login";
 	}
 	
 	// 관리자 로그인 후, 관리자 메인페이지 요청
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
 	public String loginAction(HttpServletRequest request, HttpServletResponse response, 
 								String user_id, String user_password) {
 		
@@ -108,17 +114,15 @@ public class AdminController {
 				else{
 				
 					request.setAttribute("result", "비밀번호가 일치하지 않습니다!");
-					return "admin/admin";
 				}
 			}
 		}
 		else{
 			
 			request.setAttribute("result", "존재하지 않는 아이디입니다!");
-			return "admin/admin";
 		}
 		
-		return "redirect:admin";
+		return "/user/ajax/returnResult";
 	}
 
 }
