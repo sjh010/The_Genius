@@ -24,11 +24,11 @@
         </div>
     </div>
     <div class="form-button">
-        <button type="button" class="btn btn-default select">추가</button>
+        <button type="button" class="btn btn-default" id="character-add">추가</button>
     </div>
     <div class="container-body">
         <div class="row selectBox">
-    	<% for(CharacterVO vo : voList) { %>
+    	<% if(voList == null) { for(CharacterVO vo : voList) { %>
             <div class="select-element" id="<%=vo.getCharacter_id() %>">
                 <div class="image-frame" style="background-image: url('<%=vo.getCharacter_img() %>');">
                     <a href="/admin/character/update"><span class="glyphicon glyphicon-wrench"></span></a>
@@ -36,11 +36,17 @@
                 </div>
                 <div class="nametag"><%=vo.getCharacter_name() %></div>
             </div>
-         <% } %>
+         <% }} %>
         </div>
     </div>
 </div>
 <script>
+
+$('.character-add').click(function(){
+	location.replace("/admin/character/regist");
+});
+
+
     $('.character-delete').click(function(){
         if(confirm("해당 캐릭터를 삭제하시겠습니까？")){
             $.ajax({
