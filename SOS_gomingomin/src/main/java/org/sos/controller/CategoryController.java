@@ -32,10 +32,7 @@ public class CategoryController {
 		
 		try {
 			mv.addObject("categoryList", categoryService.readCategoryList());
-			//*******************************************************************************************//
-			//여기서 mv에 카테고리 리스트를 새미랑 상의해서 박아주고
-			//mv.addObject("characterList", characterService.readCharacterList());
-			//******************************************************************************************//
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
