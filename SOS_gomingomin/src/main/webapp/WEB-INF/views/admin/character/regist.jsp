@@ -24,7 +24,6 @@
     <div class="container-body">
         <form class="form-horizontal" role="form" id="admin-character-form" enctype="multipart/form-data">
             <div class="row">
-            	
                 <div class="col-md-2 img-upload">
                     <img id="preview" src="/resources/images/noImage.png"/>
                     <input type="file" accept="image/*" name="file">
@@ -134,35 +133,31 @@
 <script src="/resources/js/admin/lib/Chart.js"></script>
 <script src="/resources/js/admin/chart.js"></script>
 <script>
+$(document).ready(function(){
+	if("${result}" == "y"){
+		alert("등록되었습니다.");
+		location.replace("/admin/character");
+	} 
+});
 
 $("#admin-character-form input[name=file]").change(function(){
 		var input = this;
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
-
 	        reader.onload = function (e) {
 	            $('#preview').attr('src', e.target.result);
 	        };
-
 	        reader.readAsDataURL(input.files[0]);
 	    }
 });
 
 
-	$("#admin-character-form .ok").click(function(e){
-		e.preventDefault();
-		var $form = $("#admin-character-form");
-		$.ajax({
-			data : $form.serialize(),
-			type : 'post',
-			url : '/admin/character/registAction',
-			dataType : 'json',
-			success : function(data){
-				console.log(data);
-				if(data.result == 'y') location.replace('/admin/character');
-			}
-		});
-	});
+$("#admin-character-form .ok").click(function(){
+	var $form = $("#admin-character-form");
+	$form.attr("method", "post");
+	$form.attr("action", "/admin/character/registAction");
+	$form.submit();
+});
 </script>
 </body>
 </html>

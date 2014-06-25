@@ -27,8 +27,10 @@
     <div class="container-body">
         <form class="form-horizontal" role="form" id="admin-character-form">
         <input type="hidden" value="<%=request.getParameter("character_id") %>" name="character_id">
+        <input type="hidden" value="<%=character.getCharacter_img() %>" name="character_img">
             <div class="row">
                 <div class="col-md-2 img-upload">
+                
                     <img id="preview" src="C:\characterImage\<%=character.getCharacter_img() %>"/>
                     <input type="file" accept="image/*" name="file">
                 </div>
@@ -143,6 +145,13 @@
     </div>
 </div>
 <script>
+$(document).ready(function(){
+	if("${result}" == "y"){
+		alert("수정되었습니다.");
+		location.replace("/admin/character");
+	} 
+});
+
 $("#admin-character-form input[name=file]").change(function(){
 		var input = this;
 	    if (input.files && input.files[0]) {
@@ -156,15 +165,12 @@ $("#admin-character-form input[name=file]").change(function(){
 	    }
 });
 
-
-	$("#admin-character-form .ok").click(function(e){
-		e.preventDefault();
-		var $form = $("#admin-character-form");
-		console.log($form.serialize());
-		$form.attr("method", "post");
-		$form.attr("action", "/admin/character/updateAction");
-		$form.submit();
-	});
+$("#admin-character-form .ok").click(function(){
+	var $form = $("#admin-character-form");
+	$form.attr("method", "post");
+	$form.attr("action", "/admin/character/updateAction");
+	$form.submit();
+});
 </script>
 <script src="/resources/js/admin/lib/Chart.js"></script>
 <script src="/resources/js/admin/chart.js"></script>
