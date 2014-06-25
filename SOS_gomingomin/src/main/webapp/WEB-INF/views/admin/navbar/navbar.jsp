@@ -7,19 +7,23 @@
 <%
 	Cookie[] cookies = request.getCookies();
 	String loginInfo = "";
+	String user_grade = "";
 	String include = "./navbarNoLogin.jsp";
 	if (cookies != null) {
 		for (Cookie cookie : cookies) {
-	if (cookie.getName().equals("loginInfo")) {
-		loginInfo = cookie.getValue();
-	}
+			if (cookie.getName().equals("loginInfo")) {
+				loginInfo = cookie.getValue();
+			}
+			if (cookie.getName().equals("user_grade")) {
+				loginInfo = cookie.getValue();
+			}
 		}
 	}
 	
-	if(loginInfo.equals("y")){
+	if(loginInfo.equals("y") && loginInfo.equals("user_grade")){
 		include = "./navbarLogin.jsp";
 	}
-	else if(loginInfo == null || loginInfo.equals("n")){
+	else {
 		include = "./navbarNoLogin.jsp";
 	}
 %>
