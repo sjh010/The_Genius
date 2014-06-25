@@ -45,10 +45,16 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public List<CategoryVO> readCategoryList() throws Exception {
+	public List<CategoryVO> readAllCategory() throws Exception {
 		// TODO Auto-generated method stub
-		return categoryMapper.readCategoryList();
+		return categoryMapper.readAllCategory();
 		
+	}
+
+	@Override
+	public List<CategoryVO> readPartCategory(int category_id) {
+		// TODO Auto-generated method stub
+		return categoryMapper.readPartCategory(category_id);
 	}
 
 }

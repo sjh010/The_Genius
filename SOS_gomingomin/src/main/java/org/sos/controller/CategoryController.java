@@ -31,7 +31,7 @@ public class CategoryController {
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			mv.addObject("categoryList", categoryService.readCategoryList());
+			mv.addObject("categoryList", categoryService.readAllCategory());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -43,16 +43,16 @@ public class CategoryController {
 		return mv;
 	}
 
-	/*
 	//카테고리 관리 페이지 요청, 카테고리 category_id or parent_id가 넘어온 것이면 다 뽑아다가 vo로 만들어서 넘겨주자.
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getCategoryUpdatePage(String category_id){
 		
+		logger.info("getCategoryUpdatePage.........");
+		
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			//여기에 mv에 원하는 것을 넣어주고 돌려주자.
-			//mv.addObject("category", categoryService.readCategory(Integer.parseInt(category_id)));
+			mv.addObject("categoryList", categoryService.readPartCategory(Integer.parseInt(category_id)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,6 +63,7 @@ public class CategoryController {
 		return mv;
 	}	
 	
+	/*
 	//카테고리 등록 요청
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)
 	public String characterRegistAction(HttpServletRequest request, CharacterVO character, FileVO file){
@@ -78,7 +79,7 @@ public class CategoryController {
 			character.setCharacter_img(uid);
 			
 			try {
-				characterService.registFile(file);
+				categoryService.registFile(file);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
