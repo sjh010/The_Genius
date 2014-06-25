@@ -81,15 +81,17 @@ public class CategoryController {
 	// 카테고리 등록 Action
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)
 	public String categoryRegistAction(HttpServletRequest request, CategoryVO category) {
-		
+		logger.info(category.toString());
+		int category_id = 0;
 		try {
 			categoryService.registCategory(category);
+			category_id = categoryService.getCategoryId();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("result", category.getCategory_id());
+		request.setAttribute("result", category_id);
 		
 		return "ajax/returnResult";
 	}
@@ -128,7 +130,7 @@ public class CategoryController {
 	}
 	
 	//카테고리 상세보기 Action
-	@RequestMapping(value = "getInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/getInfo", method = RequestMethod.POST)
 	public String categoryGetInfo(HttpServletRequest request, int category_id){
 		
 		CategoryVO category = null;

@@ -39,6 +39,12 @@ public interface CategoryMapper {
 	public CategoryVO readCategory(int category_id);
 	
 	@Select("SELECT "
+	    	+ "category_sequence.currval "
+	    	+ "FROM "
+		    + "dual ")	
+	public int getCategoryId();
+	
+	@Select("SELECT "
 	    		+ "category_id, category_parent_id, category_name, category_depth, "
 	    		+ "type_adventure, type_practice, type_rule, type_tradition, "
 	    		+ "type_enjoyment, type_pleasure, type_harmony "

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="org.sos.vo.*, java.util.List"%>
+<% List<CategoryVO> categoryList = (List<CategoryVO>)request.getAttribute("categoryList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,41 +24,38 @@
         </div>
     </div>
     <div class="container-body">
+    	<div class="form-button">
+    		<button type="button" class="btn btn-default" id="new-category">추가</button>
+    	</div>
         <div class="category-list">
-            <div class="category" id="category1">
+        <% for(CategoryVO depth1 : categoryList) { 
+        	if(depth1.getCategory_depth().equals("1")) {
+        		int id = depth1.getCategory_id();
+        %>
+            <div class="category" id="<%=id %>">
                 <div class="depth-1-category">
-                    <span>컴퓨터/가전</span>
+                    <span><%=depth1.getCategory_name()%></span>
                 </div>
-
+				
                 <div class="depth-2-category">
-                    <span>aaaa</span>
-                    <span>aaaa</span>
-                    <span>aaaa</span>
-                    <span>aaaa</span>
-                    <span>aaaa</span>
-                    <span>aaaa</span>
+                <% 
+                	for(CategoryVO depth2 : categoryList) { 
+				        if(depth2.getCategory_depth().equals("2") 
+				        		&& depth2.getCategory_parent_id() == id ) {
+				%>
+                    <span><%=depth2.getCategory_name() %></span>
+                 <%}} %>
                 </div>
             </div>
-            <div class="category" >
-                <div class="input float">
-                    <div class="form-group">
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="float category-add">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </div>
-            </div>
-
+         <%}} %>
+            
         </div>
 
     </div>
 </div>
 <script>
     $(".category").click(function(e){
-        console.log($(this)[0]);
+    	location.replace("/admin/category/update?category_id="+$(this)[0].id);
     });
 </script>
 </body>

@@ -20,10 +20,17 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryMapper.registCategory(vo);
 		
 	}	
+
+	@Override
+	public int getCategoryId() throws Exception {
+		// TODO Auto-generated method stub
+		return categoryMapper.getCategoryId();
+	}	
 	
 	@Override
 	public void updateCategory(CategoryVO vo) throws Exception {
 		// TODO Auto-generated method stub
+		
 		categoryMapper.updateCategory(vo);
 		
 	}

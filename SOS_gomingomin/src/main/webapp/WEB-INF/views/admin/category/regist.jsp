@@ -25,12 +25,16 @@
         </div>
     </div>
     <div class="container-body">
-    <h3>카테고리</h3>
         <div class="category-select">
             <ul id="category-list">
-            <% for(CategoryVO category : categoryList) { %>
-                <li id="<%=category.getCategory_id() %>"><%=category.getCategory_name() %></li>
-            <%} %>
+                <li id="1">컴퓨터</li>
+                <li id="2">신발</li>
+                <li id="3">가방</li>
+                <li id="4">옷</li>
+                <li id="5">냉장고</li>
+                <li id="6">ㅇㅇㅇ</li>
+                <li id="7">ㅁㅇㅁㄴㅇ</li>
+                <li id="8">ㄴㅇㅁ</li>
             </ul>
         </div>
         <div class="form-button">
@@ -114,20 +118,17 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden"  name="category_id" value='no'>
-            <input type="hidden"  name="category_depth" value='2'>
-            <input type="hidden" value="<%=request.getParameter("category_id") %>" name="category_parent_id">
-        <div class="category-menu">
+            <input type="hidden" value="" name="category_id">
+        </form>
+            <div class="category-menu">
                 <div class="input-group">
-                <input type="text" class="form-control" id="category-input" name="category_name"> 
+                <input type="text" class="form-control" id="category-input">
                     <span class="input-group-btn">
                             <button type="button" class="btn btn-default" id="category-regist">적용</button>
                             <button type="button" class="btn btn-default" id="category-delete">삭제</button>
                     </span>
                 </div>
             </div>
-        </form>
-            
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10 form-button">
                     <button type="button" class="btn btn-default delete">현재 카테고리 삭제</button>
@@ -136,49 +137,23 @@
             </div>
     </div>
 </div>
-<script src="/resources/js/admin/lib/Chart.js"></script>
-<script src="/resources/js/admin/chart.js"></script>
+<script src="../../js/lib/Chart.js"></script>
+<script src="../../js/chart.js"></script>
 <script>
     $(function () {
 
         var $form =$("#admin-category-form");
         var selected = false;
         var isNewCategory = false;
-        var category_id =$form.find("[name=category_id]")[0];
 //        $("#category-list").sortable();
 //        $("#category-list").disableSelection();
 
-        $('#category-list').mouseup(function (e) {
-        	var target = e.target;
-        	$('#category-list li').removeClass("category-selected");
-            $(target).addClass("category-selected");
+        $('#category-list li').mouseup(function () {
+            $('#category-list li').removeClass("category-selected");
+            $(this).addClass("category-selected");
 
-            category_id.value = $(".category-selected")[0].id;
-            $("#category-input").val($(".category-selected")[0].innerHTML);
-            if(category_id.value != "no"){
-            	$.ajax({
-                    data : {category_id:category_id.value},
-                    dataType : 'json',
-                    url : '/admin/category/getInfo',
-                    type : 'post',
-                    success : function(data) {
-                        var vo = data.result;
-                        
-                        $form.find("[name=type_adventure]")[0].value = vo.type_adventure;
-                        $form.find("[name=type_enjoyment]")[0].value = vo.type_enjoyment;
-                        $form.find("[name=type_harmony]")[0].value = vo.type_harmony;
-                        $form.find("[name=type_pleasure]")[0].value = vo.type_pleasure;
-                        $form.find("[name=type_rule]")[0].value = vo.type_rule;
-                        $form.find("[name=type_practice]")[0].value = vo.type_practice;
-                        $form.find("[name=type_tradition]")[0].value = vo.type_tradition;
-                    }
-                });
-            }
+            $form.find("[name=category_id]")[0].value = $(".category-selected")[0].id;
             selected = true;
-        });
-        
-        $("#category-input").focusout(function(){
-        	$(".category-selected")[0].innerHTML = $("#category-input").val();
         });
 
 
@@ -187,7 +162,7 @@
             if(!isNewCategory){
                 isNewCategory = true;
                 $('#category-list li').removeClass("category-selected");
-                $("#category-list").append("<li class='category-selected category-unsaved' id='no'>새로운 카테고리</li>");
+                $("#category-list").append("<li class='category-selected category-unsaved'>새로운 카테고리</li>");
                 $(".category-select").animate({ scrollTop: $('.category-select')[0].scrollHeight}, 1000);
 
                 $("#category-input").val("새로운 카테고리");
@@ -196,23 +171,15 @@
         });
 
         $("#category-regist").click(function(){
-            if(category_id.value == "no") {
-            	category_id.value = 0;
+            if($form.find("[name=category_id]")[0].value == "") {
                 //추가
-
-                $(".category-unsaved")[0].id = data.result;
-                $(".category-unsaved").removeClass("category-unsaved");
-                
                 $.ajax({
                     data : $form.serialize(),
                     dataType : 'json',
-                    url : '/admin/category/registAction',
+                    url : '/admin/',
                     type : 'post',
                     success : function(data) {
                         console.log(data);
-                        $(".category-unsaved")[0].id = data.result;
-                        $(".category-unsaved")[0].removeClass("category-unsaved");
-                        
                         isNewCategory = false;
                     }
                 });
@@ -232,10 +199,9 @@
         
         $("#category-delete").click(function () {
             if(selected){
-                confirm = confirm($(".category-selected")[0].innerHTML+" 카테고리를 삭제하시겠습니까?");
-                if(confirm){
+                if(confirm($(".category-selected")[0].innerHTML+" 카테고리를 삭제하시겠습니까?")){
                     $.ajax({
-                        data : {category_id:category_id.value},
+                        data : {category_id:$form.find("[name=category_id]")[0].value},
                         dataType : 'json',
                         url : '/admin/',
                         type : 'post',
