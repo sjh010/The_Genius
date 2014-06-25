@@ -15,7 +15,7 @@
 <jsp:include page="./navbar/navbar.jsp" flush="false"/>
 <div class="container">
     <div class="container-body">
-        <div class="well">...</div>
+        <p class="text-center">메뉴를 선택하세요</p>
     </div>
 </div>
 

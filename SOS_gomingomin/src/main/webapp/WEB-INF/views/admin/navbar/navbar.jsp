@@ -20,7 +20,7 @@
 		}
 	}
 	
-	if(loginInfo.equals("y") && loginInfo.equals("user_grade")){
+	if(loginInfo.equals("y") && user_grade.equals("admin")){
 		include = "./navbarLogin.jsp";
 	}
 	else {
@@ -28,6 +28,7 @@
 	}
 %>
 <jsp:include page="<%=include%>" flush="false" />
+
 
 
 <script type="text/javascript"
