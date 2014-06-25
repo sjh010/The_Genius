@@ -133,7 +133,6 @@
 <script src="/resources/js/admin/lib/Chart.js"></script>
 <script src="/resources/js/admin/chart.js"></script>
 <script>
-
 $("#admin-character-form input[name=file]").change(function(){
 		var input = this;
 	    if (input.files && input.files[0]) {
@@ -149,8 +148,9 @@ $("#admin-character-form input[name=file]").change(function(){
 
 
 	$("#admin-character-form .ok").click(function(e){
+		console.log("뭐꼬");
 		e.preventDefault();
-		var $form = $("#admin-character-form");
+		var $form = $("#admin-character-regist-form");
 		console.log($form.serialize());
 		$form.attr("method", "post");
 		$form.attr("action", "/admin/character/registAction");

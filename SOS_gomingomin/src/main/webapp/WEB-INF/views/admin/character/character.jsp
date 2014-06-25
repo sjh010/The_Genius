@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="org.sos.vo.*, java.util.List"%>
-<% List<CharacterVO> voList = (List<CharacterVO>)request.getAttribute("characterList"); %>
+<% List<CharacterVO> characterList = (List<CharacterVO>)request.getAttribute("characterList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,15 +28,17 @@
     </div>
     <div class="container-body">
         <div class="row selectBox">
-    	<% if(voList != null) { for(CharacterVO vo : voList) { %>
-            <div class="select-element" id="<%=vo.getCharacter_id() %>">
-                <div class="image-frame" style="background-image: url('<%=vo.getCharacter_img() %>');">
-                    <a href="/admin/character/update"><span class="glyphicon glyphicon-wrench"></span></a>
+    	<% if(characterList != null) { for(CharacterVO character : characterList) { %>
+            <div class="select-element" id="<%=character.getCharacter_id() %>">
+                <div class="image-frame" style="background-image: url('<%=character.getCharacter_img() %>');">
+                    <a href="#" class="character-update"><span class="glyphicon glyphicon-wrench"></span></a>
                     <a href="#" class="character-delete"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
-                <div class="nametag"><%=vo.getCharacter_name() %></div>
+                <div class="nametag"><%=character.getCharacter_name() %></div>
             </div>
-         <% }} %>
+         <% } }else{ %>
+        	 <h3 class="searchbar">등록된 캐릭터가 존재하지 않습니다</h3>
+        <%} %>
         </div>
     </div>
 </div>
@@ -47,6 +49,10 @@ $('#character-add').click(function(){
 });
 
 
+$('.character-update').click(function(){
+	location.replace("/admin/character/update?character_id="+$(this).parent().parent().attr("id"));
+});
+
     $('.character-delete').click(function(){
         if(confirm("해당 캐릭터를 삭제하시겠습니까？")){
             $.ajax({
@@ -55,7 +61,12 @@ $('#character-add').click(function(){
                 url : '/admin/character/deleteAction',
                 dataType : 'json',
                 success : function(data){
-                    // 삭제 여부 확인
+                    if(data.result == 'y'){
+                    	alert("삭제되었습니다.");
+                    	location.reload();
+                    } else {
+                    	alert("다시 시도해주세요");
+                    }
                 }
             });
         }
