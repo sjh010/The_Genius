@@ -102,8 +102,11 @@ public class AdminController {
 					cookieGenerator.addCookie(response, "y");
 					cookieGenerator.setCookieName("user_id");
 					cookieGenerator.addCookie(response, admin.getUser_id());
-					cookieGenerator.setCookieName("user_name");
+					cookieGenerator.setCookieName("user_grade");
+					cookieGenerator.addCookie(response, admin.getUser_grade());
+					
 					try {
+						cookieGenerator.setCookieName("user_name");
 						cookieGenerator.addCookie(response, URLEncoder.encode(admin.getUser_name(), "utf-8"));
 					} catch (UnsupportedEncodingException e) {
 						// TODO Auto-generated catch block

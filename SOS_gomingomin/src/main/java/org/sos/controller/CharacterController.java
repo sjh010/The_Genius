@@ -157,7 +157,9 @@ public class CharacterController{
 		logger.info("updateAction..........");
 		logger.info("CharacterVO : " + character);
 		
-		if(file.getFile().getSize() > 0){
+		if(file.getFile() != null){
+			
+			logger.info("file : " + file.toString());
 			
 			String uid = System.currentTimeMillis() + "_" + file.getFile().getOriginalFilename();
 		

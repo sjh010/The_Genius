@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="container-body">
-        <form class="form-horizontal" role="form" id="admin-character-form">
+        <form class="form-horizontal" role="form" id="admin-character-form" enctype="multipart/form-data">
         <input type="hidden" value="<%=request.getParameter("character_id") %>" name="character_id">
         <input type="hidden" value="<%=character.getCharacter_img() %>" name="character_img">
             <div class="row">

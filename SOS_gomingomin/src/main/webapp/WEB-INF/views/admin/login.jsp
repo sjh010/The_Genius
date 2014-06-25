@@ -36,13 +36,7 @@
         </form>
     </div>
 </div>
-<script>
-	$(document).ready(function() {
-		if($.cookie("loginInfo") == 'y'){
-			location.replace("/admin/main");
-		}
-	});
-</script>
+
 <script>
 $("#admin-login-form .login").click(function(){
 	var $form = $("#admin-login-form");

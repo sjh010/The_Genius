@@ -107,8 +107,11 @@ public class UserController {
 		cookieGenerator.addCookie(response, "y");
 		cookieGenerator.setCookieName("user_id");
 		cookieGenerator.addCookie(response, user.getUser_id());
-		cookieGenerator.setCookieName("user_name");
+		cookieGenerator.setCookieName("user_grade");
+		cookieGenerator.addCookie(response, user.getUser_grade());
+		
 		try {
+			cookieGenerator.setCookieName("user_name");
 			cookieGenerator.addCookie(response, URLEncoder.encode(user.getUser_name(), "utf-8"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
