@@ -134,9 +134,10 @@
 <script src="/resources/js/admin/chart.js"></script>
 <script>
 $(document).ready(function(){
+	console.log("${result}");
 	if("${result}" == "y"){
-		alert("등록되었습니다.");
 		location.replace("/admin/character");
+		alert("등록되었습니다.");
 	} 
 });
 
@@ -155,7 +156,7 @@ $("#admin-character-form input[name=file]").change(function(){
 $("#admin-character-form .ok").click(function(){
 	var $form = $("#admin-character-form");
 	$form.attr("method", "post");
-	$form.attr("action", "/admin/character/registAction");
+	$form.attr("action", "/admin/character/regist");
 	$form.submit();
 });
 </script>

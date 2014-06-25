@@ -74,8 +74,8 @@
                 </div>
             </div>
             <div class="form-group">
-            <% 	String[] zipcode = (vo.getUser_addr()).split("___")[0].split("---");
-            	String[] address = (vo.getUser_addr()).split("___")[1].split("---");%>
+            <% 	String[] zipcode = (vo.getUser_addr()).split("---")[0].split("___");
+            	String[] address = (vo.getUser_addr()).split("---")[1].split("___");%>
                 <label for="zipcode" class="col-sm-2 control-label">우편번호</label>
                 <div class="col-sm-10 zipcode">
                     <span><input type="text" class="form-control" name="zipcode1" value="<%=zipcode[0] %>"></span>
