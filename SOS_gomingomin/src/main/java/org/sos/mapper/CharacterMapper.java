@@ -88,7 +88,6 @@ public interface CharacterMapper {
 		    	+ "tbl_character "
 		  + "WHERE "
 	      		+ "character_id = #{character_id}")
-	
 	public void deleteCharacter(int character_id);
 	
 }
