@@ -26,9 +26,10 @@
     </div>
     <div class="container-body">
         <form class="form-horizontal" role="form" id="admin-character-form">
+        <input type="hidden" value="<%=request.getParameter("character_id") %>" name="character_id">
             <div class="row">
                 <div class="col-md-2 img-upload">
-                    <img id="preview" src="C:\\characterImage\\<%=character.getCharacter_img() %>"/>
+                    <img id="preview" src="C:\characterImage\<%=character.getCharacter_img() %>"/>
                     <input type="file" accept="image/*" name="file">
                 </div>
                 <div class="col-md-10 info-input">

@@ -22,10 +22,11 @@
         </div>
     </div>
     <div class="container-body">
-        <form class="form-horizontal" role="form" id="admin-character-form" >
+        <form class="form-horizontal" role="form" id="admin-character-form" enctype="multipart/form-data">
             <div class="row">
+            	
                 <div class="col-md-2 img-upload">
-                    <img id="preview" src="../../정우성.png"/>
+                    <img id="preview" src="/resources/images/noImage.png"/>
                     <input type="file" accept="image/*" name="file">
                 </div>
                 <div class="col-md-10 info-input">
@@ -133,6 +134,7 @@
 <script src="/resources/js/admin/lib/Chart.js"></script>
 <script src="/resources/js/admin/chart.js"></script>
 <script>
+
 $("#admin-character-form input[name=file]").change(function(){
 		var input = this;
 	    if (input.files && input.files[0]) {
@@ -148,13 +150,18 @@ $("#admin-character-form input[name=file]").change(function(){
 
 
 	$("#admin-character-form .ok").click(function(e){
-		console.log("뭐꼬");
 		e.preventDefault();
-		var $form = $("#admin-character-regist-form");
-		console.log($form.serialize());
-		$form.attr("method", "post");
-		$form.attr("action", "/admin/character/registAction");
-		$form.submit();
+		var $form = $("#admin-character-form");
+		$.ajax({
+			data : $form.serialize(),
+			type : 'post',
+			url : '/admin/character/registAction',
+			dataType : 'json',
+			success : function(data){
+				console.log(data);
+				if(data.result == 'y') location.replace('/admin/character');
+			}
+		});
 	});
 </script>
 </body>

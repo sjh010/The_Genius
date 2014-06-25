@@ -44,6 +44,8 @@
 </div>
 <script>
 
+
+
 $('#character-add').click(function(){
 	location.replace("/admin/character/regist");
 });
@@ -61,13 +63,11 @@ $('.character-update').click(function(){
                 url : '/admin/character/deleteAction',
                 dataType : 'json',
                 success : function(data){
-                    if(data.result == 'y'){
-                    	alert("삭제되었습니다.");
-                    	location.reload();
-                    } else {
-                    	alert("다시 시도해주세요");
-                    }
-                }
+    				if(data.result == 'y') {
+    					alert("삭제되었습니다");
+    					location.reload();
+    				}
+    			}
             });
         }
     });
