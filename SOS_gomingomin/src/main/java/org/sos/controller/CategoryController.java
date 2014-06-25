@@ -24,6 +24,7 @@ public class CategoryController {
 	@Inject
 	CategoryService categoryService;
 	
+	//카테고리 관리 페이지 요청
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getCategoryManagementPage(){
 		
@@ -44,7 +45,7 @@ public class CategoryController {
 		return mv;
 	}
 
-	//카테고리 관리 페이지 요청, 카테고리 category_id or parent_id가 넘어온 것이면 다 뽑아다가 vo로 만들어서 넘겨주자.
+	//카테고리 수정 페이지 요청
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getCategoryUpdatePage(String category_id){
 		
@@ -64,7 +65,7 @@ public class CategoryController {
 		return mv;
 	}	
 	
-	// 캐릭터 등록 요청
+	// 카테고리 등록 페이지 요청
 	@RequestMapping(value = "/regist", method = RequestMethod.GET)
 	public ModelAndView getCategoryRegistPage(){
 		
@@ -77,49 +78,25 @@ public class CategoryController {
 		return mv;
 	}
 	
-	/*
-	//카테고리 등록 요청
+	// 카테고리 등록 Action
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)
-	public String characterRegistAction(HttpServletRequest request, CharacterVO character, FileVO file){
-		
-		logger.info("Character : " + character.toString());
-		
-		if(file.getFile().getSize() > 0){
-			
-			String uid = System.currentTimeMillis() + "_" + file.getFile().getOriginalFilename();
-		
-			file.setUid(uid);
-			
-			character.setCharacter_img(uid);
-			
-			try {
-				categoryService.registFile(file);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		}
+	public String categoryRegistAction(HttpServletRequest request, CategoryVO category) {
 		
 		try {
-			characterService.registCharacter(character);
-			
+			categoryService.registCategory(category);
 		} catch (Exception e) {
-			
-			request.setAttribute("result", "n");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "ajax/returnResult";
 		}
 		
-		request.setAttribute("result", "y");
-			
+		request.setAttribute("result", category.getCategory_id());
+		
 		return "ajax/returnResult";
 	}
-
-
 	
-	// 캐릭터 수정 요청
+	//카테고리 업데이트 Action
 	@RequestMapping(value = "/updateAction", method = RequestMethod.POST)
-	public String categoryUpdateAction(CategoryVO category){
+	public String categoryUpdateAction(HttpServletRequest request, CategoryVO category) {
 		
 		try {
 			categoryService.updateCategory(category);
@@ -128,26 +105,44 @@ public class CategoryController {
 			e.printStackTrace();
 		}
 		
-		//이거 다시 줘야하지 않나?
-		return "redirect:category";
+		request.setAttribute("result", "y");
+		
+		return "ajax/returnResult";
 	}
 	
-	// 캐릭터 삭제 요청
+	//카테고리 삭제 Action
 	@RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
-	public String characterDeleteAction(HttpServletRequest request, int category_id){
+	public String categoryDeleteAction(HttpServletRequest request, int category_id){
 		
 		try {
 			categoryService.deleteCategory(category_id);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//일단 테스트
 		request.setAttribute("result", "y");
 		
-		return "ajax/returnResult";
+		return "/ajax/returnResult";
 	}
-	*/
+	
+	//카테고리 상세보기 Action
+	@RequestMapping(value = "getInfo", method = RequestMethod.POST)
+	public String categoryGetInfo(HttpServletRequest request, int category_id){
+		
+		CategoryVO category = null;
+		
+		try {
+			category = categoryService.readCategory(category_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("result", category);
+		
+		return "/ajax/returnResult";
+	}
 	
 }
