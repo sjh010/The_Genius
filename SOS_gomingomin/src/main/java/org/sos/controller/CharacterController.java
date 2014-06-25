@@ -11,6 +11,7 @@ import org.sos.vo.CharacterVO;
 import org.sos.vo.FileVO;
 import org.sos.vo.UserCharacterVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -97,8 +98,8 @@ public class CharacterController{
 	}
 	
 	// 캐릭터 등록 요청
-	@RequestMapping(value = "/registAction", method = RequestMethod.POST)
-	public String characterRegistAction(HttpServletRequest request, CharacterVO character, FileVO file){
+	@RequestMapping(value = "/regist", method = RequestMethod.POST)
+	public void characterRegistAction(CharacterVO character, FileVO file, Model model){
 		
 		logger.info("Character : " + character.toString());
 		
@@ -123,14 +124,12 @@ public class CharacterController{
 			
 		} catch (Exception e) {
 			
-			request.setAttribute("result", "n");
 			e.printStackTrace();
-			return "ajax/returnResult";
+			model.addAttribute("result", "n");
 		}
 		
-		request.setAttribute("result", "y");
+		model.addAttribute("result", "y");
 		
-		return "ajax/returnResult";
 	}
 	
 	// 캐릭터 수정 페이지 요청
@@ -153,8 +152,27 @@ public class CharacterController{
 	
 	// 캐릭터 수정 요청
 	@RequestMapping(value = "/updateAction", method = RequestMethod.POST)
-	public String chracterUpdateAction(CharacterVO character){
+	public String chracterUpdateAction(CharacterVO character, FileVO file){
 		
+		logger.info("updateAction..........");
+		logger.info("CharacterVO : " + character);
+		
+		if(file.getFile().getSize() > 0){
+			
+			String uid = System.currentTimeMillis() + "_" + file.getFile().getOriginalFilename();
+		
+			file.setUid(uid);
+			
+			character.setCharacter_img(uid);
+			
+			try {
+				characterService.registFile(file);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+				
 		try {
 			characterService.updateCharacter(character);
 		} catch (Exception e) {
@@ -162,7 +180,7 @@ public class CharacterController{
 			e.printStackTrace();
 		}
 		
-		return "redirect:character";
+		return "redirect:/admin/character";
 	}
 	
 	// 캐릭터 삭제 요청
@@ -178,7 +196,7 @@ public class CharacterController{
 		
 		request.setAttribute("result", "y");
 		
-		return "ajax/returnResult";
+		return "/ajax/returnResult";
 	}
 	
 	

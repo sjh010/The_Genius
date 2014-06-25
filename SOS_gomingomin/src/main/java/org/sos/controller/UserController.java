@@ -145,6 +145,7 @@ public class UserController {
 		return "user/myPage";
 	}
 	
+	@RequestMapping(value="/myPage", method = RequestMethod.POST)
 	public String passwordCheckAction(@CookieValue(value="user_id") String user_id, String user_password,
 										Model result){
 		
@@ -171,16 +172,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/myPage/update", method = RequestMethod.GET)
-	public ModelAndView getModifyPage(HttpServletRequest request, Model model) throws Exception{
+	public ModelAndView getModifyPage(@CookieValue(value="user_id") String user_id, 
+									HttpServletRequest request, Model model) throws Exception{
 		
 		logger.info("modify..........");
-		logger.info("user_id : " + request.getParameter("user_id"));
+		logger.info(user_id);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		UserVO user = userService.readUser(request.getParameter("user_id"));
+		UserVO user = userService.readUser(user_id);
 		modelAndView.addObject("UserVO", user);
-		modelAndView.setViewName("/user/modify");
+		modelAndView.setViewName("/user/update");
 		
 		
 		return modelAndView;	

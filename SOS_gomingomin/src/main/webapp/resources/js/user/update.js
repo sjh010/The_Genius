@@ -3,11 +3,12 @@
  */
 
 jQuery.browser = {};
-$(document).ready(function(){
-	${}
-});
+
 
 $(function () {
+	
+	var form = $("#user-modify-form");
+	
     /* change text color */
     function has_error(el) {
         el.parent().parent().addClass("has-error");
