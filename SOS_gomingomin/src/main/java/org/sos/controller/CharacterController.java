@@ -68,9 +68,12 @@ public class CharacterController{
 	public ModelAndView getCharacterManagementPage(String pageNo){
 		
 		logger.info("getCharacterManagementPage..........");
+		
 		if(pageNo == null){
 			pageNo = "1";
 		}
+		
+		logger.info("pageNo : " + pageNo);
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -132,12 +135,12 @@ public class CharacterController{
 	
 	// 캐릭터 수정 페이지 요청
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView getCharacterUpdatePage(int character_id){
+	public ModelAndView getCharacterUpdatePage(String character_id){
 		
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			mv.addObject("character", characterService.readCharacter(character_id));
+			mv.addObject("character", characterService.readCharacter(Integer.parseInt(character_id)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
