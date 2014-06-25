@@ -39,7 +39,7 @@
 <script>
 	$(document).ready(function() {
 		if($.cookie("loginInfo") == 'y'){
-			location.replace("/admin");
+			location.replace("/admin/main");
 		}
 	});
 </script>
