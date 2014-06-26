@@ -17,7 +17,7 @@ public interface ProductMapper {
 							+ "type_adventure, type_practice, type_rule, type_tradition, "
 							+ "type_enjoyment, type_pleasure, type_harmony) "
 		  + "VALUES( "
-		    	+ "product_sequence.nextval, "
+		    	+ "#{product_id}, "
 		    	+ "#{product_name}, "
 		    	+ "#{category_id}, "
 		    	+ "#{type_adventure}, "
