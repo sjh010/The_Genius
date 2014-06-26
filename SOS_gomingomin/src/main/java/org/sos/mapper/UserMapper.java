@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.sos.vo.UserVO;
@@ -35,18 +36,19 @@ public interface UserMapper {
 	public UserVO readUser(String user_id);
 	
 	@Select("SELECT "
-				+ "user_id, user_grade, user_joindate, "
+				+ "user_id, user_grade, user_joindate "
 		  + "FROM "
 		  		+ "(SELECT "
 		  				+ "A.*, ROWNUM AS RNUM, FLOOR((ROWNUM-1)/5+1) AS PAGE, COUNT(*) OVER() AS TOTCNT "
 		  		 + "FROM "
 		  		 		+ "("
 		  		 			+ "SELECT "
-		  		 				+ "user_id, user_grade, user_joindate, "
+		  		 				+ "user_id, user_grade, user_joindate "
 		  		 			+ "FROM "
 		  		 				+ "tbl_user"
 		  		 		+ ") A) "
 		  + "WHERE PAGE = #{pageNo}")
+	
 	public List<UserVO> readUserList(int pageNo);
 	
 	@Update("UPDATE "
@@ -70,12 +72,15 @@ public interface UserMapper {
 		  		+ "user_grade = #{user_grade} "
 		  + "WHERE "
 		  		+ "user_id = #{user_id}")
-	public void updateUserGrade(String user_id, String user_grade);
+	public void updateUserGrade(UserVO userVo);
 	
 	@Delete("DELETE FROM "
 				+ "tbl_user "
 		  + "WHERE "
 		  		+ "user_id = #{user_id}")
 	public void deleteUser(String user_id);
-	
+
+	@Select("select count(user_id) from tbl_user")
+	public int getTotalCnt();
+
 }

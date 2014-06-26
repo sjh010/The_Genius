@@ -12,7 +12,6 @@ $("#loginModal .join").click(function(){
 $("#loginModal .login").click(function(){
 	var $form = $("#user-login-form");
 	var str = $form.serialize();
-	console.log(str);
 	$.ajax({
     	data : $form.serialize(),
     	type : "post",
@@ -27,9 +26,3 @@ $("#loginModal .login").click(function(){
         }
     });
 });
-
-
-var logout = function(){
-	$.cookie('loginInfo', null);
-	location.replace("/");
-};

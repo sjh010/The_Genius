@@ -141,6 +141,10 @@
 <script src="/resources/js/admin/chart.js"></script>
 <script>
     $(function () {
+    	
+    	$(".cancel").click(function(){
+    		history.back();
+    	});
 
         var $form =$("#admin-category-form");
         var selected = false;
@@ -174,6 +178,8 @@
                         $form.find("[name=type_rule]")[0].value = vo.type_rule;
                         $form.find("[name=type_practice]")[0].value = vo.type_practice;
                         $form.find("[name=type_tradition]")[0].value = vo.type_tradition;
+                        
+                        initChart();
                     }
                 });
             }

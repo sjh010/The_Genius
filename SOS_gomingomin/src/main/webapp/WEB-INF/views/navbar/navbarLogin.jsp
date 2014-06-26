@@ -28,7 +28,7 @@
 	                <a href="" class="dropdown-toggle" data-toggle="dropdown"><%=user_name%>님<b class="caret"></b></a>
 	                <ul class="dropdown-menu">
 	                    <li><a href="/myPage">마이페이지</a></li>
-	                    <li><a href="javascript:logout();">로그아웃</a></li>
+	                    <li><a href="/logout">로그아웃</a></li>
 	                </ul>
 	            </li>
 	            <li><a href="/shoppingInfo">나의쇼핑정보</a></li>

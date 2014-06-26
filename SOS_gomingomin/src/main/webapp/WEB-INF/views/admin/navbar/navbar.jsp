@@ -29,13 +29,5 @@
 %>
 <jsp:include page="<%=include%>" flush="false" />
 
-<script>
-
-	$(function(){
-		console.log($.cookie("user_grade"));
-	});
-
-</script>
-
 <script type="text/javascript"
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>

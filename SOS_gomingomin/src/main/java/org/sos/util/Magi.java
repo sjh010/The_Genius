@@ -18,8 +18,7 @@ public class Magi {
 		this.result = new HashMap<String, List<OrderVO>>();
 	}
 	
-	public 
-	Map<String, List<OrderVO>> getCompetitionResult(List<ResultVO> characterList, 
+	public Map<String, List<OrderVO>> getCompetitionResult(List<ResultVO> characterList, 
 													List<ProductVO> productList){
 		
 		result.put("pearson", new PearsonCorrelationCoefficient().calculateOrder(characterList, productList));

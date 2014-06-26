@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.sos.mapper.UserMapper;
+import org.sos.vo.PagingVO;
 import org.sos.vo.UserVO;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserVO> readUserList(int pageNo) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return userMapper.readUserList(pageNo);
 	}
 
 	@Override
@@ -40,10 +41,11 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void updateUserGrade(String user_id, String user_grade)
+	public void updateUserGrade(UserVO userVo)
 			throws Exception {
+		System.out.println(userVo.toString());
 		// TODO Auto-generated method stub
-		userMapper.updateUserGrade(user_id, user_grade);
+		userMapper.updateUserGrade(userVo);
 		
 	}
 
@@ -54,7 +56,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-
+	@Override
+	public PagingVO calcPaging(int pageNo) {
+		// TODO Auto-generated method stub
+		PagingVO pagingVo = new PagingVO();
+		pagingVo.setTotalPage(userMapper.getTotalCnt());
+		pagingVo.setPageNo(pageNo);
+		return pagingVo;
+	}
 
 	
 }
