@@ -141,6 +141,10 @@
 <script src="/resources/js/admin/chart.js"></script>
 <script>
     $(function () {
+    	
+    	$(".cancel").click(function(){
+    		history.back();
+    	});
 
         var $form =$("#admin-category-form");
         var selected = false;

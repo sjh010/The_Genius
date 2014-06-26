@@ -142,6 +142,10 @@ $(document).ready(function(){
 	} 
 });
 
+$(".cancel").click(function(){
+	history.back();
+});
+
 $("#admin-character-form input[name=file]").change(function(){
 		var input = this;
 	    if (input.files && input.files[0]) {

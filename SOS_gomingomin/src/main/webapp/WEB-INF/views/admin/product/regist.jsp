@@ -186,6 +186,9 @@ $("#admin-product-form .ok").click(function(){
 		}
 	});
 });
+$(".cancel").click(function(){
+	history.back();
+});
 </script>
 <script src="/resources/js/admin/chart.js"></script>
 </body>

@@ -26,6 +26,9 @@
         </div>
     </div>
     <div class="container-body">
+    <div class="form-button">
+            <button type="button" class="btn btn-default" id="product-add">추가</button>
+        </div>
         <div class="board">
             <table class="table table-hover">
                 <thead>
@@ -87,9 +90,6 @@
 					<li class="disabled"><a>&raquo;</a></li>
 				<% } %>
 			</ul>
-        </div>
-        <div class="form-button">
-            <button type="button" class="btn btn-default" id="product-add">등록</button>
         </div>
     </div>
 </div>

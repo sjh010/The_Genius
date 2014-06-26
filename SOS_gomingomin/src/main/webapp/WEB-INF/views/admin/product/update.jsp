@@ -194,6 +194,10 @@ $("#admin-product-form .ok").click(function(){
 		}
 	});
 });
+
+$(".cancel").click(function(){
+	history.back();
+});
 </script>
 </body>
 </html>
