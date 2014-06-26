@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-2 img-upload">
                 
-                    <img id="preview" src="C:\characterImage\<%=character.getCharacter_img() %>"/>
+                    <img id="preview" src="/resources/images/<%=character.getCharacter_img() %>"/>
                     <input type="file" accept="image/*" name="file">
                 </div>
                 <div class="col-md-10 info-input">

@@ -58,9 +58,7 @@ public class CharacterServiceImpl implements CharacterService {
 	@Override
 	public void registFile(FileVO file) throws Exception {
 		// TODO Auto-generated method stub
-		File saveFile = new File("C://characterImage/" + file.getUid());
-		
-		file.getFile().transferTo(saveFile);
+
 		
 	}
 

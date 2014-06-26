@@ -1,5 +1,8 @@
 package org.sos.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -15,16 +18,36 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations={"file:src/main/**/*-context.xml"})
 
 public class UserMapperTest {
+	
 	@Inject
 	UserMapper userMapper;
 	
 	@Inject
 	UserService userService;
 	
+	
+	@Test
+	public void testUpdateUserGrade() throws Exception{
+		
+		UserVO user = new UserVO();
+		user.setUser_id("thgns");
+		user.setUser_grade("admin");
+		UserVO user2 = new UserVO();
+		user.setUser_id("sm9071");
+		user.setUser_grade("admin");
+		
+		List<UserVO> userList = new ArrayList<UserVO>();
+		
+		userList.add(user);
+		userList.add(user2);
+		
+		userMapper.updateUserGrade(userList);
+	}
+	
 	@Test
 	public void testRegist() throws Exception{
 		UserVO vo = new UserVO();
-		vo.setUser_id("thgns");
+		vo.setUser_id("thgnss");
 		vo.setUser_password("1234");
 		vo.setUser_name("����");
 		vo.setUser_birth("1985-11-19");
@@ -70,4 +93,5 @@ public class UserMapperTest {
 	public void testDelete() throws Exception{
 		userService.deleteUser("thgns");
 	}
+	
 }

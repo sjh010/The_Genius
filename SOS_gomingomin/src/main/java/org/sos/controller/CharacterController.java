@@ -1,7 +1,10 @@
 package org.sos.controller;
 
+import java.io.File;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +14,14 @@ import org.sos.vo.CharacterVO;
 import org.sos.vo.FileVO;
 import org.sos.vo.UserCharacterVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@Controller("CharacterController")
 @RequestMapping(value = {"/admin/character", "/join"})
 public class CharacterController{
 	
@@ -66,20 +70,14 @@ public class CharacterController{
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getCharacterManagementPage(String pageNo){
+	public ModelAndView getCharacterManagementPage(){
 		
 		logger.info("getCharacterManagementPage..........");
-		
-		if(pageNo == null){
-			pageNo = "1";
-		}
-		
-		logger.info("pageNo : " + pageNo);
 		
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			mv.addObject("characterList", characterService.readCharacterList(Integer.parseInt(pageNo)));
+			mv.addObject("characterList", characterService.readAllCharacterList());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,16 +88,16 @@ public class CharacterController{
 		return mv;
 	}
 	
-	// 캐릭터 등록 페이지 요청
+	// 罹먮┃���깅줉 �섏씠吏��붿껌
 	@RequestMapping(value = "/regist", method = RequestMethod.GET)
 	public String getCharacterRegistPage(){
 		
 		return "admin/character/regist";
 	}
 	
-	// 캐릭터 등록 요청
+	// 罹먮┃���깅줉 �붿껌
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
-	public void characterRegistAction(CharacterVO character, FileVO file, Model model){
+	public void characterRegistAction(HttpSession session, CharacterVO character, FileVO file, Model model){
 		
 		logger.info("Character : " + character.toString());
 		
@@ -112,7 +110,15 @@ public class CharacterController{
 			character.setCharacter_img(uid);
 			
 			try {
+				
 				characterService.registFile(file);
+				
+				File saveFile = new File(session.getServletContext().getRealPath("/") + 
+											"/resources/images/" + file.getUid());
+				
+
+				file.getFile().transferTo(saveFile);
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -132,7 +138,7 @@ public class CharacterController{
 		
 	}
 	
-	// 캐릭터 수정 페이지 요청
+	// 罹먮┃���섏젙 �섏씠吏��붿껌
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getCharacterUpdatePage(String character_id){
 		
@@ -150,16 +156,20 @@ public class CharacterController{
 		return mv;
 	}
 	
-	// 캐릭터 수정 요청
+	// 罹먮┃���섏젙 �붿껌
 	@RequestMapping(value = "/updateAction", method = RequestMethod.POST)
-	public String chracterUpdateAction(CharacterVO character, FileVO file){
+	public String chracterUpdateAction(HttpSession session, CharacterVO character, FileVO file){
 		
 		logger.info("updateAction..........");
 		logger.info("CharacterVO : " + character);
 		
-		if(file.getFile() != null){
+		if(file.getFile().getSize() > 0){
 			
-			logger.info("file : " + file.toString());
+			String downloadDirectory = session.getServletContext().getRealPath("/") + "/resources/images/";
+			
+			File beforeImage = new File(downloadDirectory + character.getCharacter_img());
+			
+			beforeImage.delete();
 			
 			String uid = System.currentTimeMillis() + "_" + file.getFile().getOriginalFilename();
 		
@@ -168,7 +178,13 @@ public class CharacterController{
 			character.setCharacter_img(uid);
 			
 			try {
+				
 				characterService.registFile(file);
+				
+				File saveFile = new File(downloadDirectory + file.getUid());
+				
+				file.getFile().transferTo(saveFile);
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -185,11 +201,19 @@ public class CharacterController{
 		return "redirect:/admin/character";
 	}
 	
-	// 캐릭터 삭제 요청
+	// 罹먮┃����젣 �붿껌
+	@Transactional
 	@RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
 	public String characterDeleteAction(HttpServletRequest request, int character_id){
 		
+		String downloadDirectory = 
+				request.getSession().getServletContext().getRealPath("/") + "/resources/images/";
+		
 		try {
+			File image = new File(downloadDirectory + 
+					characterService.readCharacter(character_id).getCharacter_img());
+			image.delete();
+			
 			characterService.deleteCharacter(character_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
