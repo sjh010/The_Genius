@@ -25,4 +25,6 @@ public interface CategoryService {
 	
 	public String getParentCategoryName(int category_parent_id) throws Exception;
 	
+	public List<CategoryVO> readOneDepthCategory() throws Exception;
+	
 }

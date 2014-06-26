@@ -65,12 +65,38 @@ public class ProductController {
 		return mv;
 	}
 	
+	////////////////////////////////////////////////////////////////////////
 	// 상품 등록 페이지 요청
 	@RequestMapping(value = "/regist", method = RequestMethod.GET)
-	public String getProductRegistPage(){
-	
+	public String getProductRegistPage(HttpServletRequest request){
+		List<CategoryVO> parentCategoryList = null;
+		
+		try {
+			parentCategoryList = categoryService.readOneDepthCategory();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("parentCategoryList", parentCategoryList);
+		
 		return "admin/product/regist";
 	}
+	
+	@RequestMapping(value = "/getCategoryAction", method = RequestMethod.GET)
+	public String getCategory(HttpServletRequest request, int category_id){
+		List<CategoryVO> childCategoryList = null;
+		
+		try {
+			childCategoryList = categoryService.readPartCategory(category_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("childCategoryList", childCategoryList);
+		
+		return "ajax/returnResult";
+	}
+	//////////////////////////////////////////////////////////////////////////
 	
 	// 상품 등록 요청
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)

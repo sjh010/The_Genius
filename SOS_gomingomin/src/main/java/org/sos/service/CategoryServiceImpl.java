@@ -77,4 +77,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryMapper.getParentCategoryName(category_parent_id);
 	}
 
+	@Override
+	public List<CategoryVO> readOneDepthCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return categoryMapper.readOneDepthCategory();
+	}
+
 }
