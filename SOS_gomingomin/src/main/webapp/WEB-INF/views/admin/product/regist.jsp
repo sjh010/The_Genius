@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="org.sos.vo.*, java.util.List"%>
+<% List<CategoryVO> parentCategoryList = (List<CategoryVO>)request.getAttribute("parentCategoryList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,12 +24,34 @@
     </div>
     <div class="container-body">
         <form class="form-horizontal" role="form" id="admin-product-form">
-            <div class="form-group">
-                <label class="col-sm-3 control-label text-center">11번가 상품코드</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="character_name">
-                </div>
-            </div>
+	        <div class="product-info">
+	            <div class="form-group">
+	                <label class="col-sm-3 control-label text-center">11번가 상품코드</label>
+	                <div class="col-sm-9">
+	                    <input type="text" class="form-control" name="product_id">
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <label class="col-sm-3 control-label text-center">11번가 상품이름</label>
+	                <div class="col-sm-9">
+	                    <input type="text" class="form-control" name="product_name">
+	                </div>
+	            </div>
+	            <div class="form-group product-category">
+	                <label class="col-sm-3 control-label text-center">카테고리 설정</label>
+	                <div class="col-sm-9">
+	                    <select class="form-control" id="category-1depth">
+                            <option value="">1차 카테고리</option>
+                            <% for(CategoryVO category : parentCategoryList){ %>
+                            <option value="<%=category.getCategory_id()%>"><%=category.getCategory_name() %></option>
+                            <%} %>
+                        </select>
+	                     <select class="form-control" id="category_id" name="category_id">
+                            <option value="1">2차 카테고리</option>
+                        </select>
+	                </div>
+	            </div>
+	         </div>
             <div class="character-select">
                 <div class="col-md-12 chart">
                     <canvas id="myChart" width="300px" height="300px"></canvas>
@@ -114,7 +138,58 @@
         </form>
     </div>
 </div>
-<script src="/resources/js/lib/Chart.js"></script>
-<script src="/resources/js/chart.js"></script>
+<script src="/resources/js/admin/lib/Chart.js"></script>
+<script src="/resources/js/admin/chart.js"></script>
+
+<script>
+
+var option = {};
+var category_id = $("select[name='category_id']");
+
+category_id.change(function(){
+	chartOfCategory();
+});
+
+
+
+$("#category-1depth").change(function(){
+	if($("#category-1depth").val() != ""){
+		$.ajax({
+			data : {category_id:$("#category-1depth").val()},
+			type : 'get',
+			dataType : 'json',
+			url : '/admin/product/getCategoryAction',
+			success: function(data){
+				option = data.result;
+				$("select[name='category_id'] option").remove();
+				$.each(option,function(idx,  obj) {
+					$("select[name='category_id']")
+					.append('<option value="' + obj.category_id + '">' + obj.category_name + '</option>');
+	            });
+			}
+		});
+	}
+});
+
+$("#admin-product-form .ok").click(function(){
+	var $form = $("#admin-product-form");
+	$.ajax({
+		data : $form.serialize(),
+		type : 'post',
+		dataType : 'json',
+		url : '/admin/product/registAction',
+		success: function(data){
+			if(data.result == 'y') {
+				alert("등록되었습니다.");
+				location.replace("/admin/product");
+			}
+		}
+	});
+});
+$(".cancel").click(function(){
+	history.back();
+});
+</script>
+<script src="/resources/js/admin/chart.js"></script>
 </body>
 </html>

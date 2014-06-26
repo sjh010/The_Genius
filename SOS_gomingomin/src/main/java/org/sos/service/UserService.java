@@ -2,6 +2,7 @@ package org.sos.service;
 
 import java.util.List;
 
+import org.sos.vo.PagingVO;
 import org.sos.vo.UserVO;
 
 public interface UserService {
@@ -14,8 +15,10 @@ public interface UserService {
 	
 	public void updateUser(UserVO vo) throws Exception;
 	
-	public void updateUserGrade(String user_id, String user_grade) throws Exception;
+	public void updateUserGrade(UserVO userVo) throws Exception;
 	
 	public void deleteUser(String user_id) throws Exception;
+
+	public PagingVO calcPaging(int pageNo);
 
 }

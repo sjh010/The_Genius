@@ -171,6 +171,10 @@ $("#admin-character-form .ok").click(function(){
 	$form.attr("action", "/admin/character/updateAction");
 	$form.submit();
 });
+
+$(".cancel").click(function(){
+	history.back();
+});
 </script>
 <script src="/resources/js/admin/lib/Chart.js"></script>
 <script src="/resources/js/admin/chart.js"></script>

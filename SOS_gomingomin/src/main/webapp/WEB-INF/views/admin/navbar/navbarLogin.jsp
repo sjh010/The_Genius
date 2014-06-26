@@ -22,7 +22,7 @@
                 <li><a href="/admin/character">캐릭터관리</a></li>
                 <li><a href="/admin/category">카테고리관리</a></li>
                 <li><a href="/admin/userManage">회원관리</a></li>
-                <li><a href="javascript:logout();">로그아웃</a></li>
+                <li><a href="/admin/logout">로그아웃</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -30,11 +30,3 @@
     <!-- /.container-fluid -->
 </nav>
 <!-- /.navbar -->
-
-<script>
-var logout = function(){
-	$.cookie('loginInfo', null);
-	$.cookie('user_grade', null);
-	location.replace("/");
-};
-</script>
