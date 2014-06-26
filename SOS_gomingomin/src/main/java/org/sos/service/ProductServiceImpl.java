@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.sos.mapper.ProductMapper;
+import org.sos.vo.PagingVO;
 import org.sos.vo.ProductVO;
 import org.springframework.stereotype.Service;
 
@@ -31,10 +32,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductVO> readProductList(int pageNum) throws Exception {
+	public List<ProductVO> readProductList(PagingVO pagingVo) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return productMapper.readProductList(pageNum);
+		return productMapper.readProductList(pagingVo.getPageNo());
 	}
 
 	@Override
@@ -49,6 +50,21 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		productMapper.deleteProduct(product_id);
 		
+	}
+
+	@Override
+	public PagingVO calcPaging(int pageNo) {
+		// TODO Auto-generated method stub
+		PagingVO pagingVo = new PagingVO();
+		pagingVo.setTotalPage(productMapper.getTotalCnt());
+		pagingVo.setPageNo(pageNo);
+		return pagingVo;
+	}
+
+	@Override
+	public List<ProductVO> searchProduct(String keyword) {
+		// TODO Auto-generated method stub
+		return productMapper.searchProduct(keyword);
 	}
 
 
