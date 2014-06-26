@@ -46,7 +46,7 @@ public class ProductController {
 			
 			for(int i=0; i<categoryList.size(); i++){
 				categoryVO = categoryList.get(i);
-				if(categoryVO.getCategory_depth().equals("1")){
+				if(categoryVO.getCategory_depth().equals("2")){
 					childCategoryNameMap.put(categoryVO.getCategory_id(), categoryVO.getCategory_name());
 					parentCategoryNameMap.put(categoryVO.getCategory_id(), categoryService.getParentCategoryName(categoryVO.getCategory_parent_id()));
 				}
