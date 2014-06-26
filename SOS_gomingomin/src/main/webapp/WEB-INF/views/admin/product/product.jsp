@@ -61,15 +61,32 @@
             </table>
         </div>
         <div class="paging">
-            <ul class="pagination">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li class=""><a href="#">2</a></li>
-                <li class=""><a href="#">3</a></li>
-                <li class=""><a href="#">4</a></li>
-                <li class=""><a href="#">5</a></li>
-                <li class="disabled"><a href="#">&raquo;</a></li>
-            </ul>
+          <ul class="pagination">
+			<%
+				PagingVO pagingVo = (PagingVO) request.getAttribute("paging");
+				int minPage = pagingVo.getMinPage();
+				int maxPage = pagingVo.getMaxPage();
+				int pageNo = pagingVo.getPageNo();
+				 
+				if(minPage - 1 >= 1){%>
+					<li><a href="?page=<%=minPage %>">&laquo;</a></li>
+				<%} else {	%>
+						<li class="disabled"><a>&laquo;</a></li>
+				<% } %>
+				
+				<% for (int i = minPage + 1; i <= maxPage; i++) {
+						if (pageNo == i) { %>
+					<li class="active"><a><%=i%></a></li>
+				<% } else { %>
+				<li><a href="?page=<%=i%>"><%=i%></a></li>
+				<% }} %>
+				
+				<% if(maxPage + 1 <= pagingVo.getPageCnt()){%>
+					<li><a href="?page=<%=(maxPage + 1) %>">&raquo;</a></li>
+				<%} else {	%>
+					<li class="disabled"><a>&raquo;</a></li>
+				<% } %>
+			</ul>
         </div>
         <div class="form-button">
             <button type="button" class="btn btn-default" id="product-add">등록</button>

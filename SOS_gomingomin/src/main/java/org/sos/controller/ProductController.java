@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.sos.service.CategoryService;
 import org.sos.service.ProductService;
 import org.sos.vo.CategoryVO;
+import org.sos.vo.PagingVO;
 import org.sos.vo.ProductVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,12 +28,9 @@ public class ProductController {
 	CategoryService categoryService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getProductManagementPage(String pageNo){
+	public ModelAndView getProductManagementPage(String page){
+		int pageNo = (page == null) ? 1 : Integer.parseInt(page);
 		
-		if(pageNo == null){
-			
-			pageNo = "1";
-		}
 		
 		ModelAndView mv = new ModelAndView();
 		CategoryVO categoryVO = null;
@@ -41,9 +39,13 @@ public class ProductController {
 		Map<Integer, String> childCategoryNameMap = new HashMap<Integer, String>();
 		
 		try {
-			mv.addObject("productList", productService.readProductList(Integer.parseInt(pageNo)));
-			categoryList = categoryService.readAllCategory();
+			PagingVO pagingVo = productService.calcPaging(pageNo);
+			mv.addObject("paging", pagingVo);
+			mv.addObject("productList", productService.readProductList(pagingVo));
 			
+			
+			categoryList = categoryService.readAllCategory();
+	
 			for(int i=0; i<categoryList.size(); i++){
 				categoryVO = categoryList.get(i);
 				if(categoryVO.getCategory_depth().equals("2")){

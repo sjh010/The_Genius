@@ -21,7 +21,7 @@ import org.springframework.web.util.CookieGenerator;
 
 
 @Controller("UserController")
-@RequestMapping(value = {"/", "/admin"})
+@RequestMapping(value = {"/"})
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -86,6 +86,18 @@ public class UserController {
 		return "/user/ajax/returnResult";
 		
 	}
+	
+	// 관리자 로그아웃
+		@RequestMapping(value = "/logout", method = RequestMethod.GET)
+		public String getAdminLogOut(HttpServletRequest request, HttpServletResponse response){
+			CookieGenerator cookieGenerator = new CookieGenerator();
+			cookieGenerator.setCookieName("loginInfo");
+			cookieGenerator.addCookie(response, "n");
+			cookieGenerator.setCookieName("user_grade");
+			cookieGenerator.addCookie(response, null);		
+			
+			return "redirect:/";
+		}
 
 	/*
 	 * 회원가입 페이지 요청
