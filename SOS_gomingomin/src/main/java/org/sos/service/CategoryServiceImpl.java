@@ -71,4 +71,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryMapper.readPartCategory(category_id);
 	}
 
+	@Override
+	public String getParentCategoryName(int category_parent_id) throws Exception {
+		// TODO Auto-generated method stub
+		return categoryMapper.getParentCategoryName(category_parent_id);
+	}
+
 }

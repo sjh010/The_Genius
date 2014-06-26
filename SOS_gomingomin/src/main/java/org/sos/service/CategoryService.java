@@ -21,6 +21,8 @@ public interface CategoryService {
 
 	public int getCategoryId() throws Exception;
 
-	void deleteParentCategory(int category_parent_id) throws Exception;
+	public void deleteParentCategory(int category_parent_id) throws Exception;
+	
+	public String getParentCategoryName(int category_parent_id) throws Exception;
 	
 }

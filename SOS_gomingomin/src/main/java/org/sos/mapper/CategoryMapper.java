@@ -90,4 +90,12 @@ public interface CategoryMapper {
   			+ "category_parent_id = #{category_parent_id}")
 	public void deleteParentCategory(int category_parent_id);
 	
+	@Select("SELECT "
+				+ "category_name "
+		  + "FROM "
+				+ "tbl_category "
+		  + "WHERE "
+				+ "category_id = #{category_parent_id}")
+	public String getParentCategoryName(int category_parent_id);
+	
 }
