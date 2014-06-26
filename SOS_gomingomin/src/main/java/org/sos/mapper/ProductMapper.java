@@ -81,7 +81,17 @@ public interface ProductMapper {
 		  + "WHERE "
 				+ "product_id = #{product_id}")
 	public void updateProduct(ProductVO vo);
-
+	
+	@Select("SELECT "
+			+ "product_id, product_name, category_id, "
+			+ "type_adventure, type_practice, type_rule, type_tradition, "
+			+ "type_enjoyment, type_pleasure, type_harmony "
+		+ "FROM "
+			+ "tbl_product "
+		+ "WHERE "
+			+ "product_name like '%' || #{keyword} || '%'")
+	public List<ProductVO> searchProduct(String keyword);
+	
 	@Delete("DELETE FROM "
 				+ "tbl_product "
 		  + "WHERE "

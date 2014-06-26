@@ -18,5 +18,7 @@ public interface ProductService {
 	public void deleteProduct(int product_id) throws Exception;
 
 	public PagingVO calcPaging(int pageNo);
+
+	public List<ProductVO> searchProduct(String keyword);
 	
 }

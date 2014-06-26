@@ -61,5 +61,11 @@ public class ProductServiceImpl implements ProductService {
 		return pagingVo;
 	}
 
+	@Override
+	public List<ProductVO> searchProduct(String keyword) {
+		// TODO Auto-generated method stub
+		return productMapper.searchProduct(keyword);
+	}
+
 
 }
