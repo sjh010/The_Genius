@@ -38,8 +38,36 @@ var chart = function () {
             datasetStrokeWidth: 5
         });
 };
-chart();
 $(".character-select-element select").on('change', function () {
     typeData[$(this)[0].name] = parseInt($(this)[0].value);
     chart();
 });
+
+var initChart = function(){
+	var select = $(".character-select-element select");
+	$.each(select,function(idx,  obj) {
+			typeData[obj.name] = obj.value;
+    });
+	chart();
+};
+
+var chartOfCategory = function(){
+	$.each(option,function(idx,  obj) {
+		if(category_id.val() == obj.category_id) {
+			typeData.type_adventure = obj.type_adventure;
+			typeData.type_enjoyment = obj.type_enjoyment;
+			typeData.type_harmony= obj.type_harmony;
+			typeData.type_pleasure = obj.type_pleasure;
+			typeData.type_rule = obj.type_rule;
+			typeData.type_practice = obj.type_practice;
+			typeData.type_tradition = obj.type_tradition;
+			
+			$(".character-select-element select").each(function() {
+				this.value = typeData[this.name];
+			});
+			chart();			
+		}
+    });
+};
+
+	initChart();

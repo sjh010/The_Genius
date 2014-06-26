@@ -84,6 +84,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/getCategoryAction", method = RequestMethod.GET)
 	public String getCategory(HttpServletRequest request, int category_id){
+		
 		List<CategoryVO> childCategoryList = null;
 		
 		try {
@@ -92,7 +93,7 @@ public class ProductController {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("childCategoryList", childCategoryList);
+		request.setAttribute("result", childCategoryList);
 		
 		return "ajax/returnResult";
 	}
@@ -125,10 +126,13 @@ public class ProductController {
 		
 		try {
 			mv.addObject("product", productService.readProduct(product_id));
+			mv.addObject("parentCategoryList", categoryService.readOneDepthCategory());
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		mv.setViewName("admin/product/update");
 		
@@ -137,16 +141,19 @@ public class ProductController {
 	
 	// 상품 수정 요청
 	@RequestMapping(value = "/updateAction", method = RequestMethod.POST)
-	public String productUpdateAction(ProductVO product){
-		
+	public String productUpdateAction(HttpServletRequest request, ProductVO product){
+		System.out.println(product.toString());
 		try {
 			productService.updateProduct(product);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			request.setAttribute("result", "n");
 			e.printStackTrace();
+			return "ajax/returnResult";
 		}
 		
-		return "redirect:product";
+		request.setAttribute("result", "y");
+		
+		return "ajax/returnResult";
 	}
 	
 	// 상품 삭제 요청

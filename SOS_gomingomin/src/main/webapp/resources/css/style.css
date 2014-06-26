@@ -75,6 +75,7 @@ a, a:link, a:hover, a:visited{
 
 .container-body {
     margin: 0 auto;
+    margin-bottom : 40px;
 }
 
 .float {
@@ -301,6 +302,13 @@ a, a:link, a:hover, a:visited{
 .board .menu {
     width: 10%;
 }
+
+.product-info .product-category select {
+	float : left;
+	width : 48%;
+	margin : 0 1% 0 1%;
+}
+
 
 
 #category-regist-form {

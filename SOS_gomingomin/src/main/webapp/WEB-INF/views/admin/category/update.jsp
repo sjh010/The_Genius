@@ -174,6 +174,8 @@
                         $form.find("[name=type_rule]")[0].value = vo.type_rule;
                         $form.find("[name=type_practice]")[0].value = vo.type_practice;
                         $form.find("[name=type_tradition]")[0].value = vo.type_tradition;
+                        
+                        initChart();
                     }
                 });
             }

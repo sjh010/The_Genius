@@ -35,6 +35,6 @@
 var logout = function(){
 	$.cookie('loginInfo', null);
 	$.cookie('user_grade', null);
-	location.replace("/");
+	location.replace("/admin");
 };
 </script>
