@@ -2,6 +2,7 @@ package org.sos.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
 import org.sos.vo.CategoryVO;
 
 public interface CategoryService {
@@ -20,5 +21,10 @@ public interface CategoryService {
 
 	public int getCategoryId() throws Exception;
 
-	void deleteParentCategory(int category_parent_id) throws Exception;
+	public void deleteParentCategory(int category_parent_id) throws Exception;
+	
+	public String getParentCategoryName(int category_parent_id) throws Exception;
+	
+	public List<CategoryVO> readOneDepthCategory() throws Exception;
+	
 }

@@ -1,9 +1,15 @@
 package org.sos.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.sos.service.CategoryService;
 import org.sos.service.ProductService;
+import org.sos.vo.CategoryVO;
 import org.sos.vo.ProductVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +23,9 @@ public class ProductController {
 	@Inject
 	ProductService productService;
 	
+	@Inject
+	CategoryService categoryService;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getProductManagementPage(String pageNo){
 		
@@ -26,9 +35,26 @@ public class ProductController {
 		}
 		
 		ModelAndView mv = new ModelAndView();
+		CategoryVO categoryVO = null;
+		List<CategoryVO> categoryList = null;
+		Map<Integer, String> parentCategoryNameMap = new HashMap<Integer, String>();
+		Map<Integer, String> childCategoryNameMap = new HashMap<Integer, String>();
 		
 		try {
 			mv.addObject("productList", productService.readProductList(Integer.parseInt(pageNo)));
+			categoryList = categoryService.readAllCategory();
+			
+			for(int i=0; i<categoryList.size(); i++){
+				categoryVO = categoryList.get(i);
+				if(categoryVO.getCategory_depth().equals("2")){
+					childCategoryNameMap.put(categoryVO.getCategory_id(), categoryVO.getCategory_name());
+					parentCategoryNameMap.put(categoryVO.getCategory_id(), categoryService.getParentCategoryName(categoryVO.getCategory_parent_id()));
+				}
+			}
+			
+			mv.addObject("parentCategoryNameMap", parentCategoryNameMap);
+			mv.addObject("childCategoryNameMap", childCategoryNameMap);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,12 +65,38 @@ public class ProductController {
 		return mv;
 	}
 	
+	////////////////////////////////////////////////////////////////////////
 	// 상품 등록 페이지 요청
 	@RequestMapping(value = "/regist", method = RequestMethod.GET)
-	public String getProductRegistPage(){
-	
+	public String getProductRegistPage(HttpServletRequest request){
+		List<CategoryVO> parentCategoryList = null;
+		
+		try {
+			parentCategoryList = categoryService.readOneDepthCategory();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("parentCategoryList", parentCategoryList);
+		
 		return "admin/product/regist";
 	}
+	
+	@RequestMapping(value = "/getCategoryAction", method = RequestMethod.GET)
+	public String getCategory(HttpServletRequest request, int category_id){
+		List<CategoryVO> childCategoryList = null;
+		
+		try {
+			childCategoryList = categoryService.readPartCategory(category_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("childCategoryList", childCategoryList);
+		
+		return "ajax/returnResult";
+	}
+	//////////////////////////////////////////////////////////////////////////
 	
 	// 상품 등록 요청
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)

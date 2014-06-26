@@ -62,6 +62,16 @@ public interface CategoryMapper {
 	    		+ "category_parent_id = #{category_id}")
 	public List<CategoryVO> readPartCategory(int category_id);
 	
+	@Select("SELECT "
+				+ "category_id, category_parent_id, category_name, category_depth, "
+				+ "type_adventure, type_practice, type_rule, type_tradition, "
+				+ "type_enjoyment, type_pleasure, type_harmony "
+		  + "FROM "
+    			+ "tbl_category "
+    	  + "WHERE "
+    			+ "category_depth = 1")
+	public List<CategoryVO> readOneDepthCategory();
+	
 	@Update("UPDATE "
 		    	+ "tbl_category "
 		  + "SET "
@@ -89,5 +99,13 @@ public interface CategoryMapper {
       + "WHERE "
   			+ "category_parent_id = #{category_parent_id}")
 	public void deleteParentCategory(int category_parent_id);
+	
+	@Select("SELECT "
+				+ "category_name "
+		  + "FROM "
+				+ "tbl_category "
+		  + "WHERE "
+				+ "category_id = #{category_parent_id}")
+	public String getParentCategoryName(int category_parent_id);
 	
 }
