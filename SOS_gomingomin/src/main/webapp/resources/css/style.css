@@ -302,6 +302,16 @@ a, a:link, a:hover, a:visited{
     width: 10%;
 }
 
+
+#category-regist-form {
+	text-align :  right;
+}
+#category-regist-form .input-group{
+	width : 300px;
+	margin : 0 auto;
+}
+
+
 #category-list{
 	padding : 0;
 }

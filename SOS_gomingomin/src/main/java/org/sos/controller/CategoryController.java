@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sos.service.CategoryService;
 import org.sos.vo.CategoryVO;
-import org.sos.vo.CharacterVO;
-import org.sos.vo.FileVO;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,19 +62,6 @@ public class CategoryController {
 		
 		return mv;
 	}	
-	
-	// 카테고리 등록 페이지 요청
-	@RequestMapping(value = "/regist", method = RequestMethod.GET)
-	public ModelAndView getCategoryRegistPage(){
-		
-		logger.info("getCategoryRegistPage.........");
-		
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("admin/category/regist");
-		
-		return mv;
-	}
 	
 	// 카테고리 등록 Action
 	@RequestMapping(value = "/registAction", method = RequestMethod.POST)

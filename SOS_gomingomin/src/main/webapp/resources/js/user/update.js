@@ -220,7 +220,7 @@ $(function () {
         		success : function(data){
         			if(data.result == 'y') {
         				alert("탈퇴가 완료되었습니다.");
-        				location.href('/');
+        				location.replace('/');
         			}
                 	else if(data.result == 'n') alert("에러입니다. 다음에 다시 시도해주세요..");
         		}

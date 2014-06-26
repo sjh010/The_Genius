@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="org.sos.vo.*, java.util.List"%>
 <% List<CategoryVO> categoryList = (List<CategoryVO>)request.getAttribute("categoryList"); %>
+<% CategoryVO parentCategory = (CategoryVO)request.getAttribute("parentCategory"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,7 +26,7 @@
         </div>
     </div>
     <div class="container-body">
-    <h3>카테고리</h3>
+    <h3><%=parentCategory.getCategory_name()+" 카테고리"%></h3>
         <div class="category-select">
             <ul id="category-list">
             <% for(CategoryVO category : categoryList) { %>
@@ -185,25 +186,26 @@
 
 
         $("#category-add").click(function () {
-            console.log(isNewCategory);
-            if(!isNewCategory){
+        	$('#category-list li').removeClass("category-selected");
+        	$(".category-select").animate({ scrollTop: $('.category-select')[0].scrollHeight}, 1000);
+        	$("#category-input").focus();
+        	
+        	if(!isNewCategory){
                 isNewCategory = true;
-                $('#category-list li').removeClass("category-selected");
                 $("#category-list").append("<li class='category-selected category-unsaved' id='no'>새로운 카테고리</li>");
-                $(".category-select").animate({ scrollTop: $('.category-select')[0].scrollHeight}, 1000);
-
                 $("#category-input").val("새로운 카테고리");
-                $("#category-input").focus();
-            } else $("#category-input").focus();
+                
+            } else {
+            	$(".category-unsaved")[0].addClass("category-selected");
+            }
+        	
+        	category_id.value = "no";
         });
 
         $("#category-regist").click(function(){
             if(category_id.value == "no") {
             	category_id.value = 0;
                 //추가
-
-                $(".category-unsaved")[0].id = data.result;
-                $(".category-unsaved").removeClass("category-unsaved");
                 
                 $.ajax({
                     data : $form.serialize(),
@@ -211,9 +213,9 @@
                     url : '/admin/category/registAction',
                     type : 'post',
                     success : function(data) {
-                        console.log(data);
+                    	alert("추가되었습니다.");
                         $(".category-unsaved")[0].id = data.result;
-                        $(".category-unsaved")[0].removeClass("category-unsaved");
+                        $(".category-unsaved").removeClass("category-unsaved");
                         
                         isNewCategory = false;
                     }
@@ -258,14 +260,14 @@
             if(selected){
                 if(confirm("현재 카테고리를 삭제하시겠습니까? 모든 하위 카테고리가 삭제됩니다.")){
                     $.ajax({
-                        data : {category_id:category_id.value},
+                        data : {category_parent_id:$form.find("[name=category_parent_id]")[0].value},
                         dataType : 'json',
-                        url : '/admin/category/deleteAction',
+                        url : '/admin/category/deleteParentAction',
                         type : 'post',
                         success : function(data) {
 							if(data.result == 'y') {
 								alert("삭제되었습니다.");
-								location.reload();
+								location.replace("/admin/category");
 							}
                         }
                     });
