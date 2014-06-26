@@ -19,10 +19,10 @@ var chart = function () {
             labels: ["모험가", "실행가", "규율숭배자", "전통주의자", "조화론자", "향유자", "향락주의자"],
             datasets: [
                 {
-                    fillColor: "rgba(220,220,220,0.5)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
+                    fillColor: "rgba(220,20,60,0.5)",
+                    strokeColor: "rgba(220,20,60,0.5)",
+                    pointColor: "rgba(220,20,60,1)",
+                    pointStrokeColor: "#DC143C",
                     data: [typeData.type_adventure, typeData.type_practice, typeData.type_rule, typeData.type_tradition,
                         typeData.type_harmony, typeData.type_enjoyment, typeData.type_pleasure]
                 }
