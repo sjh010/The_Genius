@@ -19,4 +19,6 @@ public interface CategoryService {
 	public List<CategoryVO> readPartCategory(int category_id);
 
 	public int getCategoryId() throws Exception;
+
+	void deleteParentCategory(int category_id) throws Exception;
 }

@@ -129,6 +129,24 @@ public class CategoryController {
 		return "/ajax/returnResult";
 	}
 	
+	//하위 카테고리 삭제 Action
+		@RequestMapping(value = "/deleteParentAction", method = RequestMethod.POST)
+		public String categoryParentDeleteAction(HttpServletRequest request, int category_parent_id){
+			
+			try {
+				categoryService.deleteParentCategory(category_parent_id);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			request.setAttribute("result", "y");
+			
+			return "/ajax/returnResult";
+		}
+		
+	
 	//카테고리 상세보기 Action
 	@RequestMapping(value = "/getInfo", method = RequestMethod.POST)
 	public String categoryGetInfo(HttpServletRequest request, int category_id){

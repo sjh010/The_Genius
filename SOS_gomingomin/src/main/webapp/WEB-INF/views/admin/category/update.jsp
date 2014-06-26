@@ -130,7 +130,7 @@
             
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10 form-button">
-                    <button type="button" class="btn btn-default delete">현재 카테고리 삭제</button>
+                    <button type="button" class="btn btn-default" id="current-category-delete">현재 카테고리 삭제</button>
                     <button type="button" class="btn btn-default cancel">취소</button>
                 </div>
             </div>
@@ -150,11 +150,13 @@
 
         $('#category-list').mouseup(function (e) {
         	var target = e.target;
+        	
         	$('#category-list li').removeClass("category-selected");
             $(target).addClass("category-selected");
 
             category_id.value = $(".category-selected")[0].id;
             $("#category-input").val($(".category-selected")[0].innerHTML);
+            
             if(category_id.value != "no"){
             	$.ajax({
                     data : {category_id:category_id.value},
@@ -221,10 +223,13 @@
                 $.ajax({
                     data : $form.serialize(),
                     dataType : 'json',
-                    url : '/admin/',
+                    url : '/admin/category/updateAction',
                     type : 'post',
                     success : function(data) {
-                        console.log(data);
+						if(data.result == 'y') {
+							alert("수정되었습니다.");
+							location.reload();
+						}
                     }
                 });
             }
@@ -232,15 +237,36 @@
         
         $("#category-delete").click(function () {
             if(selected){
-                confirm = confirm($(".category-selected")[0].innerHTML+" 카테고리를 삭제하시겠습니까?");
-                if(confirm){
+                if(confirm($(".category-selected")[0].innerHTML+" 카테고리를 삭제하시겠습니까?")){
                     $.ajax({
                         data : {category_id:category_id.value},
                         dataType : 'json',
-                        url : '/admin/',
+                        url : '/admin/category/deleteAction',
                         type : 'post',
                         success : function(data) {
-                            console.log(data);
+							if(data.result == 'y') {
+								alert("삭제되었습니다.");
+								location.reload();
+							}
+                        }
+                    });
+                }
+            }
+        });
+        
+        $("#current-category-delete").click(function () {
+            if(selected){
+                if(confirm("현재 카테고리를 삭제하시겠습니까? 모든 하위 카테고리가 삭제됩니다.")){
+                    $.ajax({
+                        data : {category_id:category_id.value},
+                        dataType : 'json',
+                        url : '/admin/category/deleteAction',
+                        type : 'post',
+                        success : function(data) {
+							if(data.result == 'y') {
+								alert("삭제되었습니다.");
+								location.reload();
+							}
                         }
                     });
                 }

@@ -50,6 +50,13 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryMapper.deleteCategory(category_id);
 		
 	}
+	
+	@Override
+	public void deleteParentCategory(int category_parent_id) throws Exception {
+		// TODO Auto-generated method stub
+		categoryMapper.deleteParentCategory(category_parent_id);
+		
+	}
 
 	@Override
 	public List<CategoryVO> readAllCategory() throws Exception {

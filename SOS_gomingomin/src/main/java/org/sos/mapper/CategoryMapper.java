@@ -84,4 +84,10 @@ public interface CategoryMapper {
       			+ "category_id = #{category_id}")
 	public void deleteCategory(int category_id);
 	
+	@Delete("DELETE FROM "
+    		+ "tbl_category "
+      + "WHERE "
+  			+ "category_id = #{category_parent_id}")
+	public void deleteParentCategory(int category_parent_id);
+	
 }
