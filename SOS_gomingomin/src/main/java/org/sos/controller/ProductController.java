@@ -21,6 +21,7 @@ public class ProductController {
 	public ModelAndView getProductManagementPage(String pageNo){
 		
 		if(pageNo == null){
+			
 			pageNo = "1";
 		}
 		
@@ -33,7 +34,7 @@ public class ProductController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("admin/product");
+		mv.setViewName("admin/product/product");
 		
 		return mv;
 	}
