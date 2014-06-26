@@ -55,6 +55,7 @@ public class CategoryController {
 		
 		try {
 			mv.addObject("categoryList", categoryService.readPartCategory(Integer.parseInt(category_id)));
+			mv.addObject("parentCategory", categoryService.readCategory(Integer.parseInt(category_id)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
