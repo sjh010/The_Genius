@@ -39,13 +39,29 @@ public interface CategoryMapper {
 	public CategoryVO readCategory(int category_id);
 	
 	@Select("SELECT "
+	    	+ "category_sequence.currval "
+	    	+ "FROM "
+		    + "dual ")	
+	public int getCategoryId();
+	
+	@Select("SELECT "
 	    		+ "category_id, category_parent_id, category_name, category_depth, "
 	    		+ "type_adventure, type_practice, type_rule, type_tradition, "
 	    		+ "type_enjoyment, type_pleasure, type_harmony "
 	      + "FROM "
 		    	+ "tbl_category")
-	public List<CategoryVO> readCategoryList();
-		
+	public List<CategoryVO> readAllCategory();
+	
+	@Select("SELECT "
+    			+ "category_id, category_parent_id, category_name, category_depth, "
+    			+ "type_adventure, type_practice, type_rule, type_tradition, "
+    			+ "type_enjoyment, type_pleasure, type_harmony "
+    	  + "FROM "
+	    		+ "tbl_category "
+	      + "WHERE "
+	    		+ "category_parent_id = #{category_id}")
+	public List<CategoryVO> readPartCategory(int category_id);
+	
 	@Update("UPDATE "
 		    	+ "tbl_category "
 		  + "SET "
@@ -67,5 +83,11 @@ public interface CategoryMapper {
 	      + "WHERE "
       			+ "category_id = #{category_id}")
 	public void deleteCategory(int category_id);
+	
+	@Delete("DELETE FROM "
+    		+ "tbl_category "
+      + "WHERE "
+  			+ "category_parent_id = #{category_parent_id}")
+	public void deleteParentCategory(int category_parent_id);
 	
 }

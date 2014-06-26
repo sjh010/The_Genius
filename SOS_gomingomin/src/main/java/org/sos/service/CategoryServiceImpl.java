@@ -20,10 +20,17 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryMapper.registCategory(vo);
 		
 	}	
+
+	@Override
+	public int getCategoryId() throws Exception {
+		// TODO Auto-generated method stub
+		return categoryMapper.getCategoryId();
+	}	
 	
 	@Override
 	public void updateCategory(CategoryVO vo) throws Exception {
 		// TODO Auto-generated method stub
+		
 		categoryMapper.updateCategory(vo);
 		
 	}
@@ -43,12 +50,25 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryMapper.deleteCategory(category_id);
 		
 	}
+	
+	@Override
+	public void deleteParentCategory(int category_parent_id) throws Exception {
+		// TODO Auto-generated method stub
+		categoryMapper.deleteParentCategory(category_parent_id);
+		
+	}
 
 	@Override
-	public List<CategoryVO> readCategoryList() throws Exception {
+	public List<CategoryVO> readAllCategory() throws Exception {
 		// TODO Auto-generated method stub
-		return categoryMapper.readCategoryList();
+		return categoryMapper.readAllCategory();
 		
+	}
+
+	@Override
+	public List<CategoryVO> readPartCategory(int category_id) {
+		// TODO Auto-generated method stub
+		return categoryMapper.readPartCategory(category_id);
 	}
 
 }

@@ -14,6 +14,11 @@ public interface CategoryService {
 	
 	public void deleteCategory(int category_id) throws Exception;
 
-	public List<CategoryVO> readCategoryList() throws Exception;
+	public List<CategoryVO> readAllCategory() throws Exception;
 	
+	public List<CategoryVO> readPartCategory(int category_id);
+
+	public int getCategoryId() throws Exception;
+
+	void deleteParentCategory(int category_parent_id) throws Exception;
 }
