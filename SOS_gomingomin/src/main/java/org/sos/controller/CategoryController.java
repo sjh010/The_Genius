@@ -119,6 +119,7 @@ public class CategoryController {
 		public String categoryParentDeleteAction(HttpServletRequest request, int category_parent_id){
 			
 			try {
+				categoryService.deleteCategory(category_parent_id);
 				categoryService.deleteParentCategory(category_parent_id);
 				
 			} catch (Exception e) {
