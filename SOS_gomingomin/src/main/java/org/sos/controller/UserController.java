@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sos.service.UserService;
+import org.sos.vo.PagingVO;
 import org.sos.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ import org.springframework.web.util.CookieGenerator;
 
 
 @Controller("UserController")
-@RequestMapping(value = {"/", "/admin"})
+@RequestMapping(value = {"/"})
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -86,6 +87,18 @@ public class UserController {
 		return "/user/ajax/returnResult";
 		
 	}
+	
+	// 관리자 로그아웃
+		@RequestMapping(value = "/logout", method = RequestMethod.GET)
+		public String getAdminLogOut(HttpServletRequest request, HttpServletResponse response){
+			CookieGenerator cookieGenerator = new CookieGenerator();
+			cookieGenerator.setCookieName("loginInfo");
+			cookieGenerator.addCookie(response, "n");
+			cookieGenerator.setCookieName("user_grade");
+			cookieGenerator.addCookie(response, null);		
+			
+			return "redirect:/";
+		}
 
 	/*
 	 * 회원가입 페이지 요청
@@ -217,17 +230,16 @@ public class UserController {
 	/*
 	 * 회원 리스트 요청
 	 */
-	@RequestMapping(value = "/userManage", method = RequestMethod.GET)
-	public ModelAndView getUserManagePage(String pageNo){
-		
-		if(pageNo == null){
-			pageNo = "1";
-		}
+	@RequestMapping(value = "/admin/userManage", method = RequestMethod.GET)
+	public ModelAndView getUserManagePage(String page){
+		int pageNo = (page == null) ? 1 : Integer.parseInt(page);
 		
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			mv.addObject("userList", userService.readUserList(Integer.parseInt(pageNo)));
+			PagingVO pagingVo = userService.calcPaging(pageNo);
+			mv.addObject("paging", pagingVo);
+			mv.addObject("userList", userService.readUserList(pageNo));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -241,7 +253,22 @@ public class UserController {
 		return mv;
 	}
 	
-	
+	@RequestMapping(value="/admin/userManage/updateUserGrade", method = RequestMethod.POST)
+	public String updateUserGrade(HttpServletRequest request, UserVO userVo){
+		
+		try {
+			userService.updateUserGrade(userVo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("result", "n");
+		}
+		
+		request.setAttribute("result", "y");
+		
+		return "ajax/returnResult";
+		
+	}
 	
 	
 	
