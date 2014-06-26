@@ -1,5 +1,7 @@
 package org.sos.test;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -19,6 +21,14 @@ public class ProductMapperTest {
 	
 	@Inject
 	ProductService productService;
+	
+	@Test
+	public void testSearch() throws Exception{
+		
+		List<ProductVO> productList = productService.searchProduct("맥북");
+		
+		System.out.println(productList.toString());
+	}
 	
 	@Test
 	public void testRegist() throws Exception{

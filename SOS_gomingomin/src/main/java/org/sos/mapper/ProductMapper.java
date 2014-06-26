@@ -88,4 +88,7 @@ public interface ProductMapper {
 				+ "product_id = #{product_id}")
 	public void deleteProduct(int product_id);
 
+	@Select("select count(product_id) from tbl_product")
+	public int getTotalCnt();
+
 }
