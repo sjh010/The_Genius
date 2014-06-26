@@ -57,6 +57,14 @@ public interface ProductMapper {
 		  		 		+ ") A) "
 		  + "WHERE PAGE = #{pageNum}")
 	public List<ProductVO> readProductList(int pageNum);
+	
+	@Select("SELECT "
+			+ "product_id, product_name, category_id, "
+			+ "type_adventure, type_practice, type_rule, type_tradition, "
+			+ "type_enjoyment, type_pleasure, type_harmony "
+	  + "FROM "
+			+ "tbl_product")
+	public List<ProductVO> readProductAllList();
 
 	@Update("UPDATE "
 				+ "tbl_product "

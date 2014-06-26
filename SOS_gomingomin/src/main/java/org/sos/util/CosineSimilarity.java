@@ -93,7 +93,7 @@ public class CosineSimilarity extends AbstractRecommendCalc {
 
            OrderVO orderVO = new OrderVO();
            
-           orderVO.setProductCode(product.getProduct_id());
+           orderVO.setProduct_id(product.getProduct_id());
            orderVO.setValue(cosineResult);
            
            orderedProductList.add(orderVO);

@@ -64,8 +64,13 @@ public interface UserMapper {
 				+ "user_id = #{user_id}")
 	public void updateUser(UserVO vo);
 	
-
-	public void updateUserGrade(List<UserVO> userList);
+	@Update("UPDATE "
+				+ "tbl_user "
+		  + "SET "
+		  		+ "user_grade = #{user_grade} "
+		  + "WHERE "
+		  		+ "user_id = #{user_id}")
+	public void updateUserGrade(String user_id, String user_grade);
 	
 	@Delete("DELETE FROM "
 				+ "tbl_user "

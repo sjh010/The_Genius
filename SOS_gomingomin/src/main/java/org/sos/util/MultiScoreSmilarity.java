@@ -26,7 +26,7 @@ public class MultiScoreSmilarity extends AbstractRecommendCalc{
 					(characterAvg.getType_pleasure() * productList.get(i).getType_pleasure()) +
 					(characterAvg.getType_harmony() * productList.get(i).getType_harmony());	
 			
-			vo.setProductCode(productList.get(i).getProduct_id());
+			vo.setProduct_id(productList.get(i).getProduct_id());
 			vo.setValue(score);
 			
 			orderedProductList.add(vo);

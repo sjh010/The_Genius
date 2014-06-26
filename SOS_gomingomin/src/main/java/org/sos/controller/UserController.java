@@ -21,6 +21,7 @@ import org.springframework.web.util.CookieGenerator;
 
 
 @Controller("UserController")
+@RequestMapping(value = {"/", "/admin"})
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -217,11 +218,25 @@ public class UserController {
 	 * 회원 리스트 요청
 	 */
 	@RequestMapping(value = "/userManage", method = RequestMethod.GET)
-	public ModelAndView getUserManagePage(){
+	public ModelAndView getUserManagePage(String pageNo){
+		
+		if(pageNo == null){
+			pageNo = "1";
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		
+		try {
+			mv.addObject("userList", userService.readUserList(Integer.parseInt(pageNo)));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		mv.setViewName("admin/userManage/userManage");
 		
 		return mv;
 	}

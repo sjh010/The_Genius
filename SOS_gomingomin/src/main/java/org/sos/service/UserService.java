@@ -14,6 +14,8 @@ public interface UserService {
 	
 	public void updateUser(UserVO vo) throws Exception;
 	
+	public void updateUserGrade(String user_id, String user_grade) throws Exception;
+	
 	public void deleteUser(String user_id) throws Exception;
 
 }

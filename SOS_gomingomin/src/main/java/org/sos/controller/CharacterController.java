@@ -33,6 +33,9 @@ public class CharacterController{
 	@Inject
 	UserCharacterService userCharacterService;
 	
+	/*
+	 * 캐릭터 선택화면 요청
+	 */
 	@RequestMapping(value = "/selectCharacter", method = RequestMethod.GET)
 	public ModelAndView getSelectCharacterPage(){
 		
@@ -52,6 +55,9 @@ public class CharacterController{
 		return mv;
 	}
 	
+	/*
+	 * 캐릭터 선택 후, 등록 요청
+	 */
 	@RequestMapping(value = "/selectCharacter", method = RequestMethod.POST)
 	public String getCharacterSelectPage(UserCharacterVO userCharacter,
 						@CookieValue(value="user_id", required=true, defaultValue="null") String user_id){
@@ -69,6 +75,9 @@ public class CharacterController{
 		
 	}
 	
+	/*
+	 *  캐릭터 관리 메인화면 요청
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getCharacterManagementPage(){
 		
@@ -88,14 +97,18 @@ public class CharacterController{
 		return mv;
 	}
 	
-	// 罹먮┃���깅줉 �섏씠吏��붿껌
+	/*
+	 * 캐릭터 등록 화면 요청
+	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.GET)
 	public String getCharacterRegistPage(){
 		
 		return "admin/character/regist";
 	}
 	
-	// 罹먮┃���깅줉 �붿껌
+	/*
+	 * 캐릭터 등록 요청
+	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public void characterRegistAction(HttpSession session, CharacterVO character, FileVO file, Model model){
 		
@@ -138,7 +151,9 @@ public class CharacterController{
 		
 	}
 	
-	// 罹먮┃���섏젙 �섏씠吏��붿껌
+	/*
+	 * 캐릭터 수정 화면 요청
+	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getCharacterUpdatePage(String character_id){
 		
@@ -156,7 +171,9 @@ public class CharacterController{
 		return mv;
 	}
 	
-	// 罹먮┃���섏젙 �붿껌
+	/*
+	 * 캐릭터 수정 요청
+	 */
 	@RequestMapping(value = "/updateAction", method = RequestMethod.POST)
 	public String chracterUpdateAction(HttpSession session, CharacterVO character, FileVO file){
 		
@@ -201,8 +218,9 @@ public class CharacterController{
 		return "redirect:/admin/character";
 	}
 	
-	// 罹먮┃����젣 �붿껌
-	@Transactional
+	/*
+	 * 캐릭터 삭제 요청
+	 */
 	@RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
 	public String characterDeleteAction(HttpServletRequest request, int character_id){
 		

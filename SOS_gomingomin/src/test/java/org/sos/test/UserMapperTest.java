@@ -27,24 +27,6 @@ public class UserMapperTest {
 	
 	
 	@Test
-	public void testUpdateUserGrade() throws Exception{
-		
-		UserVO user = new UserVO();
-		user.setUser_id("thgns");
-		user.setUser_grade("admin");
-		UserVO user2 = new UserVO();
-		user.setUser_id("sm9071");
-		user.setUser_grade("admin");
-		
-		List<UserVO> userList = new ArrayList<UserVO>();
-		
-		userList.add(user);
-		userList.add(user2);
-		
-		userMapper.updateUserGrade(userList);
-	}
-	
-	@Test
 	public void testRegist() throws Exception{
 		UserVO vo = new UserVO();
 		vo.setUser_id("thgnss");

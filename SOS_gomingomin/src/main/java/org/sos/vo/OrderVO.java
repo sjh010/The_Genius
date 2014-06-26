@@ -2,33 +2,31 @@ package org.sos.vo;
 
 public class OrderVO {
 
-	private int productCode;
+	private int product_id;
 	private double value;
-	private int orderValue;
+
 	
-	public int getProductCode() {
-		return productCode;
+	public int getProduct_id() {
+		return product_id;
 	}
-	public void setProductCode(int productCode) {
-		this.productCode = productCode;
+
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
 	}
+
+
 	public double getValue() {
 		return value;
 	}
+
+
 	public void setValue(double value) {
 		this.value = value;
 	}
-	public int getOrderValue() {
-		return orderValue;
-	}
-	public void setOrderValue(int orderValue) {
-		this.orderValue = orderValue;
-	}
-	
+
 	@Override
 	public String toString() {
-		return "OrderVO [productCode=" + productCode + ", value=" + value
-				+ ", orderValue=" + orderValue + "]";
+		return "OrderVO [productCode=" + product_id + ", value=" + value + "]";
 	}
 
 }

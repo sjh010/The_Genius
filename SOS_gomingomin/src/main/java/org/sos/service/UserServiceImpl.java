@@ -38,12 +38,22 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userMapper.updateUser(vo);
 	}
+	
+	@Override
+	public void updateUserGrade(String user_id, String user_grade)
+			throws Exception {
+		// TODO Auto-generated method stub
+		userMapper.updateUserGrade(user_id, user_grade);
+		
+	}
 
 	@Override
 	public void deleteUser(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		userMapper.deleteUser(user_id);
 	}
+
+
 
 
 	
