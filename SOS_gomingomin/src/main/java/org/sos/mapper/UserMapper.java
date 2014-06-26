@@ -1,5 +1,7 @@
 package org.sos.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -32,6 +34,21 @@ public interface UserMapper {
 		  		+ "user_id = #{user_id}")
 	public UserVO readUser(String user_id);
 	
+	@Select("SELECT "
+				+ "user_id, user_grade, user_joindate, "
+		  + "FROM "
+		  		+ "(SELECT "
+		  				+ "A.*, ROWNUM AS RNUM, FLOOR((ROWNUM-1)/5+1) AS PAGE, COUNT(*) OVER() AS TOTCNT "
+		  		 + "FROM "
+		  		 		+ "("
+		  		 			+ "SELECT "
+		  		 				+ "user_id, user_grade, user_joindate, "
+		  		 			+ "FROM "
+		  		 				+ "tbl_user"
+		  		 		+ ") A) "
+		  + "WHERE PAGE = #{pageNo}")
+	public List<UserVO> readUserList(int pageNo);
+	
 	@Update("UPDATE "
 				+ "tbl_user "
 		  + "SET "
@@ -46,6 +63,9 @@ public interface UserMapper {
 		  + "WHERE "
 				+ "user_id = #{user_id}")
 	public void updateUser(UserVO vo);
+	
+
+	public void updateUserGrade(List<UserVO> userList);
 	
 	@Delete("DELETE FROM "
 				+ "tbl_user "

@@ -28,7 +28,9 @@ public class UserController {
 	@Inject
 	UserService userService;
 	
-	//로그인 요청 -> ajax 논의 해봐야함
+	/*
+	 * 로그인 요청
+	 */
 	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
 	public String loginAction(HttpServletResponse response, HttpServletRequest request,
 								String user_id, String user_password){
@@ -84,14 +86,18 @@ public class UserController {
 		
 	}
 
-	// 회원 가입 페이지 요청
+	/*
+	 * 회원가입 페이지 요청
+	 */
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String getJoinPage(){
 		
 		return "user/join"; 
 	}
 	
-	// 회원 기본정보 입력 받아 DB저장 후 가입 아이디 반환
+	/*
+	 * 회원 기본정보 입력받아 DB 저장 후, 쿠키 생성
+	 */
 	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
 	public String joinAction(HttpServletResponse response, UserVO user) throws Exception{
 		
@@ -121,7 +127,9 @@ public class UserController {
 		return "redirect:/join/selectCharacter";	
 	}
 	
-	// 회원 가입 시 아이디 중복체크
+	/*
+	 * 회원가입 시 아이디 중복 체크
+	 */
 	@RequestMapping(value = "user/checkUserId", method = RequestMethod.GET)
 	public String checkUserId(HttpServletRequest request) throws Exception{
 		
@@ -142,12 +150,18 @@ public class UserController {
 		return "/user/ajax/returnResult";
 	}
 	
+	/*
+	 * 마이페이지 요청(비밀번호 재확인)
+	 */
 	@RequestMapping(value="/myPage", method = RequestMethod.GET)
 	public String getPasswordCheckPage(){
 		
 		return "user/myPage";
 	}
 	
+	/*
+	 * 비밀번호 확인 후, 회원 정보 수정페이지 요청
+	 */
 	@RequestMapping(value="/myPage", method = RequestMethod.POST)
 	public String passwordCheckAction(@CookieValue(value="user_id") String user_id, String user_password,
 										Model result){
@@ -174,6 +188,9 @@ public class UserController {
 		
 	}
 	
+	/*
+	 * 회원 정보 수정 페이지 요청
+	 */
 	@RequestMapping(value = "/myPage/update", method = RequestMethod.GET)
 	public ModelAndView getModifyPage(@CookieValue(value="user_id") String user_id, 
 									HttpServletRequest request, Model model) throws Exception{
@@ -194,6 +211,19 @@ public class UserController {
 	public String modifyAction(UserVO user){
 		
 		return null;
+	}
+	
+	/*
+	 * 회원 리스트 요청
+	 */
+	@RequestMapping(value = "/userManage", method = RequestMethod.GET)
+	public ModelAndView getUserManagePage(){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		
+		
+		return mv;
 	}
 	
 	

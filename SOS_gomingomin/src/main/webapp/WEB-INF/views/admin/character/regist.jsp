@@ -16,6 +16,7 @@
 <div class="container">
     <div class="container-header">
         <div class="page-header">
+
             <h1>캐릭터관리
                 <small>등록</small>
             </h1>

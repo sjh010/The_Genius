@@ -1,5 +1,7 @@
 package org.sos.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.sos.mapper.UserMapper;
@@ -21,10 +23,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO readUser(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		UserVO vo;
-		vo = userMapper.readUser(user_id);
 		
-		return vo;
+		return userMapper.readUser(user_id);
+	}
+	
+	@Override
+	public List<UserVO> readUserList(int pageNo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -38,5 +44,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userMapper.deleteUser(user_id);
 	}
+
+
 	
 }
