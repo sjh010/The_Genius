@@ -47,12 +47,12 @@
 
 
 $('#character-add').click(function(){
-	location.replace("/admin/character/regist");
+	location.href="/admin/character/regist";
 });
 
 
 $('.character-update').click(function(){
-	location.replace("/admin/character/update?character_id="+$(this).parent().parent().attr("id"));
+	location.href ="/admin/character/update?character_id="+$(this).parent().parent().attr("id");
 });
 
     $('.character-delete').click(function(){
