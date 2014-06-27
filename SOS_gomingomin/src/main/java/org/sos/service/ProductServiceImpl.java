@@ -68,9 +68,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVO> readCategoryProductList(int category_id) throws Exception {
+	public List<ProductVO> readSortedProductList() throws Exception {
 		// TODO Auto-generated method stub
-		return productMapper.readCategoryProductList(category_id);
+		return productMapper.readSortedProductList();
 	}
 
 

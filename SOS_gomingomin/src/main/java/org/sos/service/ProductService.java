@@ -21,6 +21,6 @@ public interface ProductService {
 
 	public List<ProductVO> searchProduct(String keyword);
 	
-	public List<ProductVO> readCategoryProductList(int category_id) throws Exception;
+	public List<ProductVO> readSortedProductList() throws Exception;
 	
 }
