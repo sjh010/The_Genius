@@ -20,7 +20,7 @@
 <div class="container">
  <div class="container-body searchbar">
         키워드를 입력하세요
-        <form class="input-group" id="search-form" action="/mySearch" method="get">
+        <form class="input-group" id="search-form" action="/search" method="get">
             <input type="text" class="form-control" name="keyword">
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default ok">Go!</button>
