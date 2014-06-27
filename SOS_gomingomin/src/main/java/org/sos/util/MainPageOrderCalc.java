@@ -11,6 +11,7 @@ import java.util.Set;
 import org.sos.vo.OrderVO;
 
 public class MainPageOrderCalc {
+	
 	public List<OrderVO> getMainPageOrder(Map<String, List<OrderVO>> magiResultMap){
 		
 		//List 3개를 준비
