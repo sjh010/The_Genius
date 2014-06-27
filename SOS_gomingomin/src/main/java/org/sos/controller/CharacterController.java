@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller("CharacterController")
-@RequestMapping(value = {"/admin/character", "/join"})
+@RequestMapping(value = {"/admin", "/join/"})
 public class CharacterController{
 	
 	private static final Logger logger = LoggerFactory.getLogger(CharacterController.class);
@@ -78,7 +78,7 @@ public class CharacterController{
 	/*
 	 *  캐릭터 관리 메인화면 요청
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/character" , method = RequestMethod.GET)
 	public ModelAndView getCharacterManagementPage(){
 		
 		logger.info("getCharacterManagementPage..........");
@@ -100,7 +100,7 @@ public class CharacterController{
 	/*
 	 * 캐릭터 등록 화면 요청
 	 */
-	@RequestMapping(value = "/regist", method = RequestMethod.GET)
+	@RequestMapping(value = "/character/regist", method = RequestMethod.GET)
 	public String getCharacterRegistPage(){
 		
 		return "admin/character/regist";
@@ -109,7 +109,7 @@ public class CharacterController{
 	/*
 	 * 캐릭터 등록 요청
 	 */
-	@RequestMapping(value = "/regist", method = RequestMethod.POST)
+	@RequestMapping(value = "character/regist", method = RequestMethod.POST)
 	public void characterRegistAction(HttpSession session, CharacterVO character, FileVO file, Model model){
 		
 		logger.info("Character : " + character.toString());
@@ -154,7 +154,7 @@ public class CharacterController{
 	/*
 	 * 캐릭터 수정 화면 요청
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/character/update", method = RequestMethod.GET)
 	public ModelAndView getCharacterUpdatePage(String character_id){
 		
 		ModelAndView mv = new ModelAndView();
@@ -174,7 +174,7 @@ public class CharacterController{
 	/*
 	 * 캐릭터 수정 요청
 	 */
-	@RequestMapping(value = "/updateAction", method = RequestMethod.POST)
+	@RequestMapping(value = "character/updateAction", method = RequestMethod.POST)
 	public String chracterUpdateAction(HttpSession session, CharacterVO character, FileVO file){
 		
 		logger.info("updateAction..........");
@@ -221,7 +221,7 @@ public class CharacterController{
 	/*
 	 * 캐릭터 삭제 요청
 	 */
-	@RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
+	@RequestMapping(value = "/character/deleteAction", method = RequestMethod.POST)
 	public String characterDeleteAction(HttpServletRequest request, int character_id){
 		
 		String downloadDirectory = 

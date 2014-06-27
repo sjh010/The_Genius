@@ -22,7 +22,6 @@ import org.springframework.web.util.CookieGenerator;
 
 
 @Controller("UserController")
-@RequestMapping(value = {"/"})
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -64,9 +63,12 @@ public class UserController {
 				cookieGenerator.setCookieName("user_id");
 				cookieGenerator.addCookie(response, user.getUser_id());
 				
-				cookieGenerator.setCookieName("user_name");
+				cookieGenerator.setCookieName("user_grade");
+				cookieGenerator.addCookie(response, user.getUser_grade());
+				
 				
 				try {
+					cookieGenerator.setCookieName("user_name");
 					cookieGenerator.addCookie(response, URLEncoder.encode(user.getUser_name(), "utf-8"));
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
@@ -91,6 +93,9 @@ public class UserController {
 	// 관리자 로그아웃
 		@RequestMapping(value = "/logout", method = RequestMethod.GET)
 		public String getAdminLogOut(HttpServletRequest request, HttpServletResponse response){
+			
+			logger.info("logout..........");
+			
 			CookieGenerator cookieGenerator = new CookieGenerator();
 			cookieGenerator.setCookieName("loginInfo");
 			cookieGenerator.addCookie(response, "n");

@@ -42,38 +42,5 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<!-- /.navbar -->
-
-<nav class="navbar navbar-default categorybar" role="navigation">
-    <div class="container-fluid">
-		<div class="collapse navbar-collapse" id="navbar">
-	        <ul class="nav navbar-nav navbar-right">
-			<%for(CategoryVO category : categoryList) {
-				if(category.getCategory_depth().equals("1")){
-					int category_id = category.getCategory_id();
-			%>
-	        	<li class="dropdown">
-	        		<a id="<%=category.getCategory_id() %>" role="button" data-toggle="dropdown" href="#">
-	        		<%=category.getCategory_name() %></a>
-	        		<ul class="dropdown-menu" role="menu" aria-labelledby="<%=category.getCategory_id() %>">
-	        			<%for(CategoryVO category_depth2 : categoryList) {
-					if(category_depth2.getCategory_parent_id()==category_id){
-				%>
-		        	<li class=""><a href=""><%=category_depth2.getCategory_name()%></a></li>
-		        <% }}%>
-	        		</ul>
-	        	</li>
-	        	
-	        <%} }%>
-	        </ul>
-	        
-	    
-		</div>
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-<!-- /.navbar -->
-
-</nav>
 
 
