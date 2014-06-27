@@ -5,6 +5,7 @@ public class ProductVO {
 	private int product_id;
 	private String product_name;
 	private int category_id;
+	private int product_viewCount;
 	private double type_adventure;
 	private double type_practice;
 	private double type_rule;
@@ -30,6 +31,12 @@ public class ProductVO {
 	}
 	public void setCategory_id(int category_id) {
 		this.category_id = category_id;
+	}
+	public int getProduct_viewCount() {
+		return product_viewCount;
+	}
+	public void setProduct_viewCount(int product_viewCount) {
+		this.product_viewCount = product_viewCount;
 	}
 	public double getType_adventure() {
 		return type_adventure;
@@ -73,16 +80,16 @@ public class ProductVO {
 	public void setType_harmony(double type_harmony) {
 		this.type_harmony = type_harmony;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProductVO [product_id=" + product_id + ", product_name="
 				+ product_name + ", category_id=" + category_id
+				+ ", product_viewCount=" + product_viewCount
 				+ ", type_adventure=" + type_adventure + ", type_practice="
 				+ type_practice + ", type_rule=" + type_rule
 				+ ", type_tradition=" + type_tradition + ", type_enjoyment="
 				+ type_enjoyment + ", type_pleasure=" + type_pleasure
 				+ ", type_harmony=" + type_harmony + "]";
 	}
-	
+		
 }
