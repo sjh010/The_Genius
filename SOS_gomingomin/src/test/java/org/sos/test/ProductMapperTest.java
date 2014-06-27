@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.sos.mapper.ProductMapper;
 import org.sos.service.ProductService;
 import org.sos.util.Magi;
-import org.sos.util.MainPageOrderCalc;
+import org.sos.util.LoginMainCalc;
 import org.sos.vo.OrderVO;
 import org.sos.vo.ProductVO;
 import org.sos.vo.ResultVO;
@@ -252,8 +252,8 @@ public class ProductMapperTest {
 		System.out.println(multiOrder.toString());
 		
 		//메인페이지 순서를 확인하기 위해서 MainPageOrderCalc를 선언하고 순서를 확인한다.
-		MainPageOrderCalc mainPageOrderCalc = new MainPageOrderCalc();
-		List<OrderVO> resultOrder = mainPageOrderCalc.getMainPageOrder(map);
+		LoginMainCalc mainPageOrderCalc = new LoginMainCalc();
+		List<OrderVO> resultOrder = mainPageOrderCalc.getLoginMainOrder(map);
 		System.out.println(resultOrder.toString());
 		
 	}

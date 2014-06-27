@@ -10,8 +10,9 @@ import java.util.Set;
 
 import org.sos.vo.OrderVO;
 
-public class MainPageOrderCalc {
-	public List<OrderVO> getMainPageOrder(Map<String, List<OrderVO>> magiResultMap){
+public class LoginMainCalc {
+	
+	public List<OrderVO> getLoginMainOrder(Map<String, List<OrderVO>> magiResultMap){
 		
 		//List 3개를 준비
 		List<OrderVO> pearsonOrderList = magiResultMap.get("pearson");

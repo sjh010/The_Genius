@@ -13,13 +13,14 @@ public interface ProductMapper {
 	//TBL_CHARACTER TABLE의 시퀀스 이름 = PRODUCT_SEQUENCE
 	
 	@Insert("INSERT INTO "
-				+ "tbl_product(product_id, product_name, category_id, "
+				+ "tbl_product(product_id, product_name, category_id, product_viewCount, "
 							+ "type_adventure, type_practice, type_rule, type_tradition, "
 							+ "type_enjoyment, type_pleasure, type_harmony) "
 		  + "VALUES( "
 		    	+ "#{product_id}, "
 		    	+ "#{product_name}, "
 		    	+ "#{category_id}, "
+		    	+ "#{product_viewCount}, "
 		    	+ "#{type_adventure}, "
 		    	+ "#{type_practice}, "
 		    	+ "#{type_rule}, "
@@ -30,7 +31,7 @@ public interface ProductMapper {
 	public void registProduct(ProductVO vo);
 	
 	@Select("SELECT "
-				+ "product_id, product_name, category_id, "
+				+ "product_id, product_name, category_id, product_viewCount, "
 				+ "type_adventure, type_practice, type_rule, type_tradition, "
 				+ "type_enjoyment, type_pleasure, type_harmony "
 	      + "FROM "
@@ -40,7 +41,7 @@ public interface ProductMapper {
 	public ProductVO readProduct(int product_id);
 	
 	@Select("SELECT "
-				+ "product_id, product_name, category_id, "
+				+ "product_id, product_name, category_id, product_viewCount, "
 				+ "type_adventure, type_practice, type_rule, type_tradition, "
 				+ "type_enjoyment, type_pleasure, type_harmony "
 		  + "FROM "
@@ -49,7 +50,7 @@ public interface ProductMapper {
 		  		 + "FROM "
 		  		 		+ "("
 		  		 			+ "SELECT "
-		  		 				+ "product_id, product_name, category_id, "
+		  		 				+ "product_id, product_name, category_id, product_viewCount, "
 		  		 				+ "type_adventure, type_practice, type_rule, type_tradition, "
 		  		 				+ "type_enjoyment, type_pleasure, type_harmony "
 		  		 			+ "FROM "
@@ -59,7 +60,7 @@ public interface ProductMapper {
 	public List<ProductVO> readProductList(int pageNum);
 	
 	@Select("SELECT "
-			+ "product_id, product_name, category_id, "
+			+ "product_id, product_name, category_id, product_viewCount, "
 			+ "type_adventure, type_practice, type_rule, type_tradition, "
 			+ "type_enjoyment, type_pleasure, type_harmony "
 	  + "FROM "
@@ -83,7 +84,7 @@ public interface ProductMapper {
 	public void updateProduct(ProductVO vo);
 	
 	@Select("SELECT "
-			+ "product_id, product_name, category_id, "
+			+ "product_id, product_name, category_id, product_viewCount, "
 			+ "type_adventure, type_practice, type_rule, type_tradition, "
 			+ "type_enjoyment, type_pleasure, type_harmony "
 		+ "FROM "
@@ -100,5 +101,14 @@ public interface ProductMapper {
 
 	@Select("select count(product_id) from tbl_product")
 	public int getTotalCnt();
-
+	
+	@Select("SELECT "
+				+ "product_id, product_name, category_id, product_viewCount, "
+				+ "type_adventure, type_practice, type_rule, type_tradition, "
+				+ "type_enjoyment, type_pleasure, type_harmony "
+		  + "FROM "
+				+ "tbl_product "
+		  + "ORDER BY product_viewCount DESC")
+	public List<ProductVO> readSortedProductList();
+	
 }
