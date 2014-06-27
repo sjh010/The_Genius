@@ -3,9 +3,14 @@
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="org.sos.vo.*, java.util.List"%>
 <%
 	String user_name = request.getParameter("user_name");
+	List<CategoryVO> categoryList = (List<CategoryVO>)request.getAttribute("categoryList");
 %>
+
+
+ <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
 <!-- navbar -->
 <nav class="navbar navbar-default" role="navigation">
@@ -38,3 +43,45 @@
     <!-- /.container-fluid -->
 </nav>
 <!-- /.navbar -->
+
+<nav class="categorybar">
+			<ul class="category-nav">
+			<%for(CategoryVO category : categoryList) {
+				if(category.getCategory_depth().equals("1")){
+			%>
+	        	<li class="category" id="<%=category.getCategory_id()%>">
+	        		<a href="#category<%=category.getCategory_id()%>"><%=category.getCategory_name()%></a>
+	        	</li>
+	        <%} }%>
+	        </ul>
+	        
+	        <%for(CategoryVO category_depth1 : categoryList) {
+	        	int category_id = category_depth1.getCategory_id();
+	        %>
+	        <div class="categorybar-menu" id="category<%=category_depth1.getCategory_id()%>">
+				<ul class="">
+				<%for(CategoryVO category_depth2 : categoryList) {
+					if(category_depth2.getCategory_parent_id()==category_id){
+				%>
+		        	<li class="category"><a href=""><%=category_depth2.getCategory_name()%></a></li>
+		        <% }}%>
+		        </ul>
+			</div>
+			<% }%>
+</nav>
+
+
+
+
+<script>
+$(".category").mouseup(function(){
+	var id = "#category"+$(this)[0].id;
+	$(id).show("blind", { to: {width : '150px'} }, 1000);
+});
+
+$(".categorybar").mouseleave(function(){
+	$(".categorybar-menu").hide( "blind", {to: {width : '150px'}}, 1000);
+});
+
+
+</script>
