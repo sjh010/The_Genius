@@ -35,7 +35,7 @@
 				<li class="product" id="<%=product.getProduct_id() %>">
 					<span class="search-result-element"> 
 						<span class="thum">
-						<a href="#"><img class="product-image" name="상품1" src="제목 없음.png" /></a></span>
+						<a href="#"><img class="product-image" src="" /></a></span>
 						<span class="desc"> <span class="title"><a href="#"><%=product.getProduct_name() %></a></span> 
 						<span class="price">0원</span>
 						</span>

@@ -44,44 +44,36 @@
 </nav>
 <!-- /.navbar -->
 
-<nav class="categorybar">
-			<ul class="category-nav">
+<nav class="navbar navbar-default categorybar" role="navigation">
+    <div class="container-fluid">
+		<div class="collapse navbar-collapse" id="navbar">
+	        <ul class="nav navbar-nav navbar-right">
 			<%for(CategoryVO category : categoryList) {
 				if(category.getCategory_depth().equals("1")){
+					int category_id = category.getCategory_id();
 			%>
-	        	<li class="category" id="<%=category.getCategory_id()%>">
-	        		<a href="#category<%=category.getCategory_id()%>"><%=category.getCategory_name()%></a>
+	        	<li class="dropdown">
+	        		<a id="<%=category.getCategory_id() %>" role="button" data-toggle="dropdown" href="#">
+	        		<%=category.getCategory_name() %></a>
+	        		<ul class="dropdown-menu" role="menu" aria-labelledby="<%=category.getCategory_id() %>">
+	        			<%for(CategoryVO category_depth2 : categoryList) {
+					if(category_depth2.getCategory_parent_id()==category_id){
+				%>
+		        	<li class=""><a href=""><%=category_depth2.getCategory_name()%></a></li>
+		        <% }}%>
+	        		</ul>
 	        	</li>
+	        	
 	        <%} }%>
 	        </ul>
 	        
-	        <%for(CategoryVO category_depth1 : categoryList) {
-	        	int category_id = category_depth1.getCategory_id();
-	        %>
-	        <div class="categorybar-menu" id="category<%=category_depth1.getCategory_id()%>">
-				<ul class="">
-				<%for(CategoryVO category_depth2 : categoryList) {
-					if(category_depth2.getCategory_parent_id()==category_id){
-				%>
-		        	<li class="category"><a href=""><%=category_depth2.getCategory_name()%></a></li>
-		        <% }}%>
-		        </ul>
-			</div>
-			<% }%>
+	    
+		</div>
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!-- /.navbar -->
+
 </nav>
 
 
-
-
-<script>
-$(".category").mouseup(function(){
-	var id = "#category"+$(this)[0].id;
-	$(id).show("blind", { to: {width : '150px'} }, 1000);
-});
-
-$(".categorybar").mouseleave(function(){
-	$(".categorybar-menu").hide( "blind", {to: {width : '150px'}}, 1000);
-});
-
-
-</script>
