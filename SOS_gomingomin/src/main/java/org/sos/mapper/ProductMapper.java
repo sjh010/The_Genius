@@ -111,4 +111,14 @@ public interface ProductMapper {
 		  + "ORDER BY product_viewCount DESC")
 	public List<ProductVO> readSortedProductList();
 	
+	@Select("SELECT "
+			+ "product_id, product_name, category_id, "
+			+ "type_adventure, type_practice, type_rule, type_tradition, "
+			+ "type_enjoyment, type_pleasure, type_harmony "
+	  + "FROM "
+	  		+ "tbl_product "
+	  + "WHERE "
+	  		+ "category_id = #{category_id}")
+	public List<ProductVO> readCategoryProductList(int category_id);
+	
 }
