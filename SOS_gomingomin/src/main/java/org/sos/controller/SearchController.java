@@ -11,21 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/mySearch")
+@RequestMapping(value="/search")
 public class SearchController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 	
 	@Inject
 	ProductService productService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public String getSearchPage(){
-		
-		return "mySearch";
-	}
-	
-	@RequestMapping(method = RequestMethod.POST)
 	public String getProductCode(HttpServletRequest request, String keyword){
 		
 		logger.info("keyword : " + keyword);
@@ -37,7 +31,7 @@ public class SearchController {
 			e.printStackTrace();
 		}
 		
-		return "getProductCode";
+		return "search";
 	}
 	
 }
