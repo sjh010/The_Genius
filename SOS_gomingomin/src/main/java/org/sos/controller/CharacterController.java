@@ -14,7 +14,6 @@ import org.sos.vo.CharacterVO;
 import org.sos.vo.FileVO;
 import org.sos.vo.UserCharacterVO;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,9 +43,9 @@ public class CharacterController{
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			mv.addObject("chracterList", characterService.readAllCharacterList());
+			mv.addObject("characterList", characterService.readAllCharacterList());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			logger.info("exception 발생");
 			e.printStackTrace();
 		}
 		

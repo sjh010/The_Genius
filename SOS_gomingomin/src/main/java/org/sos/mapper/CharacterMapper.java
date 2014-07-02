@@ -61,11 +61,11 @@ public interface CharacterMapper {
 	public List<CharacterVO> readCharacterList(int pageNum);
 	
 	@Select("SELECT "
-		    + "character_id, character_name, character_img, "
-		    + "type_adventure, type_practice, type_rule, type_tradition, "
-		    + "type_enjoyment, type_pleasure, type_harmony "
-      + "FROM "
-  		    + "tbl_character ")
+				+ "character_id, character_name, character_img, "
+				+ "type_adventure, type_practice, type_rule, type_tradition, "
+				+ "type_enjoyment, type_pleasure, type_harmony "
+		  + "FROM "
+  		    	+ "tbl_character ")
 	public List<CharacterVO> readAllCahracterList();
 
 	@Update("UPDATE "

@@ -328,7 +328,8 @@ $(function () {
                 dataType : "json",
                 success : function(data){
                 	/* 가입처리가 완료되었으면 selectCharacter페이지로 이동한다. */
-                	if(data.result == 'y') location.replace('/user/selectCharacter');
+                	console.log(data);
+                	if(data.result == 'y') location.replace('/join/selectCharacter');
                     	else if(data.result == 'n') alert("에러입니다. 다음에 다시 시도해주세요..");
                 },
                 failure : function(){

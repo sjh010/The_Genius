@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/admin/category")
+@RequestMapping("/admin")
 public class CategoryController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
@@ -22,7 +22,7 @@ public class CategoryController {
 	CategoryService categoryService;
 	
 	//카테고리 관리 페이지 요청
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/category", method = RequestMethod.GET)
 	public ModelAndView getCategoryManagementPage(){
 		
 		logger.info("getCategoryManagementPage..........");
@@ -43,7 +43,7 @@ public class CategoryController {
 	}
 
 	//카테고리 수정 페이지 요청
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/category/update", method = RequestMethod.GET)
 	public ModelAndView getCategoryUpdatePage(String category_id){
 		
 		logger.info("getCategoryUpdatePage.........");
@@ -64,10 +64,13 @@ public class CategoryController {
 	}	
 	
 	// 카테고리 등록 Action
-	@RequestMapping(value = "/registAction", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/registAction", method = RequestMethod.POST)
 	public String categoryRegistAction(HttpServletRequest request, CategoryVO category) {
-		logger.info(category.toString());
+		
+		logger.info("categoryRegistAction..........");
+		
 		int category_id = 0;
+		
 		try {
 			categoryService.registCategory(category);
 			category_id = categoryService.getCategoryId();
@@ -82,8 +85,10 @@ public class CategoryController {
 	}
 	
 	//카테고리 업데이트 Action
-	@RequestMapping(value = "/updateAction", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/updateAction", method = RequestMethod.POST)
 	public String categoryUpdateAction(HttpServletRequest request, CategoryVO category) {
+		
+		logger.info("categoryUpdateAction..........");
 		
 		try {
 			categoryService.updateCategory(category);
@@ -98,8 +103,10 @@ public class CategoryController {
 	}
 	
 	//카테고리 삭제 Action
-	@RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/deleteAction", method = RequestMethod.POST)
 	public String categoryDeleteAction(HttpServletRequest request, int category_id){
+		
+		logger.info("categoryDeleteAction..........");
 		
 		try {
 			categoryService.deleteCategory(category_id);
@@ -115,8 +122,10 @@ public class CategoryController {
 	}
 	
 	//하위 카테고리 삭제 Action
-		@RequestMapping(value = "/deleteParentAction", method = RequestMethod.POST)
+		@RequestMapping(value = "/category/deleteParentAction", method = RequestMethod.POST)
 		public String categoryParentDeleteAction(HttpServletRequest request, int category_parent_id){
+			
+			logger.info("categoryParentDeleteAction..........");
 			
 			try {
 				categoryService.deleteCategory(category_parent_id);

@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="org.sos.vo.*, java.util.*"%>
 <%
-	List<CharacterVO> voList = (List<CharacterVO>)request.getAttribute("CharacterVO");
+	List<CharacterVO> characterList = (List<CharacterVO>)request.getAttribute("characterList");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,14 +40,14 @@
             </div>
         </div>
         <div class="row selectBox">
-            <%	for(CharacterVO vo : voList){ %>
+            <%	for(CharacterVO vo : characterList){ %>
             		<div class="select-element">
 		                <div class="image-frame">
 		                    <img class="no-selected" name="<%=vo.getCharacter_name() %>" 
 		                    id="<%=vo.getCharacter_id() %>" 
-		                    src="<%=vo.getCharacter_img() %>>"/>
+		                    src="/resources/images/<%=vo.getCharacter_img() %>"/>
 		                </div>
-		                <div class="nametag">정우성</div>
+		                <div class="nametag"><%=vo.getCharacter_name() %></div>
 		            </div>
             <% }%>
             <div class="dummy"></div>

@@ -26,8 +26,7 @@ import org.springframework.web.util.CookieGenerator;
 @RequestMapping(value = "/admin")
 public class AdminController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(AdminController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Inject
 	UserService userService;
@@ -44,6 +43,7 @@ public class AdminController {
 			@CookieValue(value = "user_id", defaultValue = "none") String user_id) {
 
 		logger.info("getAdminPage..........");
+		
 		// 로그인 되어 있으면 관리자 메인 페이지
 		if (loginInfo.equals("y")) {
 
@@ -62,7 +62,7 @@ public class AdminController {
 			}
 
 		}
-
+		
 		// 로그인 되어 있지 않으면 관리자 로그인 페이지
 		return "redirect:/admin/login";
 	}
@@ -70,14 +70,18 @@ public class AdminController {
 	// 관리자 로그인 페이지 요청
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getAdminLoginPage() {
+		
+		logger.info("getAdminLoginPage..........");
 
 		return "admin/login";
 	}
 
 	// 관리자 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String getAdminLogOut(HttpServletRequest request,
-			HttpServletResponse response) {
+	public String getAdminLogOut(HttpServletRequest request, HttpServletResponse response){
+		
+		logger.info("getAdminLogOut..........");
+		
 		CookieGenerator cookieGenerator = new CookieGenerator();
 		cookieGenerator.setCookieName("loginInfo");
 		cookieGenerator.addCookie(response, "n");
@@ -92,7 +96,7 @@ public class AdminController {
 	public String loginAction(HttpServletRequest request,
 			HttpServletResponse response, String user_id, String user_password) {
 
-		logger.info("Login Action!!");
+		logger.info("loginAction..........");
 
 		UserVO admin = new UserVO();
 

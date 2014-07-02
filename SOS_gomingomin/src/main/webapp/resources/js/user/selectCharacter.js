@@ -39,7 +39,7 @@ $("#user-selectCharacter-form .select").click(function(){
         alert((selectCount)+"개만 선택하셨습니다." + (3-selectCount) +"개를 더 선택해주세요.");
     } else {
         var $form = $("#user-selectCharacter-form");
-        $form.attr('action', '/user/character');
+        $form.attr('action', '/join/selectCharacter');
         $form.attr('method', 'post');
         $form.append("<input type='hidden' value='"+user_character1.id+"' name='user_character1'>")
             .append("<input type='hidden' value='"+user_character2.id+"' name='user_character2'>")

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sos.service.UserCharacterService;
 import org.sos.service.UserService;
 import org.sos.vo.PagingVO;
 import org.sos.vo.UserVO;
@@ -29,6 +30,9 @@ public class UserController {
 	@Inject
 	UserService userService;
 	
+	@Inject
+	UserCharacterService userCharacterService;
+	
 	/*
 	 * 로그인 요청
 	 */
@@ -38,8 +42,6 @@ public class UserController {
 
 		UserVO user = new UserVO();
 		CookieGenerator cookieGenerator = new CookieGenerator();
-		
-		
 		
 		try {
 			user = userService.readUser(user_id);
@@ -71,6 +73,18 @@ public class UserController {
 					cookieGenerator.setCookieName("user_name");
 					cookieGenerator.addCookie(response, URLEncoder.encode(user.getUser_name(), "utf-8"));
 				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				try {
+					
+					if(userCharacterService.readUserCharacter(user_id) == null){
+						
+						request.setAttribute("characterSelectFlag", "n");
+						
+					}
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -118,7 +132,7 @@ public class UserController {
 	 * 회원 기본정보 입력받아 DB 저장 후, 쿠키 생성
 	 */
 	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
-	public String joinAction(HttpServletResponse response, UserVO user) throws Exception{
+	public String joinAction(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
 		
 		logger.info("joinAction..........");
 		
@@ -143,7 +157,9 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/join/selectCharacter";	
+		request.setAttribute("result", "y");
+		
+		return "/user/ajax/returnResult";	
 	}
 	
 	/*
