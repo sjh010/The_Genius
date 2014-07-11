@@ -28,7 +28,7 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
 	<jsp:include page="../navbar/navbar.jsp" flush="false" />
-	<div class="search-No-login">
+	<div class="container">
 		<div class="content-title">
 			<h3><span class="glyphicon glyphicon-filter"></span><%=category.getCategory_name()+" " %> 카테고리 상품</h3>
 		</div>
