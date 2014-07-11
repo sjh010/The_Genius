@@ -16,12 +16,11 @@ $(function() {
 					},
 
 					success : function(data) {
-						console.log(data);
 						var productInfo = data.ProductSearchResponse.Products.Product;
 						var tmp = productInfo.ProductName;
-						title.innerText = tmp.substr(0, 39)+"...";
+						title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
 						image.src = productInfo.ProductImage250;
-						price.innerText = productInfo.ProductPrice + "원";
+						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
 					}
 			});
 		});
@@ -41,6 +40,19 @@ $(function() {
 			$(".search-result-list li:last").after(str + str + str);
 
 		};
+		
+		var formatnumber = function(v1,v2){
+				var str = new Array(); 
+				v1 = String(v1); 
+				for(var i=1;i<=v1.length;i++){ 
+					if(i % v2) str[v1.length-i] = v1.charAt(v1.length-i); 
+					else str[v1.length-i] = ','+v1.charAt(v1.length-i); 
+				}
+				return str.join('').replace(/^,/,''); 
+		};
+		
+		
+		
 		$('.content-body').bind('scroll', function(){
 			   if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight){
 				   //lastPostFunc();

@@ -109,7 +109,7 @@
 								<label for="user_birth" class="col-sm-2 control-label">생년월일</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control input-short"
-										name="user_birth"> 
+										name="user_birth" id="user_birth"> 
 									<label class="control-label input-msg"></label>
 								</div>
 							</div>
@@ -235,7 +235,7 @@
 </div>
 <!--/ 회원가입 끝 -->
 <!--/ 네비게이션 끝 -->
-<script src="/resources/js/lib/jquery-ui.min.js"></script>
+<script src="/resources/js/lib/bootstrap-datepicker.js"></script>
 <script src="/resources/js/regist.js"></script>
 <script>
 	var login = $("#login");

@@ -21,6 +21,7 @@
 		}
 	}
 	
+//	include = "./navbarLogin.jsp";
 	if(loginInfo.equals("y")){
 		include = "./navbarLogin.jsp";
 	}
