@@ -29,6 +29,18 @@
 	}
 	
 %>
+<!-- 검색창 -->
+<div class="search-bar-frame">
+    <form class="search-bar" action="/search" method="get">
+        <div class="search-bar-text">
+            <input type="text" id="search-bar-keyword" name="keyword">
+        </div>
+        <span class="search-bar-background"></span>
+        <span class="search-bar-icon"></span>
+        <input type="submit">
+    </form>
+</div>
+<!-- /검색창 끝 -->
 <jsp:include page="<%=include%>" flush="false">
 	<jsp:param value="<%=user_name%>" name="user_name" />
 	<jsp:param value="<%=user_id%>" name="user_id" />

@@ -1,0 +1,120 @@
+.main-spread-circle {
+    visibility: hidden;
+    width: 0;
+    height:0;
+    left:  100px;
+    top:  100px;
+    transition: visibility 0.5s, left 0.5s, top 0.5s, width 0.5s, height 0.5s;
+}
+.main-circle-hidden {
+    visibility: hidden;
+    transition: visibility 0.1ms;
+}
+
+.main-inner-show {
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.nav-menu-0-rotate {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -moz-transform:   rotateY(0deg);
+    -o-transform:      rotateY(0deg);
+    -ms-transform:    rotateY(0deg);
+    transition : transform .1s ease-out;
+    -webkit-transition: -webkit-transform .1s ease-out;
+    -moz-transform: -moz-transform .1s ease-out;
+    -o-transform: -o-transform .1s ease-out;
+    -ms-transform: -ms-transform .1s ease-out;
+}
+.nav-menu-90-rotate {
+    transform: rotateY(90deg);
+    -webkit-transform: rotateY(90deg);
+    -moz-transform:   rotateY(90deg);
+    -o-transform:      rotateY(90deg);
+    -ms-transform:    rotateY(90deg);
+    transition : transform .1s ease-out;
+    -webkit-transition: -webkit-transform .1s ease-out;
+    -moz-transform: -moz-transform .1s ease-out;
+    -o-transform: -o-transform .1s ease-out;
+    -ms-transform: -ms-transform .1s ease-out;
+
+}
+
+.search-character-circle {
+    top: 6%;
+    left: 2%;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    transition: margin 0.5s, left 0.5s, top 0.5s, width 0.5s, height 0.5s;
+}
+
+.search-character-circle .search-character img{
+    width: 50px;
+    height: 50px;
+    margin :-25px 0 0 -25px;
+    transition: margin 0.5s, width 0.5s, height 0.5s;
+}
+
+.search-character-circle .search-character {
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    transition: background 0.5s, width 0.5s, height 0.5s;
+}
+
+.type-hidden {
+	opacity: 0;
+    visibility: hidden;
+    transition : visibility 0.5s, opacity 0.5s ;
+}
+
+.type1-open .type-inner .content-title,
+.type1-open .type-inner .content-close,
+.type1-open .type-inner .content-body{
+    opacity: 1;
+    visibility: visible;
+    transition : opacity 0.5s linear 0.8s;
+}
+.type2-ready {
+    left : 27%;
+    transition : left 1s;
+}
+
+.type2-open {
+    left :3%;
+    transition : left 1s;
+}
+.type2-open .type-inner .content-title,
+.type2-open .type-inner .content-close,
+.type2-open .type-inner .content-body {
+    opacity: 1;
+    visibility: visible;
+    transition : opacity 0.5s linear 0.5s;
+}
+.type3-open {
+    left :6%;
+    transition : left 1s;
+}
+.type3-open .type-inner .content-title,
+.type3-open .type-inner .content-close,
+.type3-open .type-inner .content-body {
+    opacity: 1;
+    visibility: visible;
+    transition : opacity 0.5s linear 0.5s;
+}
+.type3-ready {
+    left : 60%;
+    transition : left 1s;
+}
+.type2-close {
+    left : 94%;
+    transition : left 1s;
+}
+
+.type3-close {
+    left : 97%;
+    transition : left 1s;
+}
