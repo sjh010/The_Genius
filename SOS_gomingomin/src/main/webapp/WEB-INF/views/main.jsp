@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="/resources/css/animate.css">
 </head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="/resources/js/lib/jquery-ui.min.js"></script>
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
@@ -35,10 +34,10 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li>노트북</li>
-						<li>태블릿</li>
-						<li>이어폰/헤드셋</li>
-						<li>마우스</li>
+						<li><a href="/search/searchCategory?category_id=11">노트북</a></li>
+						<li><a href="/search/searchCategory?category_id=12">태블릿</a></li>
+						<li><a href="/search/searchCategory?category_id=13">이어폰/헤드셋</a></li>
+						<li><a href="/search/searchCategory?category_id=14">마우스</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -49,10 +48,10 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li>운동화</li>
-						<li>로퍼</li>
-						<li>구두</li>
-						<li>샌들/슬리퍼</li>
+						<li><a href="/search/searchCategory?category_id=15">운동화</a></li>
+						<li><a href="/search/searchCategory?category_id=16">로퍼</a></li>
+						<li><a href="/search/searchCategory?category_id=17">구두</a></li>
+						<li><a href="/search/searchCategory?category_id=18">샌들/슬리퍼</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -63,9 +62,10 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li class="depth2-dummy">노트북파우치</li>
-						<li>백팩</li>
-						<li>크로스백</li>
+						<li><a href="/search/searchCategory?category_id=19">노트북파우치</a></li>
+						<li><a href="/search/searchCategory?category_id=20">백팩</a></li>
+						<li><a href="/search/searchCategory?category_id=21">크로스백</a></li>
+						<li><a href="/search/searchCategory?category_id=22">샌들/슬리퍼</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -76,10 +76,10 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li>선글라스</li>
-						<li>지급</li>
-						<li>벨트</li>
-						<li>향수</li>
+						<li><a href="/search/searchCategory?category_id=23">선글라스</a></li>
+						<li><a href="/search/searchCategory?category_id=24">지갑</a></li>
+						<li><a href="/search/searchCategory?category_id=25">벨트</a></li>
+						<li><a href="/search/searchCategory?category_id=26">향수</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -90,10 +90,10 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li>청바지</li>
-						<li>정장</li>
-						<li>아웃도어</li>
-						<li>카라티</li>
+						<li><a href="/search/searchCategory?category_id=27">청바지</a></li>
+						<li><a href="/search/searchCategory?category_id=28">정장</a></li>
+						<li><a href="/search/searchCategory?category_id=29">아웃도어</a></li>
+						<li><a href="/search/searchCategory?category_id=30">카라티</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -104,9 +104,9 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li class="depth2-dummy">뷔페/레스토랑</li>
-						<li>여가/레포츠/테마파크</li>
-						<li>커피/피자/베이커리</li>
+						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=31">뷔페/레스토랑</a></li>
+						<li><a href="/search/searchCategory?category_id=32">여가/레포츠/테마파크</a></li>
+						<li><a href="/search/searchCategory?category_id=33">커피/피자/베이커리</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -117,9 +117,9 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li class="depth2-dummy">헬스</li>
-						<li>자전거</li>
-						<li>스키/보드 장비</li>
+						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=34">헬스</a></li>
+						<li><a href="/search/searchCategory?category_id=35">자전거</a></li>
+						<li><a href="/search/searchCategory?category_id=36">스키/보드 장비</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -130,9 +130,9 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li class="depth2-dummy">TV</li>
-						<li>냉장고</li>
-						<li>에어컨</li>
+						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=37">TV</a></li>
+						<li><a href="/search/searchCategory?category_id=38">냉장고</a></li>
+						<li><a href="/search/searchCategory?category_id=39">에어컨</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -144,6 +144,7 @@
 	</div>
 	<!--/ 메인페이지 끝-->
 	<script>
+		
 		$(".main-circle").hover(
 				function() {
 					$(this).children(".main-outer-circle").addClass(

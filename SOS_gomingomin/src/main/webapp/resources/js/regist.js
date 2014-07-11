@@ -34,18 +34,18 @@ var form = $("#user-join-form");
         } else {
             has_success(user_id, "사용가능합니다.");
             user_id_ok = true;
-//            $.ajax({
-//                data : user_id.val(),
-//                url: "/user/checkUserId",
-//                success : function(data){
-//                    if(data == 'y'){
-//                          has_success(user_id,"사용가능합니다.");
-//                    } else {
-//                          user_id_ok = false;
-//                          has_error(user_id, "중복된 아이디입니다.");
-//                    }
-//                }
-//            });
+            $.ajax({
+                data : user_id.val(),
+                url: "/user/checkUserId",
+                success : function(data){
+                    if(data == 'y'){
+                          has_success(user_id,"사용가능합니다.");
+                    } else {
+                          user_id_ok = false;
+                          has_error(user_id, "중복된 아이디입니다.");
+                    }
+                }
+            });
         }
     };
     user_id.focusout(function(){userIdCheck();});
@@ -461,19 +461,20 @@ $("#user-join-form .ok").click(function () {
             character3 : selected3.children()[0].id
         };
         console.log(param);
-//        $.ajax({
-//            data : param,
-//            url: "/user/join",
-//            success : function(data){
-//                /*
-//                    아이디 정보 받아서 cookie 저장 후
-//                    캐릭터 선택 페이지로 redirect
-//                 */
-//            },
-//            failure : function(data){
-//                console.log("에러입니다. 다음에 다시 시도해주세요..");
-//            }
-//        });
+        $.ajax({
+            data : param,
+            url: "/user/join",
+            success : function(data){
+            	console.log(data);
+                /*
+                    아이디 정보 받아서 cookie 저장 후
+                    캐릭터 선택 페이지로 redirect
+                 */
+            },
+            failure : function(data){
+                console.log("에러입니다. 다음에 다시 시도해주세요..");
+            }
+        });
     }
 });
 

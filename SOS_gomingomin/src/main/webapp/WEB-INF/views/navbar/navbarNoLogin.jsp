@@ -235,6 +235,7 @@
 </div>
 <!--/ 회원가입 끝 -->
 <!--/ 네비게이션 끝 -->
+<script src="/resources/js/lib/jquery-ui.min.js"></script>
 <script src="/resources/js/regist.js"></script>
 <script>
 	var login = $("#login");
@@ -245,7 +246,9 @@
 	});
 
 	login.click(function() {
-		$('#loginModal').modal('toggle');
+		$('#loginModal').modal({
+			backdrop : true
+		});
 	});
 
 	join.click(function() {
