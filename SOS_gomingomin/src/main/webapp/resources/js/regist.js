@@ -133,9 +133,10 @@ var form = $("#user-join-form");
             
             $.ajax({
             	data : {user_sex : user_sex.val()},
-            	url : '/user/ajax/getCharacterInfo',
+            	url : '/user/getCharacterInfo',
             	dataType : 'json',
             	success : function(data){
+            		// /user/ajax/getCharacterInfo
             		console.log(data);
             	}
             });

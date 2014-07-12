@@ -2,6 +2,7 @@ package org.sos.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sos.service.CharacterService;
 import org.sos.service.UserCharacterService;
 import org.sos.service.UserService;
+import org.sos.vo.CharacterVO;
 import org.sos.vo.PagingVO;
 import org.sos.vo.UserCharacterVO;
 import org.sos.vo.UserVO;
@@ -33,6 +36,9 @@ public class UserController {
 	
 	@Inject
 	UserCharacterService userCharacterService;
+	
+	@Inject
+	CharacterService characterService;
 	
 	/*
 	 * 로그인 요청
@@ -188,6 +194,24 @@ public class UserController {
 		request.setAttribute("result", checkFlag);
 		
 		return "/user/ajax/returnResult";
+	}
+	
+	@RequestMapping(value = "/user/getCharacterInfo", method = RequestMethod.GET)
+	public String getCharacterInfo(String user_sex, HttpServletRequest request) throws Exception{
+		logger.info("getCharacterInfo.............." + user_sex);
+		//USER_SEX와 같은 것이 된 것만 
+		
+		List<CharacterVO> list = characterService.readSexCharacterList(user_sex);
+		logger.info(list.toString());
+		
+		for(int i=0; i<list.size(); i++){
+			list.get(i).toString();
+		}
+		
+		request.setAttribute("characterList", list);
+		
+		return "user/ajax/getCharacterInfo";
+		
 	}
 	
 	/*

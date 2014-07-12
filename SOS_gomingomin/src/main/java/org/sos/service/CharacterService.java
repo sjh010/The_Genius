@@ -21,4 +21,6 @@ public interface CharacterService {
 
 	public void registFile(FileVO file) throws Exception;
 	
+	public List<CharacterVO> readSexCharacterList(String user_sex) throws Exception;
+	
 }

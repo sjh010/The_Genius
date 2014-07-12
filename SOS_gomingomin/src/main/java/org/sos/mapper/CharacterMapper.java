@@ -66,9 +66,19 @@ public interface CharacterMapper {
 				+ "type_enjoyment, type_pleasure, type_harmony "
 		  + "FROM "
   		    	+ "tbl_character ")
-	public List<CharacterVO> readAllCahracterList();
+	public List<CharacterVO> readAllCharacterList();
+	
+	@Select("SELECT "
+				+ "character_id, character_name, character_img, "
+				+ "type_adventure, type_practice, type_rule, type_tradition, "
+				+ "type_enjoyment, type_pleasure, type_harmony "
+		  + "FROM "
+		    	+ "tbl_character "
+		  + "WHERE "
+		    	+ "character_sex = #{user_sex}")
+	public List<CharacterVO> readSexCharacterList(String user_sex);
 
-	@Update("UPDATE "
+ 	@Update("UPDATE "
 			    + "tbl_character "
 		  + "SET "
 			    + "character_name = #{character_name}, "

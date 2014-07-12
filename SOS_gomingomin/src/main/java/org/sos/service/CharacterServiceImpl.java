@@ -40,7 +40,7 @@ public class CharacterServiceImpl implements CharacterService {
 	@Override
 	public List<CharacterVO> readAllCharacterList() throws Exception {
 		// TODO Auto-generated method stub
-		return characterMapper.readAllCahracterList();
+		return characterMapper.readAllCharacterList();
 	}
 
 	@Override
@@ -61,6 +61,15 @@ public class CharacterServiceImpl implements CharacterService {
 
 		
 	}
+
+	@Override
+	public List<CharacterVO> readSexCharacterList(String user_sex)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return characterMapper.readSexCharacterList(user_sex);
+	}
+	
+	
 
 
 
