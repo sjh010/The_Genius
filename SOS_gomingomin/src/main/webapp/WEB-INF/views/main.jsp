@@ -61,10 +61,9 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li><a href="/search/searchCategory?category_id=19">노트북파우치</a></li>
+						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=19">노트북파우치</a></li>
 						<li><a href="/search/searchCategory?category_id=20">백팩</a></li>
 						<li><a href="/search/searchCategory?category_id=21">크로스백</a></li>
-						<li><a href="/search/searchCategory?category_id=22">샌들/슬리퍼</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -75,10 +74,10 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li><a href="/search/searchCategory?category_id=23">선글라스</a></li>
-						<li><a href="/search/searchCategory?category_id=24">지갑</a></li>
-						<li><a href="/search/searchCategory?category_id=25">벨트</a></li>
-						<li><a href="/search/searchCategory?category_id=26">향수</a></li>
+						<li><a href="/search/searchCategory?category_id=22">선글라스</a></li>
+						<li><a href="/search/searchCategory?category_id=23">지갑</a></li>
+						<li><a href="/search/searchCategory?category_id=24">벨트</a></li>
+						<li><a href="/search/searchCategory?category_id=25">향수</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -89,10 +88,10 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li><a href="/search/searchCategory?category_id=27">청바지</a></li>
-						<li><a href="/search/searchCategory?category_id=28">정장</a></li>
-						<li><a href="/search/searchCategory?category_id=29">아웃도어</a></li>
-						<li><a href="/search/searchCategory?category_id=30">카라티</a></li>
+						<li><a href="/search/searchCategory?category_id=26">청바지</a></li>
+						<li><a href="/search/searchCategory?category_id=27">정장</a></li>
+						<li><a href="/search/searchCategory?category_id=28">아웃도어</a></li>
+						<li><a href="/search/searchCategory?category_id=29">카라티</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -103,9 +102,9 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=31">뷔페/레스토랑</a></li>
-						<li><a href="/search/searchCategory?category_id=32">여가/레포츠/테마파크</a></li>
-						<li><a href="/search/searchCategory?category_id=33">커피/피자/베이커리</a></li>
+						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=30">뷔페/레스토랑</a></li>
+						<li><a href="/search/searchCategory?category_id=31">여가/레포츠/테마파크</a></li>
+						<li><a href="/search/searchCategory?category_id=32">커피/피자/베이커리</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -117,8 +116,8 @@
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
 						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=34">헬스</a></li>
-						<li><a href="/search/searchCategory?category_id=35">자전거</a></li>
-						<li><a href="/search/searchCategory?category_id=36">스키/보드 장비</a></li>
+						<li><a href="/search/searchCategory?category_id=33">자전거</a></li>
+						<li><a href="/search/searchCategory?category_id=34">스키/보드 장비</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
