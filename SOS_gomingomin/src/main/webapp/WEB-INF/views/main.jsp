@@ -115,9 +115,9 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=34">헬스</a></li>
-						<li><a href="/search/searchCategory?category_id=33">자전거</a></li>
-						<li><a href="/search/searchCategory?category_id=34">스키/보드 장비</a></li>
+						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=33">헬스</a></li>
+						<li><a href="/search/searchCategory?category_id=34">자전거</a></li>
+						<li><a href="/search/searchCategory?category_id=35">스키/보드 장비</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
@@ -128,9 +128,9 @@
 			<div class="main-circle">
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
-						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=37">TV</a></li>
-						<li><a href="/search/searchCategory?category_id=38">냉장고</a></li>
-						<li><a href="/search/searchCategory?category_id=39">에어컨</a></li>
+						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=36">TV</a></li>
+						<li><a href="/search/searchCategory?category_id=37">냉장고</a></li>
+						<li><a href="/search/searchCategory?category_id=38">에어컨</a></li>
 					</ul>
 				</div>
 				<div class="main-outer-circle">
