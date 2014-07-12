@@ -139,26 +139,26 @@
 						</div>
 						<hr>
 						<div id="img_wrapper">
-							<img id="img_1" src="/resources/images/character/한효주2.png">
-							<img id="img_2" src="/resources/images/character/고현정1.png">
-							<img id="img_3" src="/resources/images/character/공효진.png">
-							<img id="img_4" src="/resources/images/character/김명민.png">
-							<img id="img_5" src="/resources/images/character/김수현.png">
-							<img id="img_6" src="/resources/images/character/김혜수.png">
-							<img id="img_7" src="/resources/images/character/김희애.png">
-							<img id="img_8" src="/resources/images/character/류승범.png">
-							<img id="img_9" src="/resources/images/character/황정민.png">
-							<img id="img_10" src="/resources/images/character/박해일.png">
-							<img id="img_11" src="/resources/images/character/소지섭.png">
-							<img id="img_12" src="/resources/images/character/손예진.png">
-							<img id="img_13" src="/resources/images/character/송중기.png">
-							<img id="img_14" src="/resources/images/character/안성기.png">
-							<img id="img_15" src="/resources/images/character/유해진.png">
-							<img id="img_16" src="/resources/images/character/이정재.png">
-							<img id="img_17" src="/resources/images/character/전지현.png">
-							<img id="img_18" src="/resources/images/character/이병헌.png">
-							<img id="img_19" src="/resources/images/character/이영애.png">
-							<img id="img_20" src="/resources/images/character/하정우.png">
+							<img id="1" src="/resources/images/character/한효주2.png">
+							<img id="2" src="/resources/images/character/고현정1.png">
+							<img id="3" src="/resources/images/character/공효진.png">
+							<img id="4" src="/resources/images/character/김명민.png">
+							<img id="5" src="/resources/images/character/김수현.png">
+							<img id="6" src="/resources/images/character/김혜수.png">
+							<img id="7" src="/resources/images/character/김희애.png">
+							<img id="8" src="/resources/images/character/류승범.png">
+							<img id="9" src="/resources/images/character/황정민.png">
+							<img id="10" src="/resources/images/character/박해일.png">
+							<img id="11" src="/resources/images/character/소지섭.png">
+							<img id="12" src="/resources/images/character/손예진.png">
+							<img id="13" src="/resources/images/character/송중기.png">
+							<img id="14" src="/resources/images/character/안성기.png">
+							<img id="15" src="/resources/images/character/유해진.png">
+							<img id="16" src="/resources/images/character/이정재.png">
+							<img id="17" src="/resources/images/character/전지현.png">
+							<img id="18" src="/resources/images/character/이병헌.png">
+							<img id="19" src="/resources/images/character/이영애.png">
+							<img id="20" src="/resources/images/character/하정우.png">
 						</div>
 						<div class="btnNav">
 							<span id="left"><img src="/resources/images/icon/left.png">
