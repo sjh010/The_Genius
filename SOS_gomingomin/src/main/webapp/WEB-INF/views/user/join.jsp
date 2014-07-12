@@ -1,170 +1,224 @@
 <!-- 
-  Created by Saemi Lim on 2014-06-13.
+  Created by Saemi Lim on 2014-06-17.
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>고민고민</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="/resources/css/style.css">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+<meta charset="UTF-8">
+<title>고민고민</title>
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/resources/css/lib/datepicker.css"/>
+<link rel="stylesheet" href="/resources/css/top.css">
+<link rel="stylesheet" href="/resources/css/import.css">
+<link rel="stylesheet" href="/resources/css/animate.css">
 </head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <body>
-<jsp:include page="../navbar/navbar.jsp" flush="false"/>
-<div class="container">
-    <div class="container-header">
-        <div class="page-header">
-            <h1>회원가입 <small>기본정보입력</small></h1>
-        </div>
-    </div>
-    <div class="container-body">
-        <form class="form-horizontal" role="form" id="user-join-form">
-            <div class="form-group ">
-                <label for="user_id" class="col-sm-2 control-label">아이디</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control input-short" name="user_id" placeholder="5자리 이상 영문 소문자/숫자">
-                    <label class="control-label user-id-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_password" class="col-sm-2 control-label">비밀번호</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control input-short" name="user_password" placeholder="8자리 이상">
-                    <label class="control-label user-pw-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_passwordck" class="col-sm-2 control-label">비밀번호 확인</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control input-short" name="user_passwordck" placeholder="비밀번호 확인">
-                    <label class="control-label user-pwck-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_name" class="col-sm-2 control-label">이름</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control input-short" name="user_name">
-                    <label class="control-label user-name-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_birth" class="col-sm-2 control-label">생년월일</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control input-short" name="user_birth">
-                    <label class="control-label user-birth-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_sex" class="col-sm-2 control-label">성별</label>
-                <div class="col-sm-10">
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default">
-                            <input type="radio" name="user_sex" value="M">남자
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" name="user_sex" value="F">여자
-                        </label>
-                    </div>
-                    <label class="control-label user-sex-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_email" class="col-sm-2 control-label">이메일</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control email" name="email_id"/>@
-                    <div class="email" id="email-select-box">
-                        <select class="form-control " name="email_host">
-                            <option value=""></option>
-                            <option value="gmail.com">gmail.com</option>
-                            <option value="nate.com">nate.com</option>
-                            <option value="naver.com">naver.com</option>
-                            <option value="edit">직접입력</option>
-                        </select>
-                    </div>
-                    <label class="control-label user-email-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="zipcode" class="col-sm-2 control-label">우편번호</label>
-                <div class="col-sm-10 zipcode">
-                    <span><input type="text" class="form-control" name="zipcode1"></span>
-                    <span>-</span>
-                    <span><input type="text" class="form-control" name="zipcode2"></span>
-                    <span><button class="btn btn-default" id="searchZipcode">우편번호 검색</button></span>
-                    <label class="control-label user-address-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="address" class="col-sm-2 control-label">주소</label>
-                <div class="col-sm-10 ">
-                    <input type="text" class="form-control address input-long" name="address1">
-                    <input type="text" class="form-control input-long" name="address2">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_phone" class="col-sm-2 control-label">전화번호</label>
-                <div class="col-sm-10">
-                    <select class="form-control mobile" name="phone1">
-                        <option value="">선택</option>
-                        <option value="02">02</option>
-                        <option value="051">051</option>
-                        <option value="053">053</option>
-                        <option value="032">032</option>
-                        <option value="062">062</option>
-                        <option value="042">042</option>
-                        <option value="052">052</option>
-                        <option value="044">044</option>
-                        <option value="031">031</option>
-                        <option value="033">033</option>
-                        <option value="043">043</option>
-                        <option value="041">041</option>
-                        <option value="063">063</option>
-                        <option value="061">061</option>
-                        <option value="054">054</option>
-                        <option value="055">055</option>
-                        <option value="064">064</option>
-                    </select>
-                    <span>-</span>
-                    <input type="text" class="form-control mobile" name="phone2"/>
-                    <span>-</span>
-                    <input type="text" class="form-control mobile" name="phone3"/>
-                    <label class="control-label user-phone-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="user_mobile" class="col-sm-2 control-label">휴대전화</label>
-                <div class="col-sm-10">
-                    <select class="form-control mobile" name="mobile1">
-                        <option value="">선택</option>
-                        <option value="011">011</option>
-                        <option value="016">016</option>
-                        <option value="017">017</option>
-                        <option value="019">019</option>
-                        <option value="010">010</option>
-                    </select>
-                    <span>-</span>
-                    <input type="text" class="form-control mobile" name="mobile2"/>
-                    <span>-</span>
-                    <input type="text" class="form-control mobile" name="mobile3"/>
-                    <label class="control-label user-mobile-msg"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10 form-button">
-                    <button type="button" class="btn btn-default ok">가입</button>
-                    <button type="button" class="btn btn-default cancel">취소</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<script src="/resources/js/user/join.js"></script>
+	<jsp:include page="../navbar/navbar.jsp" flush="false" />
+	<!-- 메인페이지 시작-->
+	<div class="container">
+		<div class="container-header">
+			<img src="/resources/images/logo/join.png">
+		</div>
+		<div class="container-body">
+		<form class="form-horizontal" role="form" id="user-join-form">
+					<div id="user-info">
+						<div class="join-header">
+							<span class="sub-title">기본정보입력</span> <span class="sub-desc">가입에
+								필요한 기본적인 회원정보를 입력해주세요</span>
+						</div>
+						<hr>
+						<div class="input-area">
+							<div class="form-group ">
+								<label for="user_id" class="col-sm-2 control-label">아이디</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control input-short"
+										name="user_id" placeholder="이메일 주소"> 
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="user_password" class="col-sm-2 control-label">비밀번호</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control input-short"
+										name="user_password" placeholder="8자리 이상"> 
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="user_passwordck" class="col-sm-2 control-label">비밀번호 확인</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control input-short"
+										name="user_password_ck" placeholder="비밀번호 확인"> 
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="user_name" class="col-sm-2 control-label">이름</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control input-short"
+										name="user_name"> 
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="user_birth" class="col-sm-2 control-label">생년월일</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control input-short"
+										name="user_birth" id="user_birth"> 
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="user_sex" class="col-sm-2 control-label">성별</label>
+								<div class="col-sm-10">
+									<div class="btn-group" data-toggle="buttons">
+										<label class="btn btn-default"> 
+											<input type="radio" name="user_sex" value="M">남자
+										</label> 
+										<label class="btn btn-default"> 
+											<input type="radio" name="user_sex" value="F">여자
+										</label>
+									</div>
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="zipcode" class="col-sm-2 control-label">주소</label>
+								<div class="col-sm-10 zipcode">
+									<span>
+										<input type="text" class="form-control" name="zipcode1"></span>
+										<span>-</span>
+										<span><input type="text" class="form-control" name="zipcode2">
+									</span> 
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="address" class="col-sm-2 control-label"></label>
+								<div class="col-sm-10 ">
+									<input type="text" class="form-control address input-long" name="address1"> 
+									<input type="text" class="form-control input-long" name="address2">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="user_phone" class="col-sm-2 control-label">휴대전화</label>
+
+								<div class="col-sm-10">
+									<select class="form-control phone" name="phone1">
+										<option value="">선택</option>
+										<option value="010">010</option>
+										<option value="011">011</option>
+										<option value="016">016</option>
+										<option value="017">017</option>
+										<option value="019">019</option>
+									</select> 
+									<span>-</span> 
+									<input type="text" class="form-control phone" name="phone2" /> 
+									<span>-</span> 
+									<input type="text" class="form-control phone" name="phone3" /> 
+									<label class="control-label input-msg"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="selectCharacter" id="character-info"
+						style="display: none">
+						<div class="join-header">
+							<span class="sub-title">캐릭터정보 선택</span> <span class="sub-desc">자신의
+								성향을 나타내는 캐릭터를 드래그해서 올려주세요</span>
+						</div>
+						<hr>
+						<div id="img_wrapper">
+							<img id="img_1" src="/resources/images/character/한효주2.png">
+							<img id="img_2" src="/resources/images/character/고현정1.png">
+							<img id="img_3" src="/resources/images/character/공효진.png">
+							<img id="img_4" src="/resources/images/character/김명민.png">
+							<img id="img_5" src="/resources/images/character/김수현.png">
+							<img id="img_6" src="/resources/images/character/김혜수.png">
+							<img id="img_7" src="/resources/images/character/김희애.png">
+							<img id="img_8" src="/resources/images/character/류승범.png">
+							<img id="img_9" src="/resources/images/character/황정민.png">
+							<img id="img_10" src="/resources/images/character/박해일.png">
+							<img id="img_11" src="/resources/images/character/소지섭.png">
+							<img id="img_12" src="/resources/images/character/손예진.png">
+							<img id="img_13" src="/resources/images/character/송중기.png">
+							<img id="img_14" src="/resources/images/character/안성기.png">
+							<img id="img_15" src="/resources/images/character/유해진.png">
+							<img id="img_16" src="/resources/images/character/이정재.png">
+							<img id="img_17" src="/resources/images/character/전지현.png">
+							<img id="img_18" src="/resources/images/character/이병헌.png">
+							<img id="img_19" src="/resources/images/character/이영애.png">
+							<img id="img_20" src="/resources/images/character/하정우.png">
+						</div>
+						<div class="btnNav">
+							<span id="left"><img src="/resources/images/icon/left.png">
+							</span> <span id="right"><img
+								src="/resources/images/icon/right.png"> </span>
+						</div>
+						<!--선택한 캐릭터(Drag & Drop)-->
+						<section class="character">
+							<div id="selectedCharacter">
+								<div class="selected" id="character1" ondrop="drop(event)"
+									ondragover="allowDrop(event)"></div>
+								<div class="selected" id="character2" ondrop="drop(event)"
+									ondragover="allowDrop(event)"></div>
+								<div class="selected" id="character3" ondrop="drop(event)"
+									ondragover="allowDrop(event)"></div>
+							</div>
+						</section>
+						<div class="character-button">
+							<button class="btn btn-info refresh">초기화</button>
+						</div>
+					</div>
+					<hr>
+					<div class="join-nav">
+						<button type="button" class="btn btn-default" id="join-prev" disabled>
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</button>
+						<button type="button" class="btn btn-default" id="join-next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</button>
+					</div>
+					<div class="button-area">
+						<button type="button" class="btn btn-default ok">확인</button>
+						<button type="button" class="btn btn-default cancel">취소</button>
+					</div>
+				</form>
+		</div>
+		
+	</div>
+	<!--/ 메인페이지 끝-->
+	<script src="/resources/js/lib/bootstrap-datepicker.js"></script>
+<script src="/resources/js/regist.js"></script>
+	<script>
+		
+		$(".main-circle").hover(
+				function() {
+					$(this).children(".main-outer-circle").addClass(
+							"main-spread-circle");
+					$(this).children(".main-inner-circle").addClass(
+							"main-inner-show");
+					$(this).children(".depth1-info").addClass(
+							"main-circle-hidden");
+				},
+				function() {
+					$(this).children(".main-outer-circle").removeClass(
+							"main-spread-circle");
+					$(this).children(".main-inner-circle").removeClass(
+							"main-inner-show");
+					$(this).children(".depth1-info").removeClass(
+							"main-circle-hidden");
+				});
+	</script>
 </body>
 </html>

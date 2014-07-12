@@ -6,41 +6,68 @@
 <%@page import="org.sos.vo.*, java.util.List"%>
 <%
 	String user_name = request.getParameter("user_name");
-	List<CategoryVO> categoryList = (List<CategoryVO>)request.getAttribute("categoryList");
 %>
 
 
- <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-
-<!-- navbar -->
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">NoGomin</a>
-        </div>
-
-		<div class="collapse navbar-collapse" id="navbar">
-			<ul class="nav navbar-nav navbar-right">
-	        	<li class="dropdown">
-	                <a href="" class="dropdown-toggle" data-toggle="dropdown"><%=user_name%>님<b class="caret"></b></a>
-	                <ul class="dropdown-menu">
-	                    <li><a href="/myPage">마이페이지</a></li>
-	                    <li><a href="/logout">로그아웃</a></li>
-	                </ul>
-	            </li>
-	            <li><a href="/shoppingInfo">나의쇼핑정보</a></li>
-	        </ul>
+<!-- 네비게이션 -->
+<nav>
+	<div class="nav">
+		<div class="nav-menu" id="home">
+			<img class="nav-menu-img" src="/resources/images/icon/white/home.png">
+			<span class="nav-menu-title">Home</span>
 		</div>
-    </div>
-    <!-- /.container-fluid -->
+		<div class="nav-menu" id="logout">
+			<img class="nav-menu-img"
+				src="/resources/images/icon/white/logout.png"> <span
+				class="nav-menu-title">Exit</span>
+		</div>
+		<div class="nav-menu" id="mypage">
+			<img class="nav-menu-img" src="/resources/images/icon/white/mypage.png">
+			<span class="nav-menu-title">My</span>
+		</div>
+	</div>
 </nav>
+<!--/ 네비게이션 끝 -->
+<script>
+	var logout = $("#logout");
+	var mypage = $("#mypage");
+
+	$("#home").click(function() {
+		location.href = "/";
+	});
+
+	logout.click(function() {
+		location.href="/logout";
+	});
+
+	mypage.click(function() {
+		location.href = "/myPage";
+	});
+	
+
+	$("#user-login-form .ok").click(function(){
+		var $form = $("#user-login-form");
+		$.ajax({
+	    	data : $form.serialize(),
+	    	type : "post",
+	    	dataType : "json",
+	    	url : "/loginAction",
+	    	success : function(data){
+	    		if((data.result == null) || (data.result == undefined)){
+	    			location.reload();
+	    		} else {
+	    			alert(data.result);
+	    		}
+	        }
+	    });
+	});
 
 
+	$(".nav-menu").hover(function() {
+		$(this).find(".nav-menu-title").addClass("nav-menu-0-rotate");
+		$(this).find(".nav-menu-img").addClass("nav-menu-90-rotate");
+	}, function() {
+		$(this).find(".nav-menu-title").removeClass("nav-menu-0-rotate");
+		$(this).find(".nav-menu-img").removeClass("nav-menu-90-rotate");
+	});
+</script>
