@@ -32,14 +32,15 @@ var form = $("#user-join-form");
         if (!regEmail.test(user_id.val())) {
             has_error(user_id, "이메일 형식이 맞지 않습니다.");
         } else {
-            has_success(user_id, "사용가능합니다.");
-            user_id_ok = true;
             $.ajax({
-                data : user_id.val(),
+                data : {user_id : user_id.val()},
                 url: "/user/checkUserId",
+                dataType : "json",
                 success : function(data){
-                    if(data == 'y'){
+                	console.log(data);
+                    if(data.result == "y"){
                           has_success(user_id,"사용가능합니다.");
+                          user_id_ok = true;
                     } else {
                           user_id_ok = false;
                           has_error(user_id, "중복된 아이디입니다.");
@@ -440,20 +441,22 @@ $("#user-join-form .ok").click(function () {
     } else {
         var param = {
             user_id : user_id.val(),
-            user_pw : user_pw.val(),
+            user_password : user_pw.val(),
             user_name : user_name.val(),
             user_addr : zipcode1.val()+'----'+zipcode2.val()+'____'+address1.val()+'----'+address2.val(),
             user_phone : phone1.val()+'-'+phone2.val()+'-'+phone3.val(),
             user_birth : user_birth.val(),
             user_sex : user_sex.val(),
-            character1 : selected1.children()[0].id,
-            character2 : selected2.children()[0].id,
-            character3 : selected3.children()[0].id
+            user_character1 : selected1.children()[0].id,
+            user_character2 : selected2.children()[0].id,
+            user_character3 : selected3.children()[0].id
         };
         console.log(param);
         $.ajax({
             data : param,
-            url: "/user/join",
+            type : 'post',
+            dataType : 'json',
+            url: "/joinAction",
             success : function(data){
             	console.log(data);
                 /*

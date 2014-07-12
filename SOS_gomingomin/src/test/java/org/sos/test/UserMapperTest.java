@@ -1,8 +1,5 @@
 package org.sos.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -35,8 +32,6 @@ public class UserMapperTest {
 		vo.setUser_birth("1985-11-19");
 		vo.setUser_sex("F");
 		vo.setUser_addr("����� ���ϱ� ��õ�� 412-1");
-		vo.setUser_email("thgns@hanmail.net");
-		vo.setUser_mobile("010-9135-8519");
 		vo.setUser_phone("010-9135-8519");
 		userService.registUser(vo);
 	}
@@ -51,8 +46,6 @@ public class UserMapperTest {
 		System.out.println(vo.getUser_birth());
 		System.out.println(vo.getUser_sex());
 		System.out.println(vo.getUser_addr());
-		System.out.println(vo.getUser_email());
-		System.out.println(vo.getUser_mobile());
 		System.out.println(vo.getUser_phone());
 	}
 	
@@ -65,8 +58,6 @@ public class UserMapperTest {
 		vo.setUser_birth("1985-11-19");
 		vo.setUser_sex("F");
 		vo.setUser_addr("����� ���ϱ� ��õ�� 412-1");
-		vo.setUser_email("thgns@hanmail.net");
-		vo.setUser_mobile("010-9135-8519");
 		vo.setUser_phone("010-9135-8519");
 		userService.updateUser(vo);
 	}

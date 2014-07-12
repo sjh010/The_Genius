@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.sos.service.UserCharacterService;
 import org.sos.service.UserService;
 import org.sos.vo.PagingVO;
+import org.sos.vo.UserCharacterVO;
 import org.sos.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -125,6 +126,7 @@ public class UserController {
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String getJoinPage(){
 		
+		System.out.println("join 페이지에 오신 것을 환영합니다.");
 		return "user/join"; 
 	}
 	
@@ -132,13 +134,15 @@ public class UserController {
 	 * 회원 기본정보 입력받아 DB 저장 후, 쿠키 생성
 	 */
 	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
-	public String joinAction(HttpServletRequest request, HttpServletResponse response, UserVO user) throws Exception{
+	public String joinAction(HttpServletRequest request, HttpServletResponse response, UserVO user, UserCharacterVO userCharacter) throws Exception{
 		
 		logger.info("joinAction..........");
 		
 		logger.info(user.toString());
+		logger.info(userCharacter.toString());
 		
 		userService.registUser(user);
+		userCharacterService.registUserCharacter(userCharacter);
 		
 		CookieGenerator cookieGenerator = new CookieGenerator();
 		
@@ -166,18 +170,19 @@ public class UserController {
 	 * 회원가입 시 아이디 중복 체크
 	 */
 	@RequestMapping(value = "user/checkUserId", method = RequestMethod.GET)
-	public String checkUserId(HttpServletRequest request) throws Exception{
+	public String checkUserId(String user_id, HttpServletRequest request) throws Exception{
 		
 		logger.info("checkUserId..........");
-		logger.info("user_id : " + request.getParameter("user_id"));
+		logger.info("checkUserId..........:" + user_id);
 		
-		UserVO user = userService.readUser(request.getParameter("user_id"));
+		UserVO user = userService.readUser(user_id);
+		logger.info(""+user);
 		
-		String checkFlag = "n";
+		String checkFlag = "y";
 		
 		if(user != null){
 			
-			checkFlag = "y";
+			checkFlag = "n";
 		}
 		
 		request.setAttribute("result", checkFlag);
