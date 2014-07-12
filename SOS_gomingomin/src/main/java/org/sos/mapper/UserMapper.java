@@ -13,7 +13,7 @@ public interface UserMapper {
 	
 	@Insert("INSERT INTO "
 				+ "tbl_user(user_id, user_password, user_name, user_birth, user_sex, "
-						 + "user_addr, user_email, user_mobile, user_phone) "
+						 + "user_addr, user_phone) "
 		   +"VALUES( "
 				+ "#{user_id}, "
 				+ "#{user_password}, "
@@ -21,14 +21,12 @@ public interface UserMapper {
 				+ "#{user_birth}, "
 				+ "#{user_sex}, "
 				+ "#{user_addr}, "
-				+ "#{user_email}, "
-				+ "#{user_mobile}, "
 				+ "#{user_phone})")
 	public void registUser(UserVO vo);
 	
 	@Select("SELECT "
 				+ "user_id, user_password, user_name, user_birth, user_sex, "
-				+ "user_addr, user_email, user_mobile, user_phone, user_grade "
+				+ "user_addr, user_phone, user_grade "
 		  + "FROM "
 		  		+ "tbl_user "
 		  + "WHERE "
@@ -48,7 +46,6 @@ public interface UserMapper {
 		  		 				+ "tbl_user"
 		  		 		+ ") A) "
 		  + "WHERE PAGE = #{pageNo}")
-	
 	public List<UserVO> readUserList(int pageNo);
 	
 	@Update("UPDATE "
@@ -59,8 +56,6 @@ public interface UserMapper {
 				+ "user_birth 	 = #{user_birth}, "
 				+ "user_sex 	 = #{user_sex}, "
 				+ "user_addr 	 = #{user_addr}, "
-				+ "user_email 	 = #{user_email}, "
-				+ "user_mobile 	 = #{user_mobile}, "
 				+ "user_phone 	 = #{user_phone} "
 		  + "WHERE "
 				+ "user_id = #{user_id}")
