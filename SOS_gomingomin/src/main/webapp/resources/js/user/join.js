@@ -132,12 +132,19 @@ var form = $("#user-join-form");
             user_sex_ok = true;
             
             $.ajax({
-            	data : {user_sex : user_sex.val()},
+            	data : {user_sex : $(":input:radio[name=user_sex]:checked").val()},
             	url : '/user/getCharacterInfo',
             	dataType : 'json',
             	success : function(data){
-            		// /user/ajax/getCharacterInfo
-            		console.log(data);
+            		var list = data.result;
+            		var html = $("#img_wrapper");
+            		html.empty();
+            		$.each(list,function(idx, obj){
+            			var el = "<img id="+obj.character_id+" src=/resources/images/character/"+obj.character_img+">";
+            			html.append(el);
+            		});
+            		 $.init_CharacterList();
+            		
             	}
             });
             
@@ -232,9 +239,6 @@ var showInputPage = function(){
 };
 
 
-$(function(){
-    $.init_CharacterList();
-});
 
 //////////////////////////////////////////////////////////// 위치 초기화
 $.init_CharacterList = function() {
@@ -242,29 +246,21 @@ $.init_CharacterList = function() {
     characterList = $('#img_wrapper').children();
 
     $.each(characterList, function(index) {
-
-        switch (index) {
-            case 19:
-                left3 = $(this);
-                break;
-            case 0:
-                left2 = $(this);
-                break;
-            case 1:
-                left1 = $(this);
-                break;
-            case 2:
-                center = $(this);
-                break;
-            case 3:
-                right1 = $(this);
-                break;
-            case 4:
-                right2 = $(this);
-                break;
-            case 5:
-                right3 = $(this);
-        };
+    	if(index == characterList.length-1){
+    		left3 = $(this);
+    	}else if(index == 0) {
+    		left2 = $(this);
+    	}else if(index == 1) {
+    		left1 = $(this);
+    	}else if(index == 2) {
+    		center = $(this);
+    	}else if(index == 3) {
+    		right1 = $(this);
+    	}else if(index == 4) {
+    		right2 = $(this);
+    	}else if(index == 5) {
+    		right3 = $(this);
+    	}
     });
 
     $.addCSS();
@@ -474,11 +470,14 @@ $("#user-join-form .ok").click(function () {
             dataType : 'json',
             url: "/joinAction",
             success : function(data){
-            	console.log(data);
-                /*
-                    아이디 정보 받아서 cookie 저장 후
-                    캐릭터 선택 페이지로 redirect
-                 */
+            	if(data.result =='y'){
+            		alert("가입이 완료되었습니다.");
+            		location.href = "/";
+            	} else {
+            		alert("에러입니다. 다시 시도해주세요.");
+            		location.href = "/join";
+            	}
+            	
             },
             failure : function(data){
                 console.log("에러입니다. 다음에 다시 시도해주세요..");
@@ -487,9 +486,6 @@ $("#user-join-form .ok").click(function () {
     }
 });
 
-$("#user-join-form .cancel").click(function () {
-	$('#joinModal').modal('hide');
-});
 
 $("#user-join-form .refresh").click(function(event) {
     event.preventDefault();

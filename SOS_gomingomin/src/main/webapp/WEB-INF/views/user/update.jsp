@@ -122,8 +122,8 @@
 				                </div>
 				            </div>
 				            <div class="form-group form-button">
-				                    <button type="submit" class="btn btn-default ok">수정</button>
-				                    <button type="submit" class="btn btn-default cancel">취소</button>
+				                    <button class="btn btn-default ok">수정</button>
+				                    <button class="btn btn-default cancel">취소</button>
 				            </div>
 						</div>
 					</div>

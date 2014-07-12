@@ -133,32 +133,12 @@
 					</div>
 					<div class="selectCharacter" id="character-info"
 						style="display: none">
-						<div class="join-header">
+						<div class="content-header">
 							<span class="sub-title">캐릭터정보 선택</span> <span class="sub-desc">자신의
 								성향을 나타내는 캐릭터를 드래그해서 올려주세요</span>
 						</div>
 						<hr>
 						<div id="img_wrapper">
-							<img id="1" src="/resources/images/character/한효주2.png">
-							<img id="2" src="/resources/images/character/고현정1.png">
-							<img id="3" src="/resources/images/character/공효진.png">
-							<img id="4" src="/resources/images/character/김명민.png">
-							<img id="5" src="/resources/images/character/김수현.png">
-							<img id="6" src="/resources/images/character/김혜수.png">
-							<img id="7" src="/resources/images/character/김희애.png">
-							<img id="8" src="/resources/images/character/류승범.png">
-							<img id="9" src="/resources/images/character/황정민.png">
-							<img id="10" src="/resources/images/character/박해일.png">
-							<img id="11" src="/resources/images/character/소지섭.png">
-							<img id="12" src="/resources/images/character/손예진.png">
-							<img id="13" src="/resources/images/character/송중기.png">
-							<img id="14" src="/resources/images/character/안성기.png">
-							<img id="15" src="/resources/images/character/유해진.png">
-							<img id="16" src="/resources/images/character/이정재.png">
-							<img id="17" src="/resources/images/character/전지현.png">
-							<img id="18" src="/resources/images/character/이병헌.png">
-							<img id="19" src="/resources/images/character/이영애.png">
-							<img id="20" src="/resources/images/character/하정우.png">
 						</div>
 						<div class="btnNav">
 							<span id="left"><img src="/resources/images/icon/left.png">
@@ -200,25 +180,5 @@
 	<!--/ 메인페이지 끝-->
 	<script src="/resources/js/lib/bootstrap-datepicker.js"></script>
 <script src="/resources/js/user/join.js"></script>
-	<script>
-		
-		$(".main-circle").hover(
-				function() {
-					$(this).children(".main-outer-circle").addClass(
-							"main-spread-circle");
-					$(this).children(".main-inner-circle").addClass(
-							"main-inner-show");
-					$(this).children(".depth1-info").addClass(
-							"main-circle-hidden");
-				},
-				function() {
-					$(this).children(".main-outer-circle").removeClass(
-							"main-spread-circle");
-					$(this).children(".main-inner-circle").removeClass(
-							"main-inner-show");
-					$(this).children(".depth1-info").removeClass(
-							"main-circle-hidden");
-				});
-	</script>
 </body>
 </html>
