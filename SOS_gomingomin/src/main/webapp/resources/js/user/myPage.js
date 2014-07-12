@@ -6,7 +6,6 @@ $("#myPage-form .ok").click(function() {
 			var $form = $("#myPage-form");
 			$form.attr('action', '/myPage');
 			$form.attr('method', 'post');
-			$form.serialize();
 			$form.submit();
 });
 

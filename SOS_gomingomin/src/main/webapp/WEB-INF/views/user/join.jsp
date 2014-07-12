@@ -32,7 +32,7 @@
 		<div class="container-body">
 		<form class="form-horizontal" role="form" id="user-join-form">
 					<div id="user-info">
-						<div class="join-header">
+						<div class="content-header">
 							<span class="sub-title">기본정보입력</span> <span class="sub-desc">가입에
 								필요한 기본적인 회원정보를 입력해주세요</span>
 						</div>

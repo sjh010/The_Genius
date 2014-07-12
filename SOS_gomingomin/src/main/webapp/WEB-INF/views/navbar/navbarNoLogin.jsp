@@ -81,7 +81,7 @@
 	    	url : "/loginAction",
 	    	success : function(data){
 	    		if((data.result == null) || (data.result == undefined)){
-	    			location.reload();
+	    			location.href = "/";
 	    		} else {
 	    			alert(data.result);
 	    		}

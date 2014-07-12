@@ -14,7 +14,6 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/resources/css/lib/datepicker.css"/>
 <link rel="stylesheet" href="/resources/css/top.css">
 <link rel="stylesheet" href="/resources/css/import.css">
 <link rel="stylesheet" href="/resources/css/animate.css">

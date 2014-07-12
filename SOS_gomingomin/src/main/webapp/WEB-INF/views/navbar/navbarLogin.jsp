@@ -45,24 +45,6 @@
 	});
 	
 
-	$("#user-login-form .ok").click(function(){
-		var $form = $("#user-login-form");
-		$.ajax({
-	    	data : $form.serialize(),
-	    	type : "post",
-	    	dataType : "json",
-	    	url : "/loginAction",
-	    	success : function(data){
-	    		if((data.result == null) || (data.result == undefined)){
-	    			location.reload();
-	    		} else {
-	    			alert(data.result);
-	    		}
-	        }
-	    });
-	});
-
-
 	$(".nav-menu").hover(function() {
 		$(this).find(".nav-menu-title").addClass("nav-menu-0-rotate");
 		$(this).find(".nav-menu-img").addClass("nav-menu-90-rotate");

@@ -396,17 +396,21 @@ nav {
 
 /* join modal */
 
-.join-header {
+.content-header {
     width :80%;
     margin : 0 auto;
 }
-.join-header .sub-title {
+.content-header .sub-title {
     font-size: 30px;
 }
-.join-header .sub-desc {
+.content-header .sub-desc {
     font-size: 15px;
 }
-
+.container-body {
+	width : 100%;
+	height :700px;
+	position : relative;
+}
 .input-area{
     width : 90%;
     margin :0 auto;
@@ -806,4 +810,25 @@ nav {
     padding : 10px 10px 0 0;
     font-weight: bold;
     font-size : 15px;
+}
+
+#myPage-form {
+	width :100%;
+	margin-left : -50%;
+	position : absolute;
+	top : 30%;
+	left :50%;
+}
+
+#myPage-form .form-group {
+	margin : 0 auto;
+	margin-top : 20px;
+	width : 80%;
+}
+
+#myPage-form .form-button {
+	width : 80%;
+	margin : 0 auto;
+	margin-top : 30px;
+	text-align : right;
 }

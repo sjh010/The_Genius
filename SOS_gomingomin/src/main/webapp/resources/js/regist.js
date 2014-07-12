@@ -130,6 +130,17 @@ var form = $("#user-join-form");
         if (!user_sex.checked) {
         	has_success(user_sex.parent().parent(), "");
             user_sex_ok = true;
+            
+            $.ajax({
+            	data : {user_sex : user_sex.val()},
+            	url : '/user/ajax/getCharacterInfo',
+            	dataType : 'json',
+            	success : function(data){
+            		console.log(data);
+            	}
+            });
+            
+            
         }
         if(!user_sex_ok){
             has_error(user_sex.parent().parent(), "성별을 선택하세요");
@@ -199,7 +210,11 @@ prevCharacter.click(function(e) {
 
 nextCharacter.click(function(e) {
 	e.preventDefault();
-	showCharacterPage();
+	if(user_sex_ok){
+		showCharacterPage();
+	} else {
+		alert("성별을 선택하세요.");
+	}
 });
 
 var showCharacterPage = function(){
