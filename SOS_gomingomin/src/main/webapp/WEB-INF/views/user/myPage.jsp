@@ -53,12 +53,14 @@
 		</div>
 	</div>
 	<script src="/resources/js/user/myPage.js"></script>
-	$(document).ready(function(){
-		$("#myPage-form .id").html($.cookie("user_id"));
-		if("${result}" != ""){
-			alert("${result}");
-		} 
-		
-	});
+	<script>
+		$(document).ready(function(){
+			$("#myPage-form .id").html($.cookie("user_id"));
+			if("${result}" != ""){
+				alert("${result}");
+			} 
+			
+		});
+	</script>
 </body>
 </html>

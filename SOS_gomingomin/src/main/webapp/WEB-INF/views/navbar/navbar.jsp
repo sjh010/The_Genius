@@ -47,4 +47,9 @@
 </jsp:include>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="/resources/js/navbar.js"></script>
+<script>
+$(".cancel").click(function (e) {
+	e.preventDefault();
+	history.back();
+});
+</script>

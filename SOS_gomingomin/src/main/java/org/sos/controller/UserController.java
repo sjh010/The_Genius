@@ -257,24 +257,70 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/myPage/update", method = RequestMethod.GET)
 	public ModelAndView getModifyPage(@CookieValue(value="user_id") String user_id, 
-									HttpServletRequest request, Model model) throws Exception{
+									HttpServletRequest request) throws Exception{
 		
 		logger.info("modify..........");
 		logger.info(user_id);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		UserVO user = userService.readUser(user_id);
-		modelAndView.addObject("UserVO", user);
-		modelAndView.setViewName("/user/update");
-		
+		try {
+			UserVO user = userService.readUser(user_id);
+			modelAndView.addObject("UserVO", user);
+			modelAndView.setViewName("/user/update");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return modelAndView;	
 	}
 	
-	public String modifyAction(UserVO user){
+	@RequestMapping(value = "/myPage/updateAction", method = RequestMethod.POST)
+	public String modifyAction(HttpServletRequest request, UserVO user){
 		
-		return null;
+		String result = "y";
+		
+		logger.info("modifyAction..........");
+		try {
+			userService.updateUser(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "n";
+		}
+		request.setAttribute("result", result);
+		
+		return "user/ajax/returnResult";
+	}
+	
+	@RequestMapping(value = "/myPage/deleteAction", method = RequestMethod.POST)
+	public String deleteAction(HttpServletRequest request, HttpServletResponse response,String user_id){
+		logger.info("deleteAction..........");
+		
+		String result = "y";
+		
+		try {
+			userService.deleteUser(user_id);
+			userCharacterService.deleteUserCharacter(user_id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "n";
+		}
+		
+		if(result.equals("y")){
+			CookieGenerator cookieGenerator = new CookieGenerator();
+			cookieGenerator.setCookieName("loginInfo");
+			cookieGenerator.addCookie(response, "n");
+			cookieGenerator.setCookieName("user_id");
+			cookieGenerator.addCookie(response, null);
+			cookieGenerator.setCookieName("user_grade");
+			cookieGenerator.addCookie(response, null);	
+		}
+		
+		request.setAttribute("result", result);
+		
+		return "user/ajax/returnResult";
 	}
 	
 	/*

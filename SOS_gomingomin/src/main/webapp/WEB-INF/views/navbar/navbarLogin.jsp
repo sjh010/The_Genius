@@ -8,7 +8,6 @@
 	String user_name = request.getParameter("user_name");
 %>
 
-
 <!-- 네비게이션 -->
 <nav>
 	<div class="nav">
