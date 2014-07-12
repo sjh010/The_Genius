@@ -48,17 +48,6 @@ public interface UserMapper {
 		  + "WHERE PAGE = #{pageNo}")
 	public List<UserVO> readUserList(int pageNo);
 	
-	@Update("UPDATE "
-				+ "tbl_user "
-		  + "SET "
-				+ "user_password = #{user_password}, "
-				+ "user_name 	 = #{user_name}, "
-				+ "user_birth 	 = #{user_birth}, "
-				+ "user_sex 	 = #{user_sex}, "
-				+ "user_addr 	 = #{user_addr}, "
-				+ "user_phone 	 = #{user_phone} "
-		  + "WHERE "
-				+ "user_id = #{user_id}")
 	public void updateUser(UserVO vo);
 	
 	@Update("UPDATE "

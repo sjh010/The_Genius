@@ -199,7 +199,7 @@
 	</div>
 	<!--/ 메인페이지 끝-->
 	<script src="/resources/js/lib/bootstrap-datepicker.js"></script>
-<script src="/resources/js/regist.js"></script>
+<script src="/resources/js/user/join.js"></script>
 	<script>
 		
 		$(".main-circle").hover(
