@@ -444,6 +444,8 @@ $("#user-join-form .ok").click(function () {
             user_name : user_name.val(),
             user_addr : zipcode1.val()+'----'+zipcode2.val()+'____'+address1.val()+'----'+address2.val(),
             user_phone : phone1.val()+'-'+phone2.val()+'-'+phone3.val(),
+            user_birth : user_birth.val(),
+            user_sex : user_sex.val(),
             character1 : selected1.children()[0].id,
             character2 : selected2.children()[0].id,
             character3 : selected3.children()[0].id
