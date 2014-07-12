@@ -99,27 +99,15 @@ var form = $("#user-join-form");
     user_name.focusout(function () {userNameChk();});
 
     var user_birth = form.find("[name=user_birth]");
-    var year = new Date().getFullYear();
+    
     user_birth.datepicker({
-        dateFormat: 'yy-mm-dd',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNames: ['일','월','화','수','목','금','토'],
-        dayNamesShort: ['일','월','화','수','목','금','토'],
-        dayNamesMin: ['일','월','화','수','목','금','토'],
-        showMonthAfterYear: true,
-        changeMonth: true,
-        changeYear: true,
-        yearRange : (year-100)+":"+year,
-        beforeShow: function(input) {
-            var i_offset= $(input).offset();
-            setTimeout(function(){
-                $('#ui-datepicker-div').css({'top':i_offset.top, 'bottom':'', 'right':'10px'});
-            });
-
-        }
+        format: "yyyy-mm-dd",
+        endDate: "new Date()",
+        startView: 2,
+        language: "kr",
+        orientation: "top auto",
+        keyboardNavigation: false,
+        autoclose: true
     });
     
     var user_birth_ok = false;
