@@ -89,7 +89,7 @@
 }
 .type2-open .type-inner .content-title,
 .type2-open .type-inner .content-close,
-.type2-open .type-inner .content-body {
+.type2-open .type-inner .content-body{
     opacity: 1;
     visibility: visible;
     transition : opacity 0.5s linear 0.5s;
@@ -117,4 +117,18 @@
 .type3-close {
     left : 97%;
     transition : left 1s;
+}
+
+.type-none-open{
+    transition : top 1s;
+	top:9%;
+}
+
+
+ .type-none-open .type-inner .content-body,
+  .type-none-open .type-inner .content-close,  
+  .type-none-open .type-inner .content-title{
+    opacity: 1;
+    visibility: visible;
+    transition : opacity 0.5s linear 0.5s;
 }

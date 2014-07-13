@@ -632,8 +632,10 @@ nav {
     left: 0;
     width: 100%;
     height: 899px;
+    visibility : visible;
+    opacity : 100;
     background-color: rgba(245, 178, 219, 0.7);
-    transition : left 1s;
+    transition : left 1s, visibility 0.1s linear 0.5s,opacity 0.5s;
 }
 
 .type2 {
@@ -643,8 +645,10 @@ nav {
     left: 33.33%;
     width: 100%;
     height: 899px;
+    visibility : visible;
+    opacity : 100;
     background-color: rgba(159, 221, 237, 0.7);
-    transition : left 1s;
+    transition : left 1s, visibility 0.1s linear 0.5s,opacity 0.5s;
 }
 
 .type3 {
@@ -654,14 +658,16 @@ nav {
     left: 66.66%;
     width: 100%;
     height: 899px;
+    visibility : visible;
+    opacity : 100;
     background-color:rgba(244, 236, 192, 0.7);
-    transition : left 1s;
+    transition : left 1s, visibility 0.1s linear 0.5s,opacity 0.5s;
 }
 
 .type-inner {
     position: relative;
     height: 899px;
-     transition : visibility 0.5s linear 0.5s,opacity 0.5s linear 0.5s;
+    transition : visibility 0.1s linear 0.5s,opacity 0.5s linear 0.5s;
 }
 .content-close{
     position: absolute;
@@ -810,6 +816,63 @@ nav {
     padding : 10px 10px 0 0;
     font-weight: bold;
     font-size : 15px;
+}
+
+.type-none {
+	z-index: 5;
+    position: absolute;
+    top: 95%;
+    left: 6%;
+    width: 90%;
+    height: 799px;
+    background-color:rgba(244, 236, 192, 0.7);
+    transition : top 1s, visibility 1s linear 1s,opacity 1s;
+}
+
+.type-none .content-close {
+	position: absolute;
+    top: 5%;
+    left: 95%;
+    opacity: 0;
+    visibility: hidden;
+    transition : opacity 0.1s;
+}
+.type-none .content-title {
+	top: 4%;
+    left: 3%;
+	opacity: 1;
+    visibility: hidden;
+}
+
+.type-none .content-body{
+	position: absolute;
+    left :50%;
+    top:8%;
+	width : 820px;
+    height: 700px;
+    margin : 0 0 0 -405px;
+    transition : opacity 0.1s;
+    overflow:auto;
+}
+
+
+
+.no-load-pearson, .no-load-cosine, .no-load-multi{
+	display:none;
+}
+
+
+.more-view-pearson, .more-view-cosine, .more-view-multi{
+	flat : left;
+	width : 800px;
+	margin-left :100px;
+	height: 30px;
+	background: rgba(255,255,255,0.8);
+	text-align: center;
+}
+.more-view:hover{
+	margin : 16px 7px 16px -93px;
+    border :3px solid #000;
 }
 
 #myPage-form {

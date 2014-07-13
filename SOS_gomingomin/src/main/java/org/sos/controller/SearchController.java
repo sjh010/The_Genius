@@ -170,6 +170,14 @@ public class SearchController {
 	      List<ResultVO> rvoList;
 	      List<ProductVO> pvoList;
 		
+	      try {
+				request.setAttribute("productCodeList", productService.searchProduct(keyword));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      
+	      
 		if(loginInfo.equals("y")){
 			try {
 		         //resultVO 리스트를 만들어주고
@@ -186,7 +194,7 @@ public class SearchController {
 		         pvoList = productService.searchProduct(keyword);
 		         
 		         //마기 사용해서 map을 얻어온다.
-		         request.setAttribute("productCodeList", magi.getCompetitionResult(rvoList, pvoList));
+		         request.setAttribute("magiResultMap", magi.getCompetitionResult(rvoList, pvoList));
 		         
 		      } catch (Exception e) {
 		         // TODO Auto-generated catch block
@@ -194,15 +202,11 @@ public class SearchController {
 		      }
 			return "/search/loginSearch";
 		      
-		} else {
-			try {
-				request.setAttribute("productCodeList", productService.searchProduct(keyword));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return "/search/noLoginSearch";
-		}
+		} else return "/search/noLoginSearch";
+			
+			
+			
+		
 	}
 	
 	@RequestMapping(value = "/searchCategory", method = RequestMethod.GET)
