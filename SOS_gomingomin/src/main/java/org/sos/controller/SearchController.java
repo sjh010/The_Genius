@@ -156,7 +156,7 @@ public class SearchController {
 	      return "search";
 	}
 	
-    @RequestMapping(value="/categorySearch", method = RequestMethod.GET)
+    @RequestMapping(value="/searchCategory", method = RequestMethod.GET)
 	public String getCategoryProduct(@CookieValue(value="loginInfo", defaultValue="n") String loginInfo,
 										@CookieValue(value="user_id", defaultValue="") String user_id,
 											HttpServletRequest request, int category_id){
@@ -169,7 +169,8 @@ public class SearchController {
     	
     	try{
     		//카테고리아이디만 같은 
-    		request.setAttribute("productCodeList", productService.readCategoryProductList(category_id));	
+    		request.setAttribute("productCodeList", productService.readCategoryProductList(category_id));
+    		request.setAttribute("categoryInfo", categoryService.readCategory(category_id));
     	} catch(Exception e){
     		//TODO Auto-generated catch block
     		e.printStackTrace();
@@ -192,7 +193,6 @@ public class SearchController {
 		         //마기 사용해서 map을 얻어온다.
 		         request.setAttribute("magiResultMap", magi.getCompetitionResult(rvoList, pvoList));
 		         
-		         request.setAttribute("categoryInfo", categoryService.readCategory(category_id));
 		         
     		}catch(Exception e){
     			e.printStackTrace();

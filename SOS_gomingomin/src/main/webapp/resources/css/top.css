@@ -822,11 +822,18 @@ nav {
 	z-index: 5;
     position: absolute;
     top: 95%;
-    left: 6%;
-    width: 90%;
-    height: 799px;
+    left: 3%;
+    width: 16%;
+    height: 200px;
     background-color:rgba(244, 236, 192, 0.7);
-    transition : top 1s, visibility 1s linear 1s,opacity 1s;
+     transition : top 1s, width 1s, height 1s, left 1s,visibility 0.5s, opacity 0.5s;
+}
+
+.type-title {
+	visibility : visible;
+	position: absolute;
+	top:1%;
+	left:15%
 }
 
 .type-none .content-close {
@@ -870,9 +877,11 @@ nav {
 	background: rgba(255,255,255,0.8);
 	text-align: center;
 }
-.more-view:hover{
-	margin : 16px 7px 16px -93px;
-    border :3px solid #000;
+.search-result-list .more-view-pearson:hover, 
+.search-result-list .more-view-cosine:hover, 
+.search-result-list .more-view-multi:hover{
+	margin : 19px 10px 19px 10px;
+    border : none;
 }
 
 #myPage-form {

@@ -1,29 +1,30 @@
 $(function() {
-//		$(".product").each(function(index, product) {
-//			var element = $(this).children(".search-result-element");
-//			var image = element.children(".thum").children("a").children(".product-image")[0];
-//			var price = element.children(".desc").children(".price")[0];
-//			var title = element.children(".desc").children(".title")[0];
-//			
-//			$.ajax({
-//					url : 'http://apis.skplanetx.com/11st/common/products',
-//					type : 'get',
-//					dateType : 'JSON',
-//					data : {
-//						appKey : '3c64217d-ab48-329f-82a4-3fbdb55e79ec',
-//						version : 1,
-//						searchKeyword : product.id,
-//					},
-//
-//					success : function(data) {
-//						var productInfo = data.ProductSearchResponse.Products.Product;
-//						var tmp = productInfo.ProductName;
-//						title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
-//						image.src = productInfo.ProductImage250;
-//						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
-//					}
-//			});
-//		});
+	console.log($(".product"));
+		$(".product").each(function(index, product) {
+			var element = $(this).children(".search-result-element");
+			var image = element.children(".thum").children("a").children(".product-image")[0];
+			var price = element.children(".desc").children(".price")[0];
+			var title = element.children(".desc").children(".title")[0];
+			
+			$.ajax({
+				url : 'http://apis.skplanetx.com/11st/common/products',
+				type : 'get',
+				dateType : 'JSON',
+				data : {
+					appKey : '3c64217d-ab48-329f-82a4-3fbdb55e79ec',
+					version : 1,
+					searchKeyword : $(this)[0].id,
+				},
+
+				success : function(data) {
+					var productInfo = data.ProductSearchResponse.Products.Product;
+					var tmp = productInfo.ProductName;
+					title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
+					image.src = productInfo.ProductImage250;
+					price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
+				}
+		});
+		});
 
 	});
 		var lastPostFunc = function() {

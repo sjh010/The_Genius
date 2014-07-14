@@ -118,12 +118,21 @@
     left : 97%;
     transition : left 1s;
 }
-
+.type-none-hidden {
+	top :100%;
+	transition : top 0.5s;
+}
 .type-none-open{
-    transition : top 1s;
+    transition : top 1s, width 1s, height 1s, left 1s;
+    width : 90%;
+    height: 799px;
 	top:9%;
+	left: 6%;
 }
 
+.type-none-open .type-title{
+	visibility : hidden;
+}
 
  .type-none-open .type-inner .content-body,
   .type-none-open .type-inner .content-close,  

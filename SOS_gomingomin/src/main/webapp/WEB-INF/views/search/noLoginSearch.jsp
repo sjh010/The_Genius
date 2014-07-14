@@ -7,7 +7,22 @@
 <%
 	List<ProductVO> productCodeList = 
 					(List<ProductVO>) request.getAttribute("productCodeList");
-	System.out.println(productCodeList.toString());
+	
+	String keyword = request.getParameter("keyword");
+	String category_id = request.getParameter("category_id");
+	String title = "";
+	String icon = "";
+	
+	if(keyword != null){
+		icon = "search";
+		title = keyword;
+		
+	} else if(category_id != null){
+		icon = "filter";
+		CategoryVO category = (CategoryVO) request.getAttribute("categoryInfo");
+		title = category.getCategory_name();
+	}
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,7 +45,7 @@
 	<jsp:include page="../navbar/navbar.jsp" flush="false" />
 	<div class="container">
 		<div class="content-title">
-			<h3><span class="glyphicon glyphicon-search"></span><%=request.getParameter("keyword")+" " %> 관련 상품</h3>
+			<h3><span class="glyphicon glyphicon-<%=icon %>"></span><%=title+" " %> 관련 상품</h3>
 		</div>
 		<div class="content-body">
 			<ul class="search-result-list">
