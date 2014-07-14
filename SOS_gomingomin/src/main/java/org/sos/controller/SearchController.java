@@ -154,8 +154,56 @@ public class SearchController {
 	      }
 	      
 	      return "search";
-	   }
+	}
 	
+    @RequestMapping(value="/categorySearch", method = RequestMethod.GET)
+	public String getCategoryProduct(@CookieValue(value="loginInfo", defaultValue="n") String loginInfo,
+										@CookieValue(value="user_id", defaultValue="") String user_id,
+											HttpServletRequest request, int category_id){
+    	UserCharacterVO userCharacterVO = null;
+    	CharacterVO characterVO = null;
+    	List<CharacterVO> cvoList = new ArrayList<CharacterVO>();
+    	resultVOConverter = new ResultVOConverter();
+    	List<ResultVO> rvoList;
+    	List<ProductVO> pvoList;
+    	
+    	try{
+    		//카테고리아이디만 같은 
+    		request.setAttribute("productCodeList", productService.readCategoryProductList(category_id));	
+    	} catch(Exception e){
+    		//TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+    	
+    	if(loginInfo.equals("y")){
+    		try{
+		         userCharacterVO = userCharacterService.readUserCharacter(user_id);
+		         characterVO = characterService.readCharacter(userCharacterVO.getUser_character1());
+		         cvoList.add(characterVO);
+		         characterVO = characterService.readCharacter(userCharacterVO.getUser_character2());
+		         cvoList.add(characterVO);
+		         characterVO = characterService.readCharacter(userCharacterVO.getUser_character3());
+		         cvoList.add(characterVO);
+		         rvoList = resultVOConverter.convert(cvoList);
+		         
+		         //productVO 리스트를 만들어주고
+		         pvoList = productService.readCategoryProductList(category_id);
+		         
+		         //마기 사용해서 map을 얻어온다.
+		         request.setAttribute("magiResultMap", magi.getCompetitionResult(rvoList, pvoList));
+		         
+		         request.setAttribute("categoryInfo", categoryService.readCategory(category_id));
+		         
+    		}catch(Exception e){
+    			e.printStackTrace();
+    		}
+    		return "/search/loginSearch";
+    		
+    	}else return "/search/noLoginSearch";
+    	
+    }
+	
+	   
 	@RequestMapping(method = RequestMethod.GET)
 	public String getProductCode(@CookieValue(value="loginInfo" , defaultValue="n") String loginInfo,
 								 	@CookieValue(value="user_id", defaultValue="") String user_id,
@@ -204,28 +252,6 @@ public class SearchController {
 		      
 		} else return "/search/noLoginSearch";
 			
-			
-			
-		
-	}
-	
-	@RequestMapping(value = "/searchCategory", method = RequestMethod.GET)
-	public ModelAndView categorySearch(int category_id){
-		
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			mv.addObject("productList", productService.readCategoryProductList(category_id));
-			mv.addObject("categoryInfo", categoryService.readCategory(category_id));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		mv.setViewName("/search/category");
-		
-		return mv;
-		
 	}
 	
 }
