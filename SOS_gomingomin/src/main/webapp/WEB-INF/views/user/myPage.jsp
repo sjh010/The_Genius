@@ -31,6 +31,11 @@
 				</div>
 				<hr>
 		</div>
+		<div class="container-close">
+			<button type="button" class="close cancel">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+		</div>
 		<div class="container-body">
 			<form class="form-horizontal " role="form" id="myPage-form">
 				<div class="form-group">
@@ -61,6 +66,13 @@
 			} 
 			
 		});
+	</script>
+	<script>
+	$(".cancel").click(function (e) {
+		console.log("asdf");
+		e.preventDefault();
+		history.back();
+	});
 	</script>
 </body>
 </html>

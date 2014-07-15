@@ -37,10 +37,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-1 control-label" >설명</label>
-
+                        <label class="col-sm-1 control-label" >성별</label>
                         <div class="col-sm-11">
-                            <textarea class="form-control" rows="3" name="character_description"></textarea>
+                            <select class="form-control" name="character_sex">
+                            	<option value="M">남자</option>
+                            	<option value="F">여자</option>
+                            </select>
                         </div>
                     </div>
                 </div>

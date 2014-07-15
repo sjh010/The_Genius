@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-2 img-upload">
                 
-                    <img id="preview" src="/resources/images/<%=character.getCharacter_img() %>"/>
+                    <img id="preview" src="/resources/images/character/<%=character.getCharacter_img() %>"/>
                     <input type="file" accept="image/*" name="file">
                 </div>
                 <div class="col-md-10 info-input">
@@ -43,10 +43,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-1 control-label" >설명</label>
-
+                        <label class="col-sm-1 control-label" >성별</label>
                         <div class="col-sm-11">
-                            <textarea class="form-control" rows="3" name="character_description"></textarea>
+                            <select class="form-control" name="character_sex">
+                            	<option value="M" <%="M".equals(character.getCharacter_sex())?"selected":""%>>남자</option>
+                            	<option value="F" <%="F".equals(character.getCharacter_sex())?"selected":""%>>여자</option>
+                            </select>
                         </div>
                     </div>
                 </div>

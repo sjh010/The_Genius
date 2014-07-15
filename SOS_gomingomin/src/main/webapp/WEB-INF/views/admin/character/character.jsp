@@ -30,7 +30,7 @@
         <div class="row selectBox">
     	<% if(characterList != null) { for(CharacterVO character : characterList) { %>
             <div class="select-element" id="<%=character.getCharacter_id() %>">
-                <div class="image-frame" style="background-image: url('/resources/images/<%=character.getCharacter_img() %>');">
+                <div class="image-frame" style="background-image: url('/resources/images/character/<%=character.getCharacter_img() %>');">
                     <a href="#" class="character-update"><span class="glyphicon glyphicon-wrench"></span></a>
                     <a href="#" class="character-delete"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>

@@ -61,7 +61,7 @@
 						<img class="img" src="/resources/images/search/a.png">
 					</div>
 				</div>
-				<div class="content-body">
+				<div class="content-body type-center">
 					<ul class="search-result-list">
 						<%  int cnt = 0;
 							for(OrderVO pearson : pearsonList) { 
@@ -106,7 +106,7 @@
 						<img class="img" src="/resources/images/search/b.png">
 					</div>
 				</div>
-				<div class="content-body">
+				<div class="content-body type-center">
 					<ul class="search-result-list">
 						<%  cnt = 0;
 							for(OrderVO cosine : cosineList) { 
@@ -151,7 +151,7 @@
 						<img class="img" src="/resources/images/search/c.png">
 					</div>
 				</div>
-				<div class="content-body">
+				<div class="content-body type-center">
 					<ul class="search-result-list">
 						<%  cnt = 0;
 							for(OrderVO multi : multiList) { 
@@ -219,6 +219,15 @@
 		var typeNo = $(".type-none");
 
 		$(".content-close button").click(function(e) {
+			close();
+			e.stopPropagation();
+		});
+		$(".container-close button").click(function(e) {
+			close();
+			e.stopPropagation();
+		});
+		
+		var close = function(){
 			reset();
 			typeNo.removeClass("type-none-open");
 			type1.removeClass("type-hidden");
@@ -233,8 +242,7 @@
 			type1.removeClass("type1-open");
 			type2.removeClass("type2-open");
 			type3.removeClass("type3-open");
-			e.stopPropagation();
-		});
+		};
 
 		$(".type1 .content-circle").click(function() {
 			type2.find(".type-inner").addClass("type-hidden");
