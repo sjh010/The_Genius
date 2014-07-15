@@ -18,6 +18,7 @@ public class NoLoginMainCalc {
 		for(int i=0; i<pList.size(); i++){
 			ovo = new OrderVO();
 			ovo.setProduct_id(pList.get(i).getProduct_id());
+			ovo.setProduct_name(pList.get(i).getProduct_name());
 			oList.add(ovo);
 		}
 		
