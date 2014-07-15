@@ -24,7 +24,6 @@ public class UserCharacterServiceImpl implements UserCharacterService {
 		// TODO Auto-generated method stub
 		UserCharacterVO vo;
 		vo = userCharacterMapper.readUserCharacter(user_id);
-		
 		return vo;
 		
 	}
