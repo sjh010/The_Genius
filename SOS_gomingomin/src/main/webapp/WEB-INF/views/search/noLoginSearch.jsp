@@ -54,7 +54,7 @@
 						<span class="search-result-element"> 
 							<span class="thum">
 							<a href="#"><img class="product-image" src="" /></a></span>
-							<span class="desc"> <span class="title"><a href="#"></a></span> 
+							<span class="desc"> <span class="title"><%=product.getProduct_name() %><a href="#"></a></span> 
 							<span class="price">0원</span>
 							</span>
 						</span>

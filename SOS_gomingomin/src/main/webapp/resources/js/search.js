@@ -4,7 +4,6 @@ $(function() {
 			var element = $(this).children(".search-result-element");
 			var image = element.children(".thum").children("a").children(".product-image")[0];
 			var price = element.children(".desc").children(".price")[0];
-			var title = element.children(".desc").children(".title")[0];
 			
 			$.ajax({
 				url : 'http://apis.skplanetx.com/11st/common/products',
@@ -18,8 +17,6 @@ $(function() {
 
 				success : function(data) {
 					var productInfo = data.ProductSearchResponse.Products.Product;
-					var tmp = productInfo.ProductName;
-					title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
 					image.src = productInfo.ProductImage250;
 					price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
 				}

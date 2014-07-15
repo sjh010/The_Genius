@@ -27,6 +27,7 @@ public class LoginMainCalc {
 		
 		//임시로 사용할 변수들
 		int product_id = 0;
+		String product_name = null;
 		double value = 0.0;
 		int size = pearsonOrderList.size();	
 		//어차피 세개의 사이즈는 같으므로 personOrderList의 size를 씀

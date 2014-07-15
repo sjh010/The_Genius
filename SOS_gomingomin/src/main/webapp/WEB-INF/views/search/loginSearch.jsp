@@ -71,7 +71,7 @@
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"></a></span> 
+									<span class="desc"> <span class="title"><a href="#"><%=pearson.getProduct_name() %></a></span> 
 									<span class="price">0원</span>
 									</span>
 								</span>
@@ -81,13 +81,12 @@
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"></a></span> 
+									<span class="desc"> <span class="title"><a href="#"><%=pearson.getProduct_name() %></a></span> 
 									<span class="price">0원</span>
 									</span>
 								</span>
 							</li>
 						<%} cnt++; }%>
-						<li class="more-view-pearson"><span class="glyphicon glyphicon-plus"></span>더보기</li>
 					</ul>
 				</div>
 			</div>
@@ -117,7 +116,7 @@
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"></a></span> 
+									<span class="desc"> <span class="title"><a href="#"><%=cosine.getProduct_name() %></a></span> 
 									<span class="price">0원</span>
 									</span>
 								</span>
@@ -127,13 +126,12 @@
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"></a></span> 
+									<span class="desc"> <span class="title"><a href="#"><%=cosine.getProduct_name() %></a></span> 
 									<span class="price">0원</span>
 									</span>
 								</span>
 							</li>
 						<%} cnt++; }%>
-						<li class="more-view-cosine"><span class="glyphicon glyphicon-plus"></span>더보기</li>
 					</ul>
 				</div>
 			</div>
@@ -163,7 +161,7 @@
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"></a></span> 
+									<span class="desc"> <span class="title"><a href="#"><%=multi.getProduct_name() %></a></span> 
 									<span class="price">0원</span>
 									</span>
 								</span>
@@ -173,13 +171,12 @@
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"></a></span> 
+									<span class="desc"> <span class="title"><a href="#"><%=multi.getProduct_name() %></a></span> 
 									<span class="price">0원</span>
 									</span>
 								</span>
 							</li>
 						<%} cnt++; }%>
-						<li class="more-view-multi"><span class="glyphicon glyphicon-plus"></span>더보기</li>
 					</ul>
 				</div>
 			</div>
@@ -204,7 +201,7 @@
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"></a></span> 
+									<span class="desc"> <span class="title"><a href="#"><%=product.getProduct_name() %></a></span> 
 									<span class="price">0원</span>
 									</span>
 								</span>
@@ -314,7 +311,6 @@
 				var element = $(this).children(".search-result-element");
 				var image = element.children(".thum").children("a").children(".product-image")[0];
 				var price = element.children(".desc").children(".price")[0];
-				var title = element.children(".desc").children(".title")[0];
 				
 				$.ajax({
 					url : 'http://apis.skplanetx.com/11st/common/products',
@@ -328,8 +324,6 @@
 
 					success : function(data) {
 						var productInfo = data.ProductSearchResponse.Products.Product;
-						var tmp = productInfo.ProductName;
-						title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
 						image.src = productInfo.ProductImage250;
 						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
 					}
@@ -352,7 +346,6 @@
 				var element = $(this).children(".search-result-element");
 				var image = element.children(".thum").children("a").children(".product-image")[0];
 				var price = element.children(".desc").children(".price")[0];
-				var title = element.children(".desc").children(".title")[0];
 				
 				$.ajax({
 					url : 'http://apis.skplanetx.com/11st/common/products',
@@ -366,8 +359,6 @@
 
 					success : function(data) {
 						var productInfo = data.ProductSearchResponse.Products.Product;
-						var tmp = productInfo.ProductName;
-						title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
 						image.src = productInfo.ProductImage250;
 						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
 					}
@@ -390,7 +381,6 @@
 				var element = $(this).children(".search-result-element");
 				var image = element.children(".thum").children("a").children(".product-image")[0];
 				var price = element.children(".desc").children(".price")[0];
-				var title = element.children(".desc").children(".title")[0];
 				
 				$.ajax({
 					url : 'http://apis.skplanetx.com/11st/common/products',
@@ -404,8 +394,6 @@
 
 					success : function(data) {
 						var productInfo = data.ProductSearchResponse.Products.Product;
-						var tmp = productInfo.ProductName;
-						title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
 						image.src = productInfo.ProductImage250;
 						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
 					}
@@ -425,7 +413,6 @@
 					var element = $(this).children(".search-result-element");
 					var image = element.children(".thum").children("a").children(".product-image")[0];
 					var price = element.children(".desc").children(".price")[0];
-					var title = element.children(".desc").children(".title")[0];
 					
 					$.ajax({
 						url : 'http://apis.skplanetx.com/11st/common/products',
@@ -439,8 +426,6 @@
 	
 						success : function(data) {
 							var productInfo = data.ProductSearchResponse.Products.Product;
-							var tmp = productInfo.ProductName;
-							title.innerHTML = "<a href='#' title='"+tmp+"'>" + tmp.substr(0, 35)+"...</a>" ;
 							image.src = productInfo.ProductImage250;
 							price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
 						}
