@@ -15,6 +15,10 @@
 			<img class="nav-menu-img" src="/resources/images/icon/white/home.png">
 			<span class="nav-menu-title">Home</span>
 		</div>
+		<div class="nav-menu" id="test">
+			<img class="nav-menu-img" src="/resources/images/icon/white/notepad.png">
+			<span class="nav-menu-title">Test</span>
+		</div>
 		<div class="nav-menu" id="logout">
 			<img class="nav-menu-img"
 				src="/resources/images/icon/white/logout.png"> <span
@@ -34,6 +38,11 @@
 	$("#home").click(function() {
 		location.href = "/";
 	});
+	
+	$("#test").click(function() {
+		location.href = "/test";
+	});
+	
 
 	logout.click(function() {
 		location.href="/logout";
