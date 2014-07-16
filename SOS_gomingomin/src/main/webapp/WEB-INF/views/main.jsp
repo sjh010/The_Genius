@@ -103,7 +103,7 @@
 				<div class="main-inner-circle">
 					<ul class="depth2-info">
 						<li class="depth2-dummy"><a href="/search/searchCategory?category_id=30">Cafe/Bakery</a></li>
-						<li><a href="/search/searchCategory?category_id=31"></a>Restaurants</li>
+						<li><a href="/search/searchCategory?category_id=31">Restaurants</a></li>
 						<li><a href="/search/searchCategory?category_id=32">Reports/Park</a></li>
 					</ul>
 				</div>
