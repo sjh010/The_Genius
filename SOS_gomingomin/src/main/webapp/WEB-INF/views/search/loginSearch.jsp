@@ -68,16 +68,13 @@
 							if(cnt < 3){
 						%>
 							<li class="product" id="<%=pearson.getProduct_id() %>">
-								<span class="search-result-element"> 
-									<span class="thum">
-									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"><%=pearson.getProduct_name() %></a></span> 
-									<span class="price">0원</span>
-									</span>
-								</span>
-							</li>
-						<%} else{%>
-							<li class="no-load-pearson" id="<%=pearson.getProduct_id() %>">
+								<% if(cnt == 0) { %>
+									<img class="rank" src="/resources/images/rank1.png">
+								<% } else if(cnt==1){%>
+									<img class="rank" src="/resources/images/rank2.png">
+								<% } else if(cnt==2){%>
+									<img class="rank" src="/resources/images/rank3.png">
+								<% }%>
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
@@ -113,6 +110,13 @@
 							if(cnt < 3){
 						%>
 							<li class="product" id="<%=cosine.getProduct_id() %>">
+								<% if(cnt == 0) { %>
+									<img class="rank" src="/resources/images/rank1.png">
+								<% } else if(cnt==1){%>
+									<img class="rank" src="/resources/images/rank2.png">
+								<% } else if(cnt==2){%>
+									<img class="rank" src="/resources/images/rank3.png">
+								<% }%>
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
@@ -121,17 +125,7 @@
 									</span>
 								</span>
 							</li>
-						<%} else{%>
-							<li class="no-load-cosine" id="<%=cosine.getProduct_id() %>">
-								<span class="search-result-element"> 
-									<span class="thum">
-									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"><%=cosine.getProduct_name() %></a></span> 
-									<span class="price">0원</span>
-									</span>
-								</span>
-							</li>
-						<%} cnt++; }%>
+						<% }cnt++; }%>
 					</ul>
 				</div>
 			</div>
@@ -158,16 +152,13 @@
 							if(cnt < 3){
 						%>
 							<li class="product" id="<%=multi.getProduct_id() %>">
-								<span class="search-result-element"> 
-									<span class="thum">
-									<a href="#"><img class="product-image" src="" /></a></span>
-									<span class="desc"> <span class="title"><a href="#"><%=multi.getProduct_name() %></a></span> 
-									<span class="price">0원</span>
-									</span>
-								</span>
-							</li>
-						<%} else{%>
-							<li class="no-load-multi" id="<%=multi.getProduct_id() %>">
+								<% if(cnt == 0) { %>
+									<img class="rank" src="/resources/images/rank1.png">
+								<% } else if(cnt==1){%>
+									<img class="rank" src="/resources/images/rank2.png">
+								<% } else if(cnt==2){%>
+									<img class="rank" src="/resources/images/rank3.png">
+								<% }%>
 								<span class="search-result-element"> 
 									<span class="thum">
 									<a href="#"><img class="product-image" src="" /></a></span>
@@ -196,7 +187,9 @@
 				</div>
 				<div class="content-body">
 					<ul class="search-result-list">
-						 <% for(ProductVO product : productCodeList) { %>
+						 <% cnt = 0;
+						 	for(ProductVO product : productCodeList) { %>
+						 <% if(cnt < 6){ %>
 							<li class="more-view-all" id="<%=product.getProduct_id() %>">
 								<span class="search-result-element"> 
 									<span class="thum">
@@ -206,7 +199,17 @@
 									</span>
 								</span>
 							</li>
-						<%} %>
+						<%}  else{%>
+							<li class="no-load" id="<%=product.getProduct_id() %>">
+								<span class="search-result-element"> 
+									<span class="thum">
+									<a href="#"><img class="product-image" src="" /></a></span>
+									<span class="desc"> <span class="title"><a href="#"><%=product.getProduct_name() %></a></span> 
+									<span class="price">0원</span>
+									</span>
+								</span>
+							</li>
+							<%}cnt++;} %>
 					</ul>
 				</div>
 			</div>
@@ -304,111 +307,50 @@
 	</script>
 	<script src="/resources/js/search.js"></script>
 	<script>
-		$(".more-view-pearson").click(function(){
-			var addList = $(".no-load-pearson");
-			$.each(addList, function(idx, obj){
-				if(addList.length < 3){
-					$(".more-view-pearson").remove();
-				} else if(idx > 2) {
-					return 0;	
-				}
-				
-				$(this).addClass("product");
-				$(this).removeClass("no-load-pearson");
-				
-				var element = $(this).children(".search-result-element");
-				var image = element.children(".thum").children("a").children(".product-image")[0];
-				var price = element.children(".desc").children(".price")[0];
-				
-				$.ajax({
-					url : 'http://apis.skplanetx.com/11st/common/products',
-					type : 'get',
-					dateType : 'JSON',
-					data : {
-						appKey : '3c64217d-ab48-329f-82a4-3fbdb55e79ec',
-						version : 1,
-						searchKeyword : $(this)[0].id,
-					},
+	
+		$('.content-body').bind('scroll', function(){
+			   if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight){
+				   
+				    var addList = $(".no-load");
+				    console.log("============");
+				    console.log(addList.length);
+					$.each(addList, function(idx, obj){
+						
+						if(idx >2 ) return 0;
+						
+						$(this).addClass("product");
+						$(this).removeClass("no-load");
+						
+						var element = $(this).children(".search-result-element");
+						var image = element.children(".thum").children("a").children(".product-image")[0];
+						var price = element.children(".desc").children(".price")[0];
+						
+						$.ajax({
+							url : 'http://apis.skplanetx.com/11st/common/products',
+							type : 'get',
+							dateType : 'JSON',
+							data : {
+								appKey : '3c64217d-ab48-329f-82a4-3fbdb55e79ec',
+								version : 1,
+								searchKeyword : $(this)[0].id,
+							},
 
-					success : function(data) {
-						var productInfo = data.ProductSearchResponse.Products.Product;
-						image.src = productInfo.ProductImage250;
-						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
+							success : function(data) {
+								var productInfo = data.ProductSearchResponse.Products.Product;
+								image.src = productInfo.ProductImage250;
+								price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
+							}
+						});
+					});
+					
+					for(var i = 0 ; i< (3-addList.length);i++){
+						lastPostFunc();
+						console.log(i);
 					}
-			});
-			});
+			   }
 		});
-		
-		$(".more-view-cosine").click(function(){
-			var addList = $(".no-load-cosine");
-			$.each(addList, function(idx, obj){
-				if(addList.length < 3){
-					$(".more-view-cosine").remove();
-				} else if(idx > 2) {
-					return 0;	
-				}
-				
-				$(this).addClass("product");
-				$(this).removeClass("no-load-cosine");
-				
-				var element = $(this).children(".search-result-element");
-				var image = element.children(".thum").children("a").children(".product-image")[0];
-				var price = element.children(".desc").children(".price")[0];
-				
-				$.ajax({
-					url : 'http://apis.skplanetx.com/11st/common/products',
-					type : 'get',
-					dateType : 'JSON',
-					data : {
-						appKey : '3c64217d-ab48-329f-82a4-3fbdb55e79ec',
-						version : 1,
-						searchKeyword : $(this)[0].id,
-					},
-
-					success : function(data) {
-						var productInfo = data.ProductSearchResponse.Products.Product;
-						image.src = productInfo.ProductImage250;
-						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
-					}
-			});
-			});
-		});
-		
-		$(".more-view-multi").click(function(){
-			var addList = $(".no-load-multi");
-			$.each(addList, function(idx, obj){
-				if(addList.length < 3){
-					$(".more-view-multi").remove();
-				} else if(idx > 2) {
-					return 0;	
-				}
-				
-				$(this).addClass("product");
-				$(this).removeClass("no-load-multi");
-				
-				var element = $(this).children(".search-result-element");
-				var image = element.children(".thum").children("a").children(".product-image")[0];
-				var price = element.children(".desc").children(".price")[0];
-				
-				$.ajax({
-					url : 'http://apis.skplanetx.com/11st/common/products',
-					type : 'get',
-					dateType : 'JSON',
-					data : {
-						appKey : '3c64217d-ab48-329f-82a4-3fbdb55e79ec',
-						version : 1,
-						searchKeyword : $(this)[0].id,
-					},
-
-					success : function(data) {
-						var productInfo = data.ProductSearchResponse.Products.Product;
-						image.src = productInfo.ProductImage250;
-						price.innerText = formatnumber(productInfo.ProductPrice,3) + "원";
-					}
-			});
-			});
-		});
-		
+	
+	
 		var type_none = false;
 		$(".type-none").click(function(){
 			if(!type_none){

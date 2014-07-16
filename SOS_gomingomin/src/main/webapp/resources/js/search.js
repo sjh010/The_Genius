@@ -1,5 +1,4 @@
 $(function() {
-	console.log($(".product"));
 		$(".product").each(function(index, product) {
 			var element = $(this).children(".search-result-element");
 			var image = element.children(".thum").children("a").children(".product-image")[0];
@@ -29,13 +28,13 @@ $(function() {
 			var str = "<li>"
 					+ " <span class='search-result-element'>"
 					+ "  <span class='thum'>"
-					+ "  <a href='#'><img name='상품1' src='제목 없음.png'/></a>"
+					+ "  <a href='#'><img name='상품1' src=''/></a>"
 					+ "  </span>"
 					+ " <span class='desc'>"
-					+ "  <span class='title'><a href='#'>11번가 단독 특가! 삼성 미사용전시노트북 499000원 행사!</a></span>"
-					+ " <span class='price'>499,000원</span>" + " </span>"
+					+ "  <span class='title'><a href='#'>상품제목</a></span>"
+					+ " <span class='price'>상품가격</span>" + " </span>"
 					+ " </span>" + "</li>";
-			$(".search-result-list li:last").after(str + str + str);
+			$(".search-result-list li:last").after(str);
 
 		};
 		
@@ -51,8 +50,3 @@ $(function() {
 		
 		
 		
-		$('.content-body').bind('scroll', function(){
-			   if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight){
-				   //lastPostFunc();
-			   }
-		});

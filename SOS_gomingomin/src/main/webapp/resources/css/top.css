@@ -741,6 +741,19 @@ nav {
     transition: margin 0.5s, width 0.5s, height 0.5s;
 }
 
+.product {
+	position :relative;
+}
+
+.product .rank {
+	position: absolute;
+	left: -7px;
+	top: -12px;
+	width: 30%;
+	height: 30%;
+	
+}
+
 .container .content-body {
 	opacity: 1;
     visibility: visible;
@@ -880,7 +893,7 @@ nav {
 
 
 
-.no-load-pearson, .no-load-cosine, .no-load-multi{
+.no-load{
 	display:none;
 }
 
