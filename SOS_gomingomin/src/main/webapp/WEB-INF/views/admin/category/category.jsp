@@ -37,18 +37,19 @@
 				</span>
 			</div>
 		</form>
+		
 			<div class="category-list">
 				<%
 					for(CategoryVO depth1 : categoryList) { 
 				        	if(depth1.getCategory_depth().equals("1")) {
 				        		int id = depth1.getCategory_id();
 				%>
-				<div class="category" id="<%=id%>">
-					<div class="depth-1-category">
+				<div class="panel panel-info category" id="<%=id%>">
+					<div class="panel-heading">
 						<span><%=depth1.getCategory_name()%></span>
 					</div>
 
-					<div class="depth-2-category">
+					<div class="panel-body">
 						<%
 							for(CategoryVO depth2 : categoryList) { 
 								        if(depth2.getCategory_depth().equals("2") 

@@ -27,14 +27,17 @@
 <link rel="stylesheet" href="/resources/css/animate.css">
 <style>
 
-	.test-category-title{
-		display :inline-block;
+	.test-category {
+		float : left;
+		text-align: center;
+		margin : 0 15px 0 15px;
+		border : 1px solid;
 	}
 	
-	.test-category-title li, .test-category {
-		float : left;
-		margin : 0 5px 0 5px;
+	.test-el {
+		padding :10px;
 	}
+	
 	.test-el img{
 		width : 150px;
 		height :150px;
@@ -44,23 +47,24 @@
 		width : 100%;
 		text-align: center;
 	}
-	.content-body form .form-button {
+	.test-title{
+		width : 100%;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.result-title {
 		width : 100%;
 	}
-	.result-container{
-		float : left;
-	}
-	.result-title{
-		width : 30%;
-		margin-right :50px;
-		float : left;
-	}
-	.result-title div {
-		text-align :right;
+	.result-title div{
+		display :inline-block;
+		width : 24.3%;
+		text-align: center;
 		font-size : 20px;
-		font-weight : bold;
-		line-height : 175px;
-		min-height : 175px;
+	}
+	.result-container{
+		width : 100%;
+		margin :0 auto;
+		text-align: center;
 	}
 </style>
 </head>
@@ -73,15 +77,23 @@
 		<div class="content-title">
 			<h3><span class="glyphicon glyphicon-edit"></span>테스트 모드</h3>
 		</div>
+		<div class="container-close">
+			<button type="button" class="close cancel">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+		</div>
 		<div class="content-body">
+			<div class="test-title">
+				<h2>테스트 결과입니다.</h2>
+			</div>
 			<div class="result-title">
-				<div>내가 선택한 것</div>
-				<div>Pearson 상관계수 결과</div>
-				<div>Cosine 유사도 결과</div>
-				<div>가중치 계산 결과</div>
+				<div>선택하신 제품</div>
+				<div>Pearson 계수</div>
+				<div>Cosine 유사도</div>
+				<div>가중치 계산</div>
 			</div>
 			<div class="result-container">
-				<ul class='test-category-title'>
+				<ul class='test-category'>
 						<%for(ProductVO vo : selectProduct){ %>
 						<li class="test-el">
 	                        <img src="/resources/test/<%=vo.getProduct_id() %>.png">
@@ -89,52 +101,57 @@
 						</li>
 						<%} %>
 				</ul>
-				<br>
 				<ul class='test-category'>
 						<li class="test-el">
 	                        <img src="/resources/test/<%=category1.get("pearson").get(0).getProduct_id() %>.png">
 							<label><%=category1.get("pearson").get(0).getProduct_name() %></label>
 						</li>
 						<li class="test-el">
-	                        <img src="/resources/test/<%=category1.get("cosine").get(0).getProduct_id() %>.png">
-							<label><%=category1.get("pearson").get(0).getProduct_name() %></label>
-						</li>
-						<li class="test-el">
-	                        <img src="/resources/test/<%=category1.get("multi").get(0).getProduct_id() %>.png">
-							<label><%=category1.get("pearson").get(0).getProduct_name() %></label>
-						</li>
-				</ul>
-				<ul class='test-category'>
-						<li class="test-el">
 	                        <img src="/resources/test/<%=category2.get("pearson").get(0).getProduct_id() %>.png">
 							<label><%=category2.get("pearson").get(0).getProduct_name() %></label>
 						</li>
 						<li class="test-el">
-	                        <img src="/resources/test/<%=category2.get("cosine").get(0).getProduct_id() %>.png">
-							<label><%=category2.get("pearson").get(0).getProduct_name() %></label>
-						</li>
-						<li class="test-el">
-	                        <img src="/resources/test/<%=category2.get("multi").get(0).getProduct_id() %>.png">
-							<label><%=category2.get("pearson").get(0).getProduct_name() %></label>
+	                        <img src="/resources/test/<%=category3.get("pearson").get(0).getProduct_id() %>.png">
+							<label><%=category3.get("pearson").get(0).getProduct_name() %></label>
 						</li>
 				</ul>
 				<ul class='test-category'>
 						<li class="test-el">
-	                        <img src="/resources/test/<%=category3.get("pearson").get(0).getProduct_id() %>.png">
-							<label><%=category3.get("pearson").get(0).getProduct_name() %></label>
+	                        <img src="/resources/test/<%=category1.get("cosine").get(0).getProduct_id() %>.png">
+							<label><%=category1.get("cosine").get(0).getProduct_name() %></label>
+						</li>
+						<li class="test-el">
+	                        <img src="/resources/test/<%=category2.get("cosine").get(0).getProduct_id() %>.png">
+							<label><%=category2.get("cosine").get(0).getProduct_name() %></label>
 						</li>
 						<li class="test-el">
 	                        <img src="/resources/test/<%=category3.get("cosine").get(0).getProduct_id() %>.png">
-							<label><%=category3.get("pearson").get(0).getProduct_name() %></label>
+							<label><%=category3.get("cosine").get(0).getProduct_name() %></label>
+						</li>
+				</ul>
+				<ul class='test-category'>
+						<li class="test-el">
+	                        <img src="/resources/test/<%=category1.get("multi").get(0).getProduct_id() %>.png">
+							<label><%=category1.get("multi").get(0).getProduct_name() %></label>
+						</li>
+						<li class="test-el">
+	                        <img src="/resources/test/<%=category2.get("multi").get(0).getProduct_id() %>.png">
+							<label><%=category2.get("multi").get(0).getProduct_name() %></label>
 						</li>
 						<li class="test-el">
 	                        <img src="/resources/test/<%=category3.get("multi").get(0).getProduct_id() %>.png">
-							<label><%=category3.get("pearson").get(0).getProduct_name() %></label>
+							<label><%=category3.get("multi").get(0).getProduct_name() %></label>
 						</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	
+	<script>
+$(".cancel").click(function (e) {
+	console.log("asdf");
+	e.preventDefault();
+	history.back();
+});
+</script>
 </body>
 </html>

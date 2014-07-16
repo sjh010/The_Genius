@@ -43,9 +43,14 @@
 		<div class="content-title">
 			<h3><span class="glyphicon glyphicon-edit"></span>테스트 모드</h3>
 		</div>
+		<div class="container-close">
+			<button type="button" class="close cancel">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+		</div>
 		<div class="content-body">
 			<h3>각 카테고리별 선호상품을 1개씩 선택해 주세요</h3>
-			<form action="/test/result" method="post">
+			<form action="/test/result" method="post" id="testform">
 				<ul class='test-category'>
 			<% String[] testType = {"test1","test2","test3"}; int idx = 0; int cnt = 1;%>
 			<% for(ProductVO product : testList){ %>
@@ -63,11 +68,27 @@
 			<%  } %>
 				</ul>
 				<div class="form-button">
-					<button type="submit" class="btn btn-default" id="goTest">확인</button>
+					<button class="btn btn-default" id="goTest">확인</button>
 				</div>
 			</form>
 		</div>
 	</div>
+	<script>
 	
+	$("#goTest").click(function(e){
+		e.preventDefault();
+		var test1 = $(':radio[name="test1"]:checked');
+		var test2 = $(':radio[name="test2"]:checked');
+		var test3 = $(':radio[name="test3"]:checked');
+		if(test1.length < 1 && test2.length < 1 && test3.length <1){
+			alert("상품을 모두 선택해주세요");
+		} else $("#testform").submit();
+		
+	});
+	$(".cancel").click(function (e) {
+		e.preventDefault();
+		history.back();
+	});
+	</script>
 </body>
 </html>
