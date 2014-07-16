@@ -106,7 +106,7 @@ $(function(){
 		    type : 'get',
 		    dateType : 'JSON',
 		    data : {
-		        appKey : '3c64217d-ab48-329f-82a4-3fbdb55e79ec',    // 발급받은 key
+		        appKey : 'f6ed69c5-1af2-3764-bb8c-c7395066bd4d',    // 발급받은 key
 		        option : 'PdOption',
 		        version : 1    // API 버전 정보, type : number
 		    },
