@@ -42,6 +42,7 @@
                             value="<%=character.getCharacter_name() %>">
                         </div>
                     </div>
+                    <% System.out.println(character.getCharacter_sex()); %>
                     <div class="form-group">
                         <label class="col-sm-1 control-label" >성별</label>
                         <div class="col-sm-11">
