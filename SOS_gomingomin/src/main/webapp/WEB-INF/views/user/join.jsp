@@ -29,7 +29,13 @@
 		<div class="container-header">
 			<img src="/resources/images/logo/join.png">
 		</div>
+		<div class="container-close">
+			<button type="button" class="close cancel">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+		</div>
 		<div class="container-body">
+		
 		<form class="form-horizontal" role="form" id="user-join-form">
 					<div id="user-info">
 						<div class="content-header">
@@ -180,5 +186,12 @@
 	<!--/ 메인페이지 끝-->
 	<script src="/resources/js/lib/bootstrap-datepicker.js"></script>
 <script src="/resources/js/user/join.js"></script>
+<script>
+$(".cancel").click(function (e) {
+	console.log("asdf");
+	e.preventDefault();
+	history.back();
+});
+</script>
 </body>
 </html>

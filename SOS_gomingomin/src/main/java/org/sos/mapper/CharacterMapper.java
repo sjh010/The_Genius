@@ -15,13 +15,14 @@ public interface CharacterMapper {
 	//TBL_CHARACTER TABLE의 시퀀스 이름 = SOS_SEQUENCE
 	
 	@Insert("INSERT INTO "
-			    + "tbl_character(character_id, character_name, character_img, "
+			    + "tbl_character(character_id, character_name, character_img, character_sex, "
 			                  + "type_adventure, type_practice, type_rule, type_tradition, "
 			                  + "type_enjoyment, type_pleasure, type_harmony) "
 		  + "VALUES( "
 		        + "character_sequence.nextval, "
 			    + "#{character_name}, "
 			    + "#{character_img}, "
+			    + "#{character_sex}, "
 			    + "#{type_adventure}, "
 			    + "#{type_practice}, "
 			    + "#{type_rule}, "
@@ -32,7 +33,7 @@ public interface CharacterMapper {
 	public void registCharacter(CharacterVO vo);
 	
 	@Select("SELECT "
-			    + "character_id, character_name, character_img, "
+			    + "character_id, character_name, character_img, character_sex, "
 			    + "type_adventure, type_practice, type_rule, type_tradition, "
 			    + "type_enjoyment, type_pleasure, type_harmony "
 	      + "FROM "
@@ -42,7 +43,7 @@ public interface CharacterMapper {
 	public CharacterVO readCharacter(int character_id);
 	
 	@Select("SELECT "
-			+ "character_id, character_name, character_img, "
+			+ "character_id, character_name, character_img, character_sex, "
 			+ "type_adventure, type_practice, type_rule, type_tradition, "
 			+ "type_enjoyment, type_pleasure, type_harmony "
 		  + "FROM "
@@ -51,7 +52,7 @@ public interface CharacterMapper {
 	  			+ "FROM "
 	  		 		+ "("
 	  		 			+ "SELECT "
-	  		 				+ "character_id, character_name, character_img, "
+	  		 				+ "character_id, character_name, character_img, character_sex, "
 	  		 				+ "type_adventure, type_practice, type_rule, type_tradition, "
 	  		 				+ "type_enjoyment, type_pleasure, type_harmony "
 	  		 			+ "FROM "
@@ -61,7 +62,7 @@ public interface CharacterMapper {
 	public List<CharacterVO> readCharacterList(int pageNum);
 	
 	@Select("SELECT "
-				+ "character_id, character_name, character_img, "
+				+ "character_id, character_name, character_img, character_sex, "
 				+ "type_adventure, type_practice, type_rule, type_tradition, "
 				+ "type_enjoyment, type_pleasure, type_harmony "
 		  + "FROM "
@@ -69,7 +70,7 @@ public interface CharacterMapper {
 	public List<CharacterVO> readAllCharacterList();
 	
 	@Select("SELECT "
-				+ "character_id, character_name, character_img, "
+				+ "character_id, character_name, character_img, character_sex, "
 				+ "type_adventure, type_practice, type_rule, type_tradition, "
 				+ "type_enjoyment, type_pleasure, type_harmony "
 		  + "FROM "
@@ -83,6 +84,7 @@ public interface CharacterMapper {
 		  + "SET "
 			    + "character_name = #{character_name}, "
 	    		+ "character_img = #{character_img}, "
+	    		+ "character_sex = #{character_sex}, "
 	    		+ "type_adventure = #{type_adventure}, "
 	    		+ "type_practice = #{type_practice}, "
 	    		+ "type_rule = #{type_rule}, "

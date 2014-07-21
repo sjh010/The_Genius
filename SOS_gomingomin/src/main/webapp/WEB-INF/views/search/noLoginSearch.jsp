@@ -1,6 +1,3 @@
-<!-- 
-  Created by Saemi Lim on 2014-06-24.
--->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="org.sos.vo.*, java.util.List, java.util.Map"%>
@@ -33,7 +30,6 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/resources/css/lib/jquery-ui.min.css"/>
 <link rel="stylesheet" href="/resources/css/top.css">
 <link rel="stylesheet" href="/resources/css/import.css">
 <link rel="stylesheet" href="/resources/css/animate.css">
@@ -54,7 +50,7 @@
 						<span class="search-result-element"> 
 							<span class="thum">
 							<a href="#"><img class="product-image" src="" /></a></span>
-							<span class="desc"> <span class="title"><a href="#"></a></span> 
+							<span class="desc"> <span class="title"><%=product.getProduct_name() %><a href="#"></a></span> 
 							<span class="price">0원</span>
 							</span>
 						</span>

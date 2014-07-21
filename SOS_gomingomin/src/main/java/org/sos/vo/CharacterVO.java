@@ -5,6 +5,7 @@ public class CharacterVO {
 	private int character_id;
 	private String character_name;
 	private String character_img;
+	private String character_sex;
 	private double type_adventure;
 	private double type_practice;
 	private double type_rule;
@@ -12,7 +13,6 @@ public class CharacterVO {
 	private double type_enjoyment;
 	private double type_pleasure;
 	private double type_harmony;
-	
 	public int getCharacter_id() {
 		return character_id;
 	}
@@ -30,6 +30,12 @@ public class CharacterVO {
 	}
 	public void setCharacter_img(String character_img) {
 		this.character_img = character_img;
+	}
+	public String getCharacter_sex() {
+		return character_sex;
+	}
+	public void setCharacter_sex(String character_sex) {
+		this.character_sex = character_sex;
 	}
 	public double getType_adventure() {
 		return type_adventure;
@@ -77,11 +83,12 @@ public class CharacterVO {
 	public String toString() {
 		return "CharacterVO [character_id=" + character_id
 				+ ", character_name=" + character_name + ", character_img="
-				+ character_img + ", type_adventure=" + type_adventure
-				+ ", type_practice=" + type_practice + ", type_rule="
-				+ type_rule + ", type_tradition=" + type_tradition
-				+ ", type_enjoyment=" + type_enjoyment + ", type_pleasure="
-				+ type_pleasure + ", type_harmony=" + type_harmony + "]";
+				+ character_img + ", character_sex=" + character_sex
+				+ ", type_adventure=" + type_adventure + ", type_practice="
+				+ type_practice + ", type_rule=" + type_rule
+				+ ", type_tradition=" + type_tradition + ", type_enjoyment="
+				+ type_enjoyment + ", type_pleasure=" + type_pleasure
+				+ ", type_harmony=" + type_harmony + "]";
 	}
 	
 }

@@ -88,6 +88,7 @@ public class PearsonCorrelationCoefficient extends AbstractRecommendCalc {
 			OrderVO orderVO = new OrderVO();
 			
 			orderVO.setProduct_id(product.getProduct_id());
+			orderVO.setProduct_name(product.getProduct_name());
 			orderVO.setValue(pearsonCorrelation);
 
 			orderedProductList.add(orderVO);		

@@ -18,11 +18,11 @@ public class ResultVOConverter {
          rvo = new ResultVO();
          rvo.setType_adventure(cvoList.get(i).getType_adventure());
          rvo.setType_enjoyment(cvoList.get(i).getType_enjoyment());
-         rvo.setType_enjoyment(cvoList.get(i).getType_harmony());
-         rvo.setType_enjoyment(cvoList.get(i).getType_pleasure());
-         rvo.setType_enjoyment(cvoList.get(i).getType_practice());
-         rvo.setType_enjoyment(cvoList.get(i).getType_rule());
-         rvo.setType_enjoyment(cvoList.get(i).getType_tradition());
+         rvo.setType_harmony(cvoList.get(i).getType_harmony());
+         rvo.setType_pleasure(cvoList.get(i).getType_pleasure());
+         rvo.setType_practice(cvoList.get(i).getType_practice());
+         rvo.setType_rule(cvoList.get(i).getType_rule());
+         rvo.setType_tradition(cvoList.get(i).getType_tradition());
          rvoList.add(rvo);
       }
       

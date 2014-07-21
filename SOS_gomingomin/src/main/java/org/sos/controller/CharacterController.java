@@ -126,7 +126,7 @@ public class CharacterController{
 				characterService.registFile(file);
 				
 				File saveFile = new File(session.getServletContext().getRealPath("/") + 
-											"/resources/images/" + file.getUid());
+											"/resources/images/character/" + file.getUid());
 				
 
 				file.getFile().transferTo(saveFile);
