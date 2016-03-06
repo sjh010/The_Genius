@@ -12,6 +12,7 @@ public class PagingVO {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
+	
 
 	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
